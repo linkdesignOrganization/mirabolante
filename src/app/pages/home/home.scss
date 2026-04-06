@@ -440,3 +440,128 @@
     transform: translateX(-50%);
   }
 }
+
+// ==========================================
+// About Section
+// ==========================================
+
+.about {
+  position: relative;
+  height: 150vh;
+}
+
+// ==========================================
+// About Background (Parallax)
+// ==========================================
+
+.about__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.about__bg-img {
+  width: 100%;
+  height: 130%;
+  object-fit: cover;
+  will-change: transform;
+}
+
+// ==========================================
+// About Content Container
+// ==========================================
+
+.about__container {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.about__spacer {
+  // Left column — empty, shows the background
+}
+
+// ==========================================
+// About Rail (right column with lines)
+// ==========================================
+
+.about__rail {
+  position: relative;
+  padding-right: 55px;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #fff;
+  }
+
+  &::before {
+    left: 0;
+  }
+
+  &::after {
+    right: 55px;
+  }
+}
+
+// ==========================================
+// About Card (Sticky)
+// ==========================================
+
+.about__card {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  padding: 48px 40px;
+  width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.about__label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.about__label-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #c27a3a;
+}
+
+.about__label-text {
+  font-family: 'ABC Whyte Inktrap', sans-serif;
+  font-weight: 400;
+  font-size: 0.85rem;
+  color: #c27a3a;
+}
+
+.about__heading {
+  font-family: 'ABC Whyte Inktrap', sans-serif;
+  font-weight: 500;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 1.15;
+  color: #1a1a1a;
+  letter-spacing: -0.02em;
+}
+
+.about__text {
+  font-family: 'ABC Whyte Inktrap', sans-serif;
+  font-weight: 400;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #555;
+  padding-left: 24px;
+}
