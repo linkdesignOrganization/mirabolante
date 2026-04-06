@@ -1,1 +1,442 @@
+// ==========================================
+// Hero Section
+// ==========================================
 
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #1a1a2e;
+}
+
+// ==========================================
+// Background image + zoom/blur animation
+// ==========================================
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.15);
+    filter: blur(20px);
+    opacity: 0;
+    transition:
+      transform 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+      filter 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+      opacity 0.4s ease;
+  }
+
+  .hero.loaded & img {
+    transform: scale(1);
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+// ==========================================
+// Dark overlay for text readability
+// ==========================================
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.15) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+}
+
+// ==========================================
+// Content container
+// ==========================================
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 100%;
+  padding: 0 60px 60px;
+}
+
+// ==========================================
+// Heading
+// ==========================================
+
+.hero__heading {
+  font-family: 'ABC Whyte Inktrap', sans-serif;
+  font-weight: 500;
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: 0.95;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.hero__heading-line {
+  display: block;
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  .hero.loaded & {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @for $i from 1 through 3 {
+    &:nth-child(#{$i}) {
+      transition-delay: #{0.2 + ($i * 0.1)}s;
+    }
+  }
+}
+
+// ==========================================
+// Info block (subtitle + CTA)
+// ==========================================
+
+.hero__info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 24px;
+  padding-bottom: 10px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s,
+    transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s;
+
+  .hero.loaded & {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero__subtitle {
+  font-family: 'ABC Whyte Inktrap', sans-serif;
+  font-weight: 400;
+  font-size: clamp(0.9rem, 1.3vw, 1.25rem);
+  line-height: 1.5;
+  color: #fff;
+  text-align: right;
+}
+
+// ==========================================
+// CTA Button
+// ==========================================
+
+.hero__cta {
+  display: flex;
+  align-items: center;
+}
+
+
+// ==========================================
+// Solutions Section
+// ==========================================
+
+.solutions {
+  background-color: #e8e4df;
+  padding: 120px 60px;
+}
+
+.solutions__container {
+  display: flex;
+  gap: 80px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+// ==========================================
+// Solutions Left Column
+// ==========================================
+
+.solutions__left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.solutions__label {
+  font-family: 'ABC Whyte Inktrap', sans-serif;
+  font-weight: 400;
+  font-size: 0.95rem;
+  color: #c0392b;
+  margin-bottom: 32px;
+}
+
+.solutions__heading {
+  font-family: 'ABC Whyte Inktrap', sans-serif;
+  font-weight: 500;
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  line-height: 1.15;
+  color: #1a1a1a;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+}
+
+.solutions__description {
+  font-family: 'ABC Whyte Inktrap', sans-serif;
+  font-weight: 400;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 40px;
+  max-width: 420px;
+}
+
+// ==========================================
+// Solutions CTA Button (dark version)
+// ==========================================
+
+.solutions__cta {
+  display: flex;
+  align-items: center;
+}
+
+
+// ==========================================
+// Solutions Right Column (Items)
+// ==========================================
+
+.solutions__right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.solutions__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 28px 0;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #c0392b;
+    transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #c8c3be;
+  }
+
+  &:first-child {
+    padding-top: 0;
+    border-top: 1px solid #c8c3be;
+    padding-top: 28px;
+  }
+
+  &:hover {
+    .solutions__item-title {
+      color: #c0392b;
+    }
+
+    &::after {
+      width: 100%;
+    }
+  }
+}
+
+.solutions__item-icon {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+.solutions__item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.solutions__item-title {
+  font-family: 'ABC Whyte Inktrap', sans-serif;
+  font-weight: 500;
+  font-size: 1.35rem;
+  color: #1a1a1a;
+  transition: color 0.3s ease;
+}
+
+.solutions__item-description {
+  font-family: 'ABC Whyte Inktrap', sans-serif;
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: #777;
+  line-height: 1.5;
+}
+
+// ==========================================
+// Showcase Section
+// ==========================================
+
+.showcase {
+  background-color: #e8e4df;
+  padding: 0 60px 120px;
+}
+
+.showcase__container {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  height: 580px;
+}
+
+// ==========================================
+// Showcase Left (Video + Red Card)
+// ==========================================
+
+.showcase__left {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.showcase__video-wrapper {
+  position: absolute;
+  inset: 0;
+
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.showcase__card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #d0311e;
+  border-radius: 16px;
+  padding: 36px 32px;
+  width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.showcase__stat {
+  font-family: 'ABC Whyte Inktrap', sans-serif;
+  font-weight: 500;
+  font-size: 3.5rem;
+  line-height: 1;
+  color: #1a1a1a;
+}
+
+.showcase__card-title {
+  font-family: 'ABC Whyte Inktrap', sans-serif;
+  font-weight: 500;
+  font-size: 1.25rem;
+  color: #1a1a1a;
+}
+
+.showcase__card-text {
+  font-family: 'ABC Whyte Inktrap', sans-serif;
+  font-weight: 400;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+// ==========================================
+// Showcase Right (Info + Marquee)
+// ==========================================
+
+.showcase__right {
+  background-color: #1a1a1a;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.showcase__info-top {
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.showcase__heading {
+  font-family: 'ABC Whyte Inktrap', sans-serif;
+  font-weight: 500;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  line-height: 1.2;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+// ==========================================
+// Showcase Marquee
+// ==========================================
+
+.showcase__marquee {
+  overflow: hidden;
+  padding-bottom: 24px;
+}
+
+.showcase__marquee-track {
+  display: flex;
+  gap: 16px;
+  animation: marquee-scroll 20s linear infinite;
+  width: max-content;
+}
+
+.showcase__marquee-img {
+  width: 180px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

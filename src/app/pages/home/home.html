@@ -1,1 +1,161 @@
+<section class="hero" [class.loaded]="loaded">
+  <div class="hero__bg">
+    <img
+      src="images/hero-bg.webp"
+      alt="Aerial view of Basel"
+      (load)="onImageLoaded()"
+    />
+  </div>
 
+  <div class="hero__overlay"></div>
+
+  <div class="hero__content">
+    <h1 class="hero__heading">
+      <span class="hero__heading-line">Bringing</span>
+      <span class="hero__heading-line">&nbsp;&nbsp;&nbsp;science</span>
+      <span class="hero__heading-line">&nbsp;to life</span>
+    </h1>
+
+    <div class="hero__info">
+      <p class="hero__subtitle">
+        Welcome to Europe's transformative<br />
+        life sciences supercluster
+      </p>
+
+      <div class="hero__cta">
+        <a href="#" class="btn-cta" style="--btn-color: #8b5cf6">
+          <span class="btn-cta__text">Let's talk</span>
+          <span class="btn-cta__arrow">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="solutions">
+  <div class="solutions__container">
+    <div class="solutions__left">
+      <span class="solutions__label">Solutions</span>
+
+      <h2 class="solutions__heading">
+        We provide modern industrial solutions that combine smart engineering with advanced technology.
+      </h2>
+
+      <p class="solutions__description">
+        Each solution is designed to optimize performance, increase safety, and deliver measurable results.
+      </p>
+
+      <div class="solutions__cta">
+        <a href="#" class="btn-cta" style="--btn-color: #1a1a1a">
+          <span class="btn-cta__text">All solutions</span>
+          <span class="btn-cta__arrow">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <div class="solutions__right">
+      <a href="#" class="solutions__item">
+        <div class="solutions__item-icon">
+          <img src="images/shape1.svg" alt="" />
+        </div>
+        <div class="solutions__item-content">
+          <h3 class="solutions__item-title">Engineering Consulting</h3>
+          <p class="solutions__item-description">Technical guidance and custom engineering solutions.</p>
+        </div>
+      </a>
+
+      <a href="#" class="solutions__item">
+        <div class="solutions__item-icon">
+          <img src="images/shape2.svg" alt="" />
+        </div>
+        <div class="solutions__item-content">
+          <h3 class="solutions__item-title">Product Development</h3>
+          <p class="solutions__item-description">End-to-end creation — from initial concept to final production.</p>
+        </div>
+      </a>
+
+      <a href="#" class="solutions__item">
+        <div class="solutions__item-icon">
+          <img src="images/shape3.svg" alt="" />
+        </div>
+        <div class="solutions__item-content">
+          <h3 class="solutions__item-title">Industrial Prototyping</h3>
+          <p class="solutions__item-description">Rapid and precise prototypes designed for effective testing.</p>
+        </div>
+      </a>
+
+      <a href="#" class="solutions__item">
+        <div class="solutions__item-icon">
+          <img src="images/shape4.svg" alt="" />
+        </div>
+        <div class="solutions__item-content">
+          <h3 class="solutions__item-title">Sustainable Solutions</h3>
+          <p class="solutions__item-description">Energy-efficient, low-impact solutions for modern industry.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="showcase">
+  <div class="showcase__container">
+    <div class="showcase__left">
+      <div class="showcase__video-wrapper">
+        <video
+          class="showcase__video"
+          autoplay
+          muted
+          loop
+          playsinline
+        >
+          <source src="images/showcase-video.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="showcase__card">
+        <span class="showcase__stat">100+</span>
+        <h3 class="showcase__card-title">Systems deployed worldwide</h3>
+        <p class="showcase__card-text">
+          Our proven track record shows the trust global leaders place in Modix
+          to deliver reliable, future-ready industrial systems.
+        </p>
+      </div>
+    </div>
+
+    <div class="showcase__right">
+      <div class="showcase__info-top">
+        <h2 class="showcase__heading">
+          We provide global solutions to enhance efficiency and sustainability.
+        </h2>
+        <a href="#" class="btn-cta" style="--btn-color: #fff; --btn-text-color: #1a1a1a">
+          <span class="btn-cta__text">Contact us</span>
+          <span class="btn-cta__arrow">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+      </div>
+
+      <div class="showcase__marquee">
+        <div class="showcase__marquee-track">
+          <img src="images/marquee-1.webp" alt="" class="showcase__marquee-img" />
+          <img src="images/marquee-2.webp" alt="" class="showcase__marquee-img" />
+          <img src="images/marquee-3.webp" alt="" class="showcase__marquee-img" />
+          <img src="images/marquee-4.webp" alt="" class="showcase__marquee-img" />
+          <img src="images/marquee-1.webp" alt="" class="showcase__marquee-img" />
+          <img src="images/marquee-2.webp" alt="" class="showcase__marquee-img" />
+          <img src="images/marquee-3.webp" alt="" class="showcase__marquee-img" />
+          <img src="images/marquee-4.webp" alt="" class="showcase__marquee-img" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

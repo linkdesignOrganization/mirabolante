@@ -1,1 +1,87 @@
+@font-face {
+  font-family: 'ABC Whyte Inktrap';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/ABCWhyteInktrap-Regular.woff2') format('woff2');
+}
 
+@font-face {
+  font-family: 'ABC Whyte Inktrap';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/fonts/ABCWhyteInktrap-Medium.woff2') format('woff2');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'ABC Whyte Inktrap', sans-serif;
+  min-height: 100vh;
+  color: #fff;
+}
+
+// ==========================================
+// Global CTA Button
+// ==========================================
+
+.btn-cta {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  text-decoration: none;
+  color: var(--btn-text-color, #fff);
+  cursor: pointer;
+  position: relative;
+
+  &__text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    padding: 0 28px;
+    background-color: var(--btn-color, #8b5cf6);
+    border-radius: 50px;
+    font-family: 'ABC Whyte Inktrap', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    white-space: nowrap;
+    z-index: 1;
+    transition: padding-right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  &__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background-color: var(--btn-color, #8b5cf6);
+    border-radius: 50%;
+    z-index: 2;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    svg {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+  }
+
+  &:hover {
+    .btn-cta__text {
+      padding-right: 56px;
+    }
+
+    .btn-cta__arrow {
+      transform: translateX(-56px);
+
+      svg {
+        transform: rotate(45deg);
+      }
+    }
+  }
+}
