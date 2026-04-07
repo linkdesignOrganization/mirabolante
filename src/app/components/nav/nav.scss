@@ -1,1 +1,63 @@
+@use '../../../variables' as *;
 
+.nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px $container-padding-desktop;
+  background: transparent;
+}
+
+@media screen and (min-width: $bp-wide) {
+  .nav {
+    width: $nav-max-width;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    padding: 10px 0;
+  }
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  width: $nav-side-width;
+  justify-content: center;
+  gap: 12px;
+}
+
+.nav__link {
+  font-size: $fs-small;
+  font-weight: 400;
+  color: $color-white;
+  text-decoration: none;
+  padding: 8px 18px;
+  border-radius: $radius-pill;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all $transition-base;
+
+  &:hover {
+    background: $color-white;
+    color: $color-dark;
+  }
+}
+
+.nav__logo {
+  width: $nav-center-width;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.nav__iso {
+  height: 75px;
+  width: auto;
+}

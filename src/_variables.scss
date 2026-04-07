@@ -3,26 +3,26 @@
 // ==========================================
 
 // Colors
+$color-brand: #0044BD;
 $color-dark: #1a1a1a;
 $color-dark-bg: #1a1a2e;
 $color-white: #fff;
-$color-beige: #e8e4df;
-$color-brand: #1C7BE5;
-$color-purple: #ad5cff;
-$color-red: #c0392b;
-$color-red-dark: #d0311e;
-$color-brown: #c27a3a;
 
 $color-text-primary: $color-dark;
 $color-text-secondary: #555;
-$color-text-muted: #666;
-$color-text-light: #777;
 
-$color-border: #c8c3be;
-$color-border-faq: rgba(32, 41, 24, 0.2);
+$color-border: rgba(0, 0, 0, 0.15);
 
 // Typography
 $font-family: 'Sora', sans-serif;
+
+$fs-display: clamp(3rem, 8vw, 7rem);
+$fs-h1: clamp(2rem, 3.5vw, 3rem);
+$fs-h2: clamp(1.6rem, 2.5vw, 2.2rem);
+$fs-h3: clamp(1.25rem, 2vw, 1.5rem);
+$fs-body: 1rem;
+$fs-small: 0.875rem;
+$fs-xs: 0.75rem;
 
 // Layout
 $container-max: 1400px;
@@ -43,6 +43,11 @@ $radius-lg: 24px;
 $radius-xl: 32px;
 $radius-full: 50%;
 $radius-pill: 999px;
+
+// Nav layout (shared with hero grid)
+$nav-side-width: 24%;
+$nav-center-width: 52%;
+$nav-max-width: 80vw;
 
 // Breakpoints
 $bp-tablet: 769px;
