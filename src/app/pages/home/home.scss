@@ -46,12 +46,18 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.85) 0%,
-    rgba(0, 0, 0, 0.35) 40%,
-    rgba(0, 0, 0, 0.05) 100%
-  );
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0) 15%
+    ),
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.85) 0%,
+      rgba(0, 0, 0, 0.35) 40%,
+      rgba(0, 0, 0, 0.05) 100%
+    );
 }
 
 
@@ -59,70 +65,21 @@
   position: relative;
   z-index: 2;
   display: flex;
-  justify-content: space-between;
   align-items: flex-end;
   height: 100%;
   padding: 0 $container-padding-desktop $container-padding-desktop;
 }
 
-.hero__heading {
-  font-weight: 500;
-  font-size: clamp(1.5625rem, 5vw, 4.5rem);
-  line-height: 0.95;
-  color: $color-white;
-  letter-spacing: -0.02em;
-}
-
-.hero__heading-sub {
-  display: block;
-  font-weight: 400;
-  font-size: $fs-h3;
-  letter-spacing: 0.05em;
-  margin-top: 12px;
-  opacity: 0;
-  transform: translateY(40px);
-  transition:
-    opacity 0.8s $ease-smooth,
-    transform 0.8s $ease-smooth;
-  transition-delay: 0.15s;
-
-  .hero.loaded & {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.hero__heading-line {
-  display: block;
-  opacity: 0;
-  transform: translateY(40px);
-  transition:
-    opacity 0.8s $ease-smooth,
-    transform 0.8s $ease-smooth;
-
-  .hero.loaded & {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  @for $i from 1 through 3 {
-    &:nth-child(#{$i}) {
-      transition-delay: #{($i - 1) * 0.1}s;
-    }
-  }
-}
-
-.hero__info {
+.hero__bottom {
+  width: 100%;
   display: flex;
-  flex-direction: column;
   align-items: flex-end;
-  gap: 24px;
-  padding-bottom: 10px;
+  justify-content: space-between;
   opacity: 0;
   transform: translateY(30px);
   transition:
-    opacity 0.8s $ease-smooth 0.3s,
-    transform 0.8s $ease-smooth 0.3s;
+    opacity 0.8s $ease-smooth,
+    transform 0.8s $ease-smooth;
 
   .hero.loaded & {
     opacity: 1;
@@ -130,29 +87,32 @@
   }
 }
 
-.hero__card {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-radius: $radius-md;
-  padding: 28px 32px;
+.hero__heading {
   display: flex;
-  flex-direction: column;
   align-items: flex-end;
-  gap: 20px;
+  gap: 16px;
+  color: $color-white;
 }
 
-.hero__subtitle {
+.hero__heading-big {
+  font-weight: 600;
+  font-size: clamp(3.5rem, 10vw, 9rem);
+  line-height: 0.85;
+  letter-spacing: -0.03em;
+}
+
+.hero__heading-side {
+  display: flex;
+  flex-direction: column;
   font-weight: 400;
-  font-size: $fs-small;
-  line-height: 1.5;
-  color: $color-white;
-  text-align: right;
+  font-size: $fs-h2;
+  line-height: 1.2;
 }
 
 .hero__cta {
   display: flex;
   align-items: center;
+  padding-bottom: 10px;
 }
 
 // ==========================================
