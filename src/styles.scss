@@ -1,15 +1,21 @@
+@use 'variables' as *;
+
 @font-face {
-  font-family: 'ABC Whyte Inktrap';
+  font-family: 'Sora';
   font-style: normal;
-  font-weight: 400;
-  src: url('/fonts/ABCWhyteInktrap-Regular.woff2') format('woff2');
+  font-weight: 100 800;
+  font-display: swap;
+  src: url('/fonts/Sora-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
-  font-family: 'ABC Whyte Inktrap';
+  font-family: 'Sora';
   font-style: normal;
-  font-weight: 500;
-  src: url('/fonts/ABCWhyteInktrap-Medium.woff2') format('woff2');
+  font-weight: 100 800;
+  font-display: swap;
+  src: url('/fonts/Sora-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
 * {
@@ -19,9 +25,9 @@
 }
 
 body {
-  font-family: 'ABC Whyte Inktrap', sans-serif;
+  font-family: $font-family;
   min-height: 100vh;
-  color: #fff;
+  color: $color-white;
 }
 
 // ==========================================
@@ -33,7 +39,7 @@ body {
   align-items: center;
   gap: 3px;
   text-decoration: none;
-  color: var(--btn-text-color, #fff);
+  color: var(--btn-text-color, #{$color-white});
   cursor: pointer;
   position: relative;
 
@@ -43,14 +49,13 @@ body {
     justify-content: center;
     height: 48px;
     padding: 0 28px;
-    background-color: var(--btn-color, #8b5cf6);
-    border-radius: 50px;
-    font-family: 'ABC Whyte Inktrap', sans-serif;
+    background-color: var(--btn-color, #{$color-purple});
+    border-radius: $radius-pill;
     font-weight: 500;
     font-size: 1rem;
     white-space: nowrap;
     z-index: 1;
-    transition: padding-right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: padding-right 0.4s $ease-smooth;
   }
 
   &__arrow {
@@ -59,15 +64,15 @@ body {
     justify-content: center;
     width: 48px;
     height: 48px;
-    background-color: var(--btn-color, #8b5cf6);
-    border-radius: 50%;
+    background-color: var(--btn-color, #{$color-purple});
+    border-radius: $radius-full;
     z-index: 2;
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: transform 0.4s $ease-smooth;
 
     svg {
       width: 14px;
       height: 14px;
-      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: transform 0.4s $ease-smooth;
     }
   }
 

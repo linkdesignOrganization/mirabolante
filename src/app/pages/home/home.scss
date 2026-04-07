@@ -1,3 +1,5 @@
+@use '../../../variables' as *;
+
 // ==========================================
 // Hero Section
 // ==========================================
@@ -7,41 +9,79 @@
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background-color: #1a1a2e;
+  background-color: $color-dark-bg;
 }
-
-// ==========================================
-// Background image + zoom/blur animation
-// ==========================================
 
 .hero__bg {
   position: absolute;
   inset: 0;
   z-index: 0;
+}
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transform: scale(1.15);
-    filter: blur(20px);
-    opacity: 0;
-    transition:
-      transform 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-      filter 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-      opacity 0.4s ease;
-  }
+// Poster (static frame while videos load)
+.hero__poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2;
+  transform: scale(1.15);
+  filter: blur(20px);
+  opacity: 0;
+  transition:
+    transform 1.8s $ease-smooth,
+    filter 1.8s $ease-smooth,
+    opacity 0.4s ease;
 
-  .hero.loaded & img {
+  .hero.loaded & {
     transform: scale(1);
     filter: blur(0);
     opacity: 1;
   }
+
+  &.hero__poster--hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 
-// ==========================================
-// Dark overlay for text readability
-// ==========================================
+.hero__poster--desktop {
+  display: block;
+}
+
+.hero__poster--mobile {
+  display: none;
+}
+
+@media screen and (max-width: $bp-tablet - 1) {
+  .hero__poster--desktop { display: none; }
+  .hero__poster--mobile { display: block; }
+}
+
+// Video elements
+.hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  transform: scale(1.15);
+  filter: blur(20px);
+  opacity: 0;
+  transition:
+    transform 1.8s $ease-smooth,
+    filter 1.8s $ease-smooth,
+    opacity 0.4s ease;
+}
+
+.hero.loaded .hero__video--active {
+  transform: scale(1);
+  filter: blur(0);
+  opacity: 1;
+  z-index: 3;
+}
 
 .hero__overlay {
   position: absolute;
@@ -55,10 +95,6 @@
   );
 }
 
-// ==========================================
-// Content container
-// ==========================================
-
 .hero__content {
   position: relative;
   z-index: 2;
@@ -66,19 +102,14 @@
   justify-content: space-between;
   align-items: flex-end;
   height: 100%;
-  padding: 0 60px 60px;
+  padding: 0 $container-padding-desktop $container-padding-desktop;
 }
 
-// ==========================================
-// Heading
-// ==========================================
-
 .hero__heading {
-  font-family: 'ABC Whyte Inktrap', sans-serif;
   font-weight: 500;
   font-size: clamp(3rem, 8vw, 7rem);
   line-height: 0.95;
-  color: #fff;
+  color: $color-white;
   letter-spacing: -0.02em;
 }
 
@@ -87,8 +118,8 @@
   opacity: 0;
   transform: translateY(40px);
   transition:
-    opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity 0.8s $ease-smooth,
+    transform 0.8s $ease-smooth;
 
   .hero.loaded & {
     opacity: 1;
@@ -97,14 +128,10 @@
 
   @for $i from 1 through 3 {
     &:nth-child(#{$i}) {
-      transition-delay: #{0.2 + ($i * 0.1)}s;
+      transition-delay: #{($i - 1) * 0.1}s;
     }
   }
 }
-
-// ==========================================
-// Info block (subtitle + CTA)
-// ==========================================
 
 .hero__info {
   display: flex;
@@ -115,8 +142,8 @@
   opacity: 0;
   transform: translateY(30px);
   transition:
-    opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s,
-    transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s;
+    opacity 0.8s $ease-smooth 0.3s,
+    transform 0.8s $ease-smooth 0.3s;
 
   .hero.loaded & {
     opacity: 1;
@@ -125,43 +152,39 @@
 }
 
 .hero__subtitle {
-  font-family: 'ABC Whyte Inktrap', sans-serif;
   font-weight: 400;
-  font-size: clamp(0.9rem, 1.3vw, 1.25rem);
+  font-size: clamp(1.05rem, 1.6vw, 1.5rem);
   line-height: 1.5;
-  color: #fff;
+  color: $color-white;
   text-align: right;
 }
-
-// ==========================================
-// CTA Button
-// ==========================================
 
 .hero__cta {
   display: flex;
   align-items: center;
 }
 
-
 // ==========================================
 // Solutions Section
 // ==========================================
 
 .solutions {
-  background-color: #e8e4df;
-  padding: 120px 60px;
+  background-color: $color-white;
+  padding: $section-padding-mobile $container-padding-mobile;
+}
+
+@media screen and (min-width: $bp-tablet) {
+  .solutions {
+    padding: $section-padding-desktop $container-padding-desktop;
+  }
 }
 
 .solutions__container {
   display: flex;
   gap: 80px;
-  max-width: 1400px;
+  max-width: $container-max;
   margin: 0 auto;
 }
-
-// ==========================================
-// Solutions Left Column
-// ==========================================
 
 .solutions__left {
   flex: 1;
@@ -171,46 +194,34 @@
 }
 
 .solutions__label {
-  font-family: 'ABC Whyte Inktrap', sans-serif;
   font-weight: 400;
   font-size: 0.95rem;
-  color: #c0392b;
+  color: $color-red;
   margin-bottom: 32px;
 }
 
 .solutions__heading {
-  font-family: 'ABC Whyte Inktrap', sans-serif;
   font-weight: 500;
   font-size: clamp(2rem, 3.2vw, 3rem);
   line-height: 1.15;
-  color: #1a1a1a;
+  color: $color-text-primary;
   letter-spacing: -0.02em;
   margin-bottom: 24px;
 }
 
 .solutions__description {
-  font-family: 'ABC Whyte Inktrap', sans-serif;
   font-weight: 400;
   font-size: 0.95rem;
   line-height: 1.6;
-  color: #555;
+  color: $color-text-secondary;
   margin-bottom: 40px;
   max-width: 420px;
 }
-
-// ==========================================
-// Solutions CTA Button (dark version)
-// ==========================================
 
 .solutions__cta {
   display: flex;
   align-items: center;
 }
-
-
-// ==========================================
-// Solutions Right Column (Items)
-// ==========================================
 
 .solutions__right {
   flex: 1;
@@ -234,8 +245,8 @@
     left: 0;
     width: 0;
     height: 2px;
-    background-color: #c0392b;
-    transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    background-color: $color-red;
+    transition: width 0.4s $ease-smooth;
   }
 
   &::before {
@@ -245,18 +256,17 @@
     left: 0;
     width: 100%;
     height: 1px;
-    background-color: #c8c3be;
+    background-color: $color-border;
   }
 
   &:first-child {
-    padding-top: 0;
-    border-top: 1px solid #c8c3be;
+    border-top: 1px solid $color-border;
     padding-top: 28px;
   }
 
   &:hover {
     .solutions__item-title {
-      color: #c0392b;
+      color: $color-red;
     }
 
     &::after {
@@ -286,18 +296,16 @@
 }
 
 .solutions__item-title {
-  font-family: 'ABC Whyte Inktrap', sans-serif;
   font-weight: 500;
   font-size: 1.35rem;
-  color: #1a1a1a;
-  transition: color 0.3s ease;
+  color: $color-text-primary;
+  transition: color $transition-base;
 }
 
 .solutions__item-description {
-  font-family: 'ABC Whyte Inktrap', sans-serif;
   font-weight: 400;
   font-size: 0.9rem;
-  color: #777;
+  color: $color-text-light;
   line-height: 1.5;
 }
 
@@ -306,26 +314,28 @@
 // ==========================================
 
 .showcase {
-  background-color: #e8e4df;
-  padding: 0 60px 120px;
+  background-color: $color-white;
+  padding: 0 $container-padding-mobile $section-padding-mobile;
+}
+
+@media screen and (min-width: $bp-tablet) {
+  .showcase {
+    padding: 0 $container-padding-desktop $section-padding-desktop;
+  }
 }
 
 .showcase__container {
   display: grid;
   grid-template-columns: 3fr 2fr;
   gap: 24px;
-  max-width: 1400px;
+  max-width: $container-max;
   margin: 0 auto;
   height: 580px;
 }
 
-// ==========================================
-// Showcase Left (Video + Red Card)
-// ==========================================
-
 .showcase__left {
   position: relative;
-  border-radius: 16px;
+  border-radius: $radius-md;
   overflow: hidden;
 }
 
@@ -345,8 +355,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #d0311e;
-  border-radius: 16px;
+  background-color: $color-red-dark;
+  border-radius: $radius-md;
   padding: 36px 32px;
   width: 340px;
   display: flex;
@@ -355,35 +365,28 @@
 }
 
 .showcase__stat {
-  font-family: 'ABC Whyte Inktrap', sans-serif;
   font-weight: 500;
   font-size: 3.5rem;
   line-height: 1;
-  color: #1a1a1a;
+  color: $color-text-primary;
 }
 
 .showcase__card-title {
-  font-family: 'ABC Whyte Inktrap', sans-serif;
   font-weight: 500;
   font-size: 1.25rem;
-  color: #1a1a1a;
+  color: $color-text-primary;
 }
 
 .showcase__card-text {
-  font-family: 'ABC Whyte Inktrap', sans-serif;
   font-weight: 400;
   font-size: 0.85rem;
   line-height: 1.6;
   color: rgba(0, 0, 0, 0.7);
 }
 
-// ==========================================
-// Showcase Right (Info + Marquee)
-// ==========================================
-
 .showcase__right {
-  background-color: #1a1a1a;
-  border-radius: 16px;
+  background-color: $color-dark;
+  border-radius: $radius-md;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -400,17 +403,12 @@
 }
 
 .showcase__heading {
-  font-family: 'ABC Whyte Inktrap', sans-serif;
   font-weight: 500;
   font-size: clamp(1.6rem, 2.5vw, 2.2rem);
   line-height: 1.2;
-  color: #fff;
+  color: $color-white;
   letter-spacing: -0.02em;
 }
-
-// ==========================================
-// Showcase Marquee
-// ==========================================
 
 .showcase__marquee {
   overflow: hidden;
@@ -433,12 +431,8 @@
 }
 
 @keyframes marquee-scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 // ==========================================
@@ -447,12 +441,8 @@
 
 .about {
   position: relative;
-  height: 150vh;
+  height: 110vh;
 }
-
-// ==========================================
-// About Background (Parallax)
-// ==========================================
 
 .about__bg {
   position: absolute;
@@ -468,10 +458,6 @@
   will-change: transform;
 }
 
-// ==========================================
-// About Content Container
-// ==========================================
-
 .about__container {
   position: relative;
   z-index: 1;
@@ -482,13 +468,7 @@
   padding: 0;
 }
 
-.about__spacer {
-  // Left column — empty, shows the background
-}
-
-// ==========================================
-// About Rail (right column with lines)
-// ==========================================
+.about__spacer {}
 
 .about__rail {
   position: relative;
@@ -501,26 +481,17 @@
     top: 0;
     bottom: 0;
     width: 2px;
-    background-color: #fff;
+    background-color: $color-white;
   }
 
-  &::before {
-    left: 0;
-  }
-
-  &::after {
-    right: 55px;
-  }
+  &::before { left: 0; }
+  &::after { right: 55px; }
 }
-
-// ==========================================
-// About Card (Sticky)
-// ==========================================
 
 .about__card {
   position: sticky;
   top: 0;
-  background-color: #fff;
+  background-color: $color-white;
   padding: 48px 40px;
   width: 480px;
   display: flex;
@@ -537,31 +508,488 @@
 .about__label-dot {
   width: 10px;
   height: 10px;
-  border-radius: 50%;
-  background-color: #c27a3a;
+  border-radius: $radius-full;
+  background-color: $color-brown;
 }
 
 .about__label-text {
-  font-family: 'ABC Whyte Inktrap', sans-serif;
   font-weight: 400;
   font-size: 0.85rem;
-  color: #c27a3a;
+  color: $color-brown;
 }
 
 .about__heading {
-  font-family: 'ABC Whyte Inktrap', sans-serif;
   font-weight: 500;
   font-size: clamp(1.8rem, 3vw, 2.6rem);
   line-height: 1.15;
-  color: #1a1a1a;
+  color: $color-text-primary;
   letter-spacing: -0.02em;
 }
 
 .about__text {
-  font-family: 'ABC Whyte Inktrap', sans-serif;
   font-weight: 400;
   font-size: 0.95rem;
   line-height: 1.7;
-  color: #555;
+  color: $color-text-secondary;
   padding-left: 24px;
+}
+
+// ==========================================
+// Home Cards Section
+// ==========================================
+
+.home-cards {
+  background-color: $color-white;
+  padding: $section-padding-mobile 0 0;
+  position: relative;
+}
+
+.home-cards__row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 $container-padding-mobile;
+}
+
+.home-cards__col {
+  flex: 1 1 auto;
+  transition: all $transition-base;
+}
+
+.home-cards__card {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  text-decoration: none;
+  padding: 22.5px 25px;
+  height: 280px;
+  text-align: left;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+
+  &:hover .home-cards__content {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.home-cards__figure {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: $radius-lg;
+  margin: 0;
+  transition: all 0.3s ease-in-out;
+  z-index: 1;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.home-cards__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+  transition: background 0.3s ease-in-out;
+}
+
+.home-cards__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  z-index: 3;
+  position: relative;
+}
+
+.home-cards__top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.home-cards__label {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  color: $color-white;
+  border: 1px solid $color-white;
+  border-radius: $radius-pill;
+  padding: 4px 8px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.home-cards__heading {
+  font-weight: 500;
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  line-height: 1.2;
+  color: $color-white;
+  max-width: 175px;
+  margin: 0;
+}
+
+.home-cards__content {
+  color: $color-white;
+  font-size: 14px;
+  line-height: 1.6;
+  display: none;
+  margin-top: auto;
+  max-width: 300px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+  z-index: 3;
+  position: relative;
+
+  p { margin: 0; }
+}
+
+.home-cards__icon {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 4;
+  aspect-ratio: 1;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-purple;
+  border-radius: $radius-full;
+  transition: all 0.3s ease-in-out;
+
+  svg {
+    color: $color-white;
+    transform: rotate(45deg);
+  }
+}
+
+// Bottom SVG wave
+.home-cards__bottom-svg {
+  display: block;
+  line-height: 0;
+  margin-top: -1px;
+
+  svg {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.home-cards__bottom-svg--sm { display: flex; }
+.home-cards__bottom-svg--lg { display: none; }
+
+// Mobile hover
+@media screen and (max-width: $bp-tablet - 1) {
+  .home-cards__card:hover .home-cards__overlay {
+    background: #000;
+  }
+}
+
+// Tablet+
+@media screen and (min-width: $bp-tablet) {
+  .home-cards {
+    padding-top: $section-padding-desktop;
+    gap: 20px;
+  }
+
+  .home-cards__row {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 20px;
+    padding: 0 $container-padding-desktop;
+    max-width: 1440px;
+    margin: 0 auto;
+
+    & + .home-cards__row {
+      margin-top: 20px;
+    }
+  }
+
+  .home-cards__col--wide {
+    flex: 1 1 58.33333%;
+    max-width: 58.33333%;
+  }
+
+  .home-cards__col--narrow {
+    flex: 1 1 41.66667%;
+    max-width: 41.66667%;
+  }
+
+  .home-cards__card {
+    flex-direction: column;
+    padding: 40px;
+    height: 350px;
+  }
+
+  .home-cards__heading {
+    max-width: 340px;
+  }
+
+  .home-cards__content {
+    display: block;
+    transform: translateY(250%);
+
+    .home-cards__card:hover & {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+  }
+
+  .home-cards__body {
+    justify-content: space-between;
+  }
+
+  // Image cutout — always visible
+  .home-cards__figure::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 143px;
+    height: 152px;
+    z-index: 3;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='143' height='152' viewBox='0 0 143 152' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M143 152H0V151.997C12.1981 151.906 23.8174 146.755 32.0762 137.764L131.405 29.624C138.83 21.5397 142.963 10.9735 142.998 0H143V152Z' fill='white'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  // Icon — circular, with border
+  .home-cards__icon {
+    height: 60px;
+    width: 60px;
+    max-width: 60px;
+    background-color: transparent;
+    border: 1px solid #000;
+    border-radius: $radius-full;
+
+    svg { color: #000; }
+  }
+
+  .home-cards__card--image .home-cards__icon {
+    border-color: $color-purple;
+
+    svg { color: $color-purple; }
+  }
+
+  .home-cards__card--image:hover .home-cards__icon {
+    background-color: $color-purple;
+
+    svg { color: $color-white; }
+  }
+
+  // Overlay desktop
+  .home-cards__overlay {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5));
+  }
+
+  .home-cards__card:hover .home-cards__overlay {
+    background: #000;
+  }
+
+  // Hover flex expansion — scoped per row
+  .home-cards__row:has(.home-cards__col--wide:hover) .home-cards__col--wide {
+    flex-basis: 63.33333%;
+    max-width: 63.33333%;
+  }
+
+  .home-cards__row:has(.home-cards__col--wide:hover) .home-cards__col--narrow {
+    flex-basis: 36.66667%;
+    max-width: 36.66667%;
+  }
+
+  .home-cards__row:has(.home-cards__col--narrow:hover) .home-cards__col--narrow {
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+
+  .home-cards__row:has(.home-cards__col--narrow:hover) .home-cards__col--wide {
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+
+  .home-cards__bottom-svg--sm { display: none; }
+  .home-cards__bottom-svg--lg { display: flex; }
+  .home-cards__label { padding: 8px 16px; }
+}
+
+@media screen and (min-width: $bp-desktop) {
+  .home-cards__card {
+    height: 350px;
+    padding: 40px;
+  }
+
+  .home-cards__figure {
+    border-radius: $radius-xl;
+  }
+}
+
+@media screen and (min-width: $bp-wide) {
+  .home-cards__card {
+    height: 420px;
+  }
+}
+
+// ==========================================
+// FAQ Section
+// ==========================================
+
+.faq {
+  background-color: $color-white;
+  padding: $section-padding-mobile $container-padding-mobile;
+}
+
+.faq__content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: $container-max;
+  margin: 0 auto;
+}
+
+.faq__title-wrap {
+  text-align: center;
+}
+
+.faq__title {
+  font-weight: 500;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  line-height: 1.15;
+  color: $color-text-primary;
+  letter-spacing: -0.02em;
+  margin: 0 0 24px;
+}
+
+.faq__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq__item {
+  border: 1px solid $color-border-faq;
+  border-radius: $radius-sm;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color $transition-base;
+
+  &:hover {
+    border-color: rgba(32, 41, 24, 0.4);
+  }
+}
+
+.faq__question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 16px;
+}
+
+.faq__question-text {
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: $color-text-primary;
+}
+
+.faq__icon-wrap {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border: 1px solid $color-border-faq;
+  border-radius: $radius-full;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-text-primary;
+  transition: all $transition-base;
+
+  svg {
+    transition: transform $transition-base;
+  }
+}
+
+.faq__item--open .faq__icon-wrap {
+  background-color: $color-dark;
+  border-color: $color-dark;
+  color: $color-white;
+
+  svg {
+    transform: rotate(45deg);
+  }
+}
+
+.faq__answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows $transition-base;
+}
+
+.faq__answer-inner {
+  overflow: hidden;
+}
+
+.faq__item--open .faq__answer {
+  grid-template-rows: 1fr;
+}
+
+.faq__answer-inner p {
+  font-weight: 400;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: $color-text-muted;
+  margin: 0;
+  padding: 0 16px 16px;
+  max-width: 552px;
+}
+
+@media screen and (min-width: $bp-tablet) {
+  .faq {
+    padding: $section-padding-desktop $container-padding-desktop;
+  }
+
+  .faq__content {
+    flex-direction: row;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .faq__title-wrap {
+    position: sticky;
+    top: 100px;
+    text-align: left;
+    max-width: 480px;
+    flex-shrink: 0;
+  }
+
+  .faq__list {
+    flex: 1;
+    max-width: 735px;
+    gap: 20px;
+  }
+
+  .faq__question { padding: 30px; }
+  .faq__question-text { font-size: 1.1rem; }
+
+  .faq__icon-wrap {
+    width: 36px;
+    height: 36px;
+  }
+
+  .faq__answer-inner p { padding: 0 30px 30px; }
 }

@@ -1,29 +1,32 @@
 <section class="hero" [class.loaded]="loaded">
   <div class="hero__bg">
-    <img
-      src="images/hero-bg.webp"
-      alt="Aerial view of Basel"
-      (load)="onImageLoaded()"
-    />
+    <video
+      #heroVideo
+      class="hero__video hero__video--active"
+      muted
+      playsinline
+      (playing)="onFirstPlay()"
+      (ended)="onVideoEnded()"
+    ></video>
   </div>
 
   <div class="hero__overlay"></div>
 
   <div class="hero__content">
     <h1 class="hero__heading">
-      <span class="hero__heading-line">Bringing</span>
-      <span class="hero__heading-line">&nbsp;&nbsp;&nbsp;science</span>
-      <span class="hero__heading-line">&nbsp;to life</span>
+      <span class="hero__heading-line">Su socio</span>
+      <span class="hero__heading-line">&nbsp;&nbsp;en comercio</span>
+      <span class="hero__heading-line">&nbsp;internacional</span>
     </h1>
 
     <div class="hero__info">
       <p class="hero__subtitle">
-        Welcome to Europe's transformative<br />
-        life sciences supercluster
+        Trading house especializada en ingredientes<br />
+        y materias primas para la industria alimentaria.
       </p>
 
       <div class="hero__cta">
-        <a href="#" class="btn-cta" style="--btn-color: #8b5cf6">
+        <a href="#" class="btn-cta" style="--btn-color: #1C7BE5">
           <span class="btn-cta__text">Let's talk</span>
           <span class="btn-cta__arrow">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -199,6 +202,197 @@
             </svg>
           </span>
         </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="home-cards">
+  <!-- Row 1: wide + narrow -->
+  <div class="home-cards__row">
+    <div class="home-cards__col home-cards__col--wide">
+      <a href="#" class="home-cards__card home-cards__card--image">
+        <figure class="home-cards__figure">
+          <img src="images/card-talent.webp" alt="Talent" />
+          <div class="home-cards__overlay"></div>
+        </figure>
+        <div class="home-cards__body">
+          <div class="home-cards__top">
+            <span class="home-cards__label">Talent</span>
+            <h3 class="home-cards__heading">Access the industry's largest workforce</h3>
+          </div>
+          <div class="home-cards__content">
+            <p>Build the team you need with the largest life sciences talent pool in mainland Europe and one of the most concentrated worldwide. More than 33,000 life science experts live and work in the Basel Area.</p>
+          </div>
+        </div>
+        <div class="home-cards__icon">
+          <svg width="12" height="13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.78 3.044L7.633 3.044L0 10.677L1.81 12.485L9.443 4.852L9.443 10.706H12V.485L1.78.485V3.044Z" fill="currentColor"/></svg>
+        </div>
+      </a>
+    </div>
+
+    <div class="home-cards__col home-cards__col--narrow">
+      <a href="#" class="home-cards__card home-cards__card--image">
+        <figure class="home-cards__figure">
+          <img src="images/card-ecosystem.webp" alt="End-to-end Ecosystem" />
+          <div class="home-cards__overlay"></div>
+        </figure>
+        <div class="home-cards__body">
+          <div class="home-cards__top">
+            <span class="home-cards__label">End-to-end Ecosystem</span>
+            <h3 class="home-cards__heading">Futureproof your pipeline</h3>
+          </div>
+          <div class="home-cards__content">
+            <p>Scale faster in Europe's supercluster. Join 800+ life sciences companies and over 1,000 research groups in mainland Europe's densest ecosystem.</p>
+          </div>
+        </div>
+        <div class="home-cards__icon">
+          <svg width="12" height="13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.78 3.044L7.633 3.044L0 10.677L1.81 12.485L9.443 4.852L9.443 10.706H12V.485L1.78.485V3.044Z" fill="currentColor"/></svg>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Row 2: narrow + wide -->
+  <div class="home-cards__row">
+    <div class="home-cards__col home-cards__col--narrow">
+      <a href="#" class="home-cards__card home-cards__card--image">
+        <figure class="home-cards__figure">
+          <img src="images/card-location.webp" alt="Borderless location" />
+          <div class="home-cards__overlay"></div>
+        </figure>
+        <div class="home-cards__body">
+          <div class="home-cards__top">
+            <span class="home-cards__label">Borderless location</span>
+            <h3 class="home-cards__heading">Multiply your market access</h3>
+          </div>
+          <div class="home-cards__content">
+            <p>Spanning Switzerland, France and Germany, the Basel Area offers effortless expansion. Enjoy triple the talent, triple the market access and zero border friction.</p>
+          </div>
+        </div>
+        <div class="home-cards__icon">
+          <svg width="12" height="13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.78 3.044L7.633 3.044L0 10.677L1.81 12.485L9.443 4.852L9.443 10.706H12V.485L1.78.485V3.044Z" fill="currentColor"/></svg>
+        </div>
+      </a>
+    </div>
+
+    <div class="home-cards__col home-cards__col--wide">
+      <a href="#" class="home-cards__card home-cards__card--image">
+        <figure class="home-cards__figure">
+          <img src="images/card-lifestyle.webp" alt="Lifestyle" />
+          <div class="home-cards__overlay"></div>
+        </figure>
+        <div class="home-cards__body">
+          <div class="home-cards__top">
+            <span class="home-cards__label">Lifestyle</span>
+            <h3 class="home-cards__heading">Discover the science of life</h3>
+          </div>
+          <div class="home-cards__content">
+            <p>Discover a lifestyle that's anything but clinical. In the Basel Area, scientists swap ideas over drinks, Rhine swims recharge C-suites, and 72,500 cross-border commuters ignite culture.</p>
+          </div>
+        </div>
+        <div class="home-cards__icon">
+          <svg width="12" height="13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.78 3.044L7.633 3.044L0 10.677L1.81 12.485L9.443 4.852L9.443 10.706H12V.485L1.78.485V3.044Z" fill="currentColor"/></svg>
+        </div>
+      </a>
+    </div>
+  </div>
+
+</section>
+
+<section class="faq">
+  <div class="faq__content">
+    <div class="faq__title-wrap">
+      <h2 class="faq__title">Frequently Asked Questions</h2>
+      <a href="#" class="btn-cta" style="--btn-color: #1a1a1a">
+        <span class="btn-cta__text">Contact us</span>
+        <span class="btn-cta__arrow">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+
+    <div class="faq__list">
+      <div class="faq__item" [class.faq__item--open]="faqOpen === 0" (click)="toggleFaq(0)">
+        <div class="faq__question">
+          <div class="faq__question-text">What services do you offer?</div>
+          <div class="faq__icon-wrap">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+        <div class="faq__answer">
+          <div class="faq__answer-inner">
+            <p>We offer comprehensive engineering consulting, product development, industrial prototyping, and sustainable solutions tailored to your specific needs and industry requirements.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq__item" [class.faq__item--open]="faqOpen === 1" (click)="toggleFaq(1)">
+        <div class="faq__question">
+          <div class="faq__question-text">How do I get started with a project?</div>
+          <div class="faq__icon-wrap">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+        <div class="faq__answer">
+          <div class="faq__answer-inner">
+            <p>Reach out through our contact form or schedule a call. Our team will review your requirements and propose a tailored plan with clear milestones and deliverables.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq__item" [class.faq__item--open]="faqOpen === 2" (click)="toggleFaq(2)">
+        <div class="faq__question">
+          <div class="faq__question-text">What industries do you work with?</div>
+          <div class="faq__icon-wrap">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+        <div class="faq__answer">
+          <div class="faq__answer-inner">
+            <p>We serve clients across life sciences, pharmaceuticals, biotechnology, medical devices, and advanced manufacturing sectors throughout Europe and globally.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq__item" [class.faq__item--open]="faqOpen === 3" (click)="toggleFaq(3)">
+        <div class="faq__question">
+          <div class="faq__question-text">Do you offer ongoing support after project completion?</div>
+          <div class="faq__icon-wrap">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+        <div class="faq__answer">
+          <div class="faq__answer-inner">
+            <p>Yes, we provide continuous support and maintenance packages to ensure your systems remain optimized, up-to-date, and aligned with evolving industry standards.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq__item" [class.faq__item--open]="faqOpen === 4" (click)="toggleFaq(4)">
+        <div class="faq__question">
+          <div class="faq__question-text">What makes your approach different?</div>
+          <div class="faq__icon-wrap">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+        <div class="faq__answer">
+          <div class="faq__answer-inner">
+            <p>We combine deep technical expertise with a collaborative, transparent process. Every solution is built with precision, sustainability, and measurable results in mind.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

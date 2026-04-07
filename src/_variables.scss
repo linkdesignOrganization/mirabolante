@@ -1,0 +1,50 @@
+// ==========================================
+// Design Tokens
+// ==========================================
+
+// Colors
+$color-dark: #1a1a1a;
+$color-dark-bg: #1a1a2e;
+$color-white: #fff;
+$color-beige: #e8e4df;
+$color-brand: #1C7BE5;
+$color-purple: #ad5cff;
+$color-red: #c0392b;
+$color-red-dark: #d0311e;
+$color-brown: #c27a3a;
+
+$color-text-primary: $color-dark;
+$color-text-secondary: #555;
+$color-text-muted: #666;
+$color-text-light: #777;
+
+$color-border: #c8c3be;
+$color-border-faq: rgba(32, 41, 24, 0.2);
+
+// Typography
+$font-family: 'Sora', sans-serif;
+
+// Layout
+$container-max: 1400px;
+$container-padding-mobile: 16px;
+$container-padding-desktop: 40px;
+$section-padding-mobile: 60px;
+$section-padding-desktop: 120px;
+
+// Transitions
+$ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$transition-base: 0.3s ease;
+$transition-smooth: 0.3s $ease-smooth;
+
+// Border radius
+$radius-sm: 10px;
+$radius-md: 16px;
+$radius-lg: 24px;
+$radius-xl: 32px;
+$radius-full: 50%;
+$radius-pill: 999px;
+
+// Breakpoints
+$bp-tablet: 769px;
+$bp-desktop: 1024px;
+$bp-wide: 1280px;
