@@ -24,7 +24,7 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
   private scrollHandler?: () => void;
   private isMobile = false;
   private desktopVideos = ['videos/d1.mp4', 'videos/d2.mp4', 'videos/d3.mp4', 'videos/d4.mp4'];
-  private mobileVideos = ['videos/m1.mp4', 'videos/m2.mp4', 'videos/m3.mp4'];
+  private mobileVideos = ['videos/m1.mp4', 'videos/m2.mp4', 'videos/m3.mp4', 'videos/m4.mp4'];
   private currentIndex = 0;
 
   constructor(private ngZone: NgZone) {}
