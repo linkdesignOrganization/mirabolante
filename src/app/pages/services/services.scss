@@ -1,0 +1,371 @@
+@use '../../../variables' as *;
+
+.services-page {
+  min-height: 100vh;
+}
+
+// ==========================================
+// Services Hero
+// ==========================================
+
+.s-hero {
+  background-color: $color-brand;
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 140px 0 $section-padding-mobile $container-padding-desktop;
+  position: relative;
+}
+
+@media screen and (min-width: $bp-tablet) {
+  .s-hero {
+    padding: 160px 0 $section-padding-desktop $container-padding-desktop;
+  }
+}
+
+.s-hero__content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 700px;
+}
+
+.s-hero__text {
+  font-weight: 400;
+  font-size: $fs-h2;
+  line-height: 1.4;
+  color: $color-white;
+}
+
+.s-hero__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.s-hero__badge {
+  font-size: $fs-small;
+  font-weight: 500;
+  color: $color-dark;
+  background-color: $color-white;
+  padding: 8px 18px;
+  border-radius: $radius-pill;
+}
+
+.s-hero__iso {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  img {
+    display: block;
+    height: 280px;
+    width: auto;
+    margin-bottom: -5px;
+  }
+}
+
+@media screen and (min-width: $bp-tablet) {
+  .s-hero__iso {
+    bottom: 0;
+
+    img {
+      height: 450px;
+    }
+  }
+}
+
+// ==========================================
+// Services Overview
+// ==========================================
+
+.s-overview {
+  background-color: $color-white;
+  padding: $section-padding-mobile $container-padding-mobile;
+  border-bottom: 1px solid $color-border;
+}
+
+@media screen and (min-width: $bp-tablet) {
+  .s-overview {
+    padding: $section-padding-desktop $container-padding-desktop;
+  }
+}
+
+.s-overview__top {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: $container-max;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: $bp-tablet) {
+  .s-overview__top {
+    flex-direction: row;
+    gap: 80px;
+    align-items: flex-start;
+  }
+
+  .s-overview__left {
+    width: 30%;
+    flex-shrink: 0;
+  }
+}
+
+.s-overview__left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.s-overview__label {
+  font-size: $fs-small;
+  font-weight: 500;
+  color: $color-brand;
+}
+
+.s-overview__heading {
+  font-weight: 500;
+  font-size: $fs-body;
+  line-height: 1.6;
+  color: $color-text-primary;
+}
+
+.s-overview__right {
+  flex: 1;
+}
+
+.s-overview__bigtext {
+  font-weight: 500;
+  font-size: $fs-h2;
+  line-height: 1.25;
+  color: $color-text-primary;
+  letter-spacing: -0.02em;
+}
+
+// Cards
+.s-overview__cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-top: 80px;
+}
+
+@media screen and (min-width: $bp-tablet) {
+  .s-overview__cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+}
+
+.s-overview__card {
+  border-top: 1px solid $color-border;
+  padding-top: 24px;
+}
+
+@media screen and (min-width: $bp-tablet) {
+  .s-overview__card {
+    border-top: none;
+    border-left: 1px solid $color-border;
+    padding: 0 24px;
+  }
+}
+
+.s-overview__card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.s-overview__card-number {
+  width: 28px;
+  height: 28px;
+  border-radius: $radius-full;
+  background-color: $color-brand;
+  color: $color-white;
+  font-size: $fs-small;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.s-overview__card-title {
+  font-weight: 600;
+  font-size: $fs-body;
+  color: $color-text-primary;
+}
+
+.s-overview__card-desc {
+  font-weight: 400;
+  font-size: $fs-small;
+  line-height: 1.6;
+  color: $color-text-secondary;
+}
+
+// ==========================================
+// Services Coverage
+// ==========================================
+
+.s-coverage {
+  background-color: $color-white;
+  padding: $section-padding-mobile $container-padding-mobile;
+}
+
+@media screen and (min-width: $bp-tablet) {
+  .s-coverage {
+    padding: $section-padding-desktop $container-padding-desktop;
+  }
+}
+
+.s-coverage__container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: $container-max;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: $bp-tablet) {
+  .s-coverage__container {
+    flex-direction: row;
+    gap: 40px;
+  }
+}
+
+// Left column
+.s-coverage__left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+
+  @media screen and (min-width: $bp-tablet) {
+    width: 40%;
+    flex-shrink: 0;
+  }
+}
+
+.s-coverage__label {
+  font-size: $fs-small;
+  font-weight: 500;
+  color: $color-brand;
+}
+
+.s-coverage__heading {
+  font-weight: 500;
+  font-size: $fs-h1;
+  line-height: 1.2;
+  color: $color-text-primary;
+  letter-spacing: -0.02em;
+}
+
+.s-coverage__text {
+  font-weight: 400;
+  font-size: $fs-small;
+  line-height: 1.7;
+  color: $color-text-secondary;
+}
+
+.s-coverage__items {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  margin-top: 24px;
+}
+
+.s-coverage__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 32px 0;
+  border-top: 1px solid $color-border;
+
+  &:last-child {
+    border-bottom: 1px solid $color-border;
+  }
+}
+
+.s-coverage__item-icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+}
+
+.s-coverage__item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.s-coverage__item-title {
+  font-weight: 600;
+  font-size: $fs-h2;
+  color: $color-text-primary;
+}
+
+.s-coverage__item-desc {
+  font-weight: 400;
+  font-size: $fs-small;
+  line-height: 1.6;
+  color: $color-text-secondary;
+}
+
+// Right column
+.s-coverage__right {
+  position: relative;
+  border-radius: $radius-md;
+  overflow: hidden;
+  min-height: 400px;
+
+  @media screen and (min-width: $bp-tablet) {
+    flex: 1;
+    min-height: 580px;
+  }
+}
+
+.s-coverage__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+}
+
+.s-coverage__card {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  background-color: $color-brand;
+  border-radius: $radius-md;
+  padding: 32px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.s-coverage__card-number {
+  font-weight: 600;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1;
+  color: $color-white;
+}
+
+.s-coverage__card-title {
+  font-weight: 500;
+  font-size: $fs-h3;
+  color: $color-white;
+}
+
+.s-coverage__card-desc {
+  font-weight: 400;
+  font-size: $fs-small;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+}
