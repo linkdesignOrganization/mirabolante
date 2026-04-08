@@ -17,6 +17,11 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/services/services').then(m => m.Services)
   },
   {
+    path: 'process',
+    data: { navTheme: 'dark' },
+    loadComponent: () => import('./pages/process/process').then(m => m.Process)
+  },
+  {
     path: 'contact',
     data: { navTheme: 'light' },
     loadComponent: () => import('./pages/contact/contact').then(m => m.Contact)

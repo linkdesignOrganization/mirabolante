@@ -1,0 +1,364 @@
+@use '../../../variables' as *;
+
+.process-page {
+  min-height: 100vh;
+  padding: 120px $container-padding-mobile 120px;
+  background-color: $color-white;
+  overflow-x: clip;
+}
+
+.process-page__container {
+  max-width: $container-max;
+  margin: 0 auto;
+}
+
+.process-hero {
+  background-color: $color-white;
+}
+
+.process-hero__container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.process-hero__left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.process-hero__heading,
+.process-hero__card-title,
+.process-hero__item-title {
+  margin: 0;
+}
+
+.process-hero__text {
+  max-width: 56ch;
+}
+
+.process-hero__items {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  margin-top: 24px;
+}
+
+.process-hero__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 32px 0;
+  border-top: 1px solid $color-border;
+}
+
+.process-hero__item-number {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: $radius-full;
+  background-color: $color-brand;
+  color: $color-white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.process-hero__item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.process-hero__item-desc {
+  max-width: 52ch;
+}
+
+.process-hero__right {
+  position: relative;
+  border-radius: $radius-md;
+  overflow: hidden;
+  min-height: 400px;
+}
+
+.process-hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.process-hero__card {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  background-color: $color-brand;
+  border-radius: $radius-md;
+  padding: 32px;
+  width: min(320px, calc(100% - 32px));
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.process-hero__card-number {
+  font-weight: 600;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1;
+  color: $color-white;
+}
+
+.process-hero__card-title {
+  color: $color-white;
+}
+
+.process-hero__card-desc {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@media screen and (min-width: $bp-tablet) {
+  .process-page {
+    padding: 144px $container-padding-desktop 120px;
+  }
+
+  .process-hero__container {
+    flex-direction: row;
+    gap: 40px;
+  }
+
+  .process-hero__left {
+    width: 40%;
+    flex-shrink: 0;
+  }
+
+  .process-hero__right {
+    flex: 1;
+    min-height: 580px;
+  }
+}
+
+.about {
+  position: relative;
+  height: 110vh;
+  scroll-margin-top: 110px;
+}
+
+.about__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.about__bg-img {
+  width: 100%;
+  height: 130%;
+  object-fit: cover;
+  will-change: transform;
+}
+
+.about__container {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.about__spacer {}
+
+.about__rail {
+  position: relative;
+  padding-right: 55px;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: $color-white;
+  }
+
+  &::before {
+    left: 0;
+  }
+
+  &::after {
+    right: 55px;
+  }
+}
+
+.about--left .about__container {
+  grid-template-columns: auto 1fr;
+}
+
+.about--left .about__rail {
+  padding-right: 0;
+  padding-left: 55px;
+
+  &::before {
+    left: 55px;
+  }
+
+  &::after {
+    right: 0;
+  }
+}
+
+.about__card {
+  position: sticky;
+  top: 0;
+  background-color: $color-white;
+  padding: 48px 40px;
+  width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.about__icon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  display: block;
+}
+
+.about__heading {}
+
+.about__text {
+  font-weight: 400;
+  font-size: $fs-small;
+  line-height: 1.7;
+  color: $color-text-secondary;
+}
+
+.process-overview {
+  background-color: $color-white;
+  padding: $section-padding-mobile $container-padding-mobile;
+  border-bottom: 1px solid $color-border;
+  scroll-margin-top: 110px;
+  overflow-x: clip;
+}
+
+.process-overview__top {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: $container-max;
+  margin: 0 auto;
+}
+
+.process-overview__left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.process-overview__title-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.process-overview__icon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  display: block;
+}
+
+.process-overview__heading,
+.process-overview__bigtext,
+.process-overview__card-title {
+  margin: 0;
+}
+
+.process-overview__heading {
+  font-weight: 500;
+  max-width: 30ch;
+}
+
+.process-overview__right {
+  flex: 1;
+}
+
+.process-overview__bigtext {
+  max-width: 20ch;
+}
+
+.process-overview__cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-top: 48px;
+}
+
+.process-overview__card {
+  border-top: 1px solid $color-border;
+  padding-top: 24px;
+}
+
+.process-overview__card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.process-overview__card-number {
+  width: 28px;
+  height: 28px;
+  border-radius: $radius-full;
+  background-color: $color-brand;
+  color: $color-white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-weight: 600;
+}
+
+.process-overview__card-title {
+  font-weight: 600;
+}
+
+@media screen and (min-width: $bp-tablet) {
+  .process-overview {
+    padding: $section-padding-desktop $container-padding-desktop;
+  }
+
+  .process-overview__top {
+    flex-direction: row;
+    gap: 80px;
+    align-items: flex-start;
+  }
+
+  .process-overview__left {
+    width: 30%;
+    flex-shrink: 0;
+  }
+
+  .process-overview__cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+
+  .process-overview__card {
+    border-top: none;
+    border-left: 1px solid $color-border;
+    padding: 0 24px;
+  }
+}
