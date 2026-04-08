@@ -188,11 +188,6 @@
 }
 
 .solutions__heading {
-  font-weight: 500;
-  font-size: $fs-h1;
-  line-height: 1.15;
-  color: $color-text-primary;
-  letter-spacing: -0.02em;
   margin-bottom: 24px;
 }
 
@@ -391,11 +386,7 @@
 }
 
 .highlight__heading {
-  font-weight: 500;
-  font-size: $fs-h2;
-  line-height: 1.2;
   color: $color-white;
-  letter-spacing: -0.02em;
 }
 
 .highlight__marquee {
@@ -512,13 +503,7 @@
   color: $color-brand;
 }
 
-.about__heading {
-  font-weight: 500;
-  font-size: $fs-h2;
-  line-height: 1.15;
-  color: $color-text-primary;
-  letter-spacing: -0.02em;
-}
+.about__heading {}
 
 .about__text {
   font-weight: 400;
@@ -843,11 +828,6 @@
 }
 
 .faq__title {
-  font-weight: 500;
-  font-size: $fs-h1;
-  line-height: 1.15;
-  color: $color-text-primary;
-  letter-spacing: -0.02em;
   margin: 0 0 24px;
 }
 

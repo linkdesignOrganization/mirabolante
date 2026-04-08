@@ -31,6 +31,61 @@ body {
 }
 
 // ==========================================
+// Global Typography
+// ==========================================
+
+.heading-display {
+  font-weight: 600;
+  font-size: $fs-display;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: $color-text-primary;
+}
+
+.heading-h1 {
+  font-weight: 500;
+  font-size: $fs-h1;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: $color-text-primary;
+}
+
+.heading-h2 {
+  font-weight: 500;
+  font-size: $fs-h2;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: $color-text-primary;
+}
+
+.heading-h3 {
+  font-weight: 600;
+  font-size: $fs-h3;
+  line-height: 1.2;
+  color: $color-text-primary;
+}
+
+.text-body {
+  font-weight: 400;
+  font-size: $fs-body;
+  line-height: 1.6;
+  color: $color-text-primary;
+}
+
+.text-small {
+  font-weight: 400;
+  font-size: $fs-small;
+  line-height: 1.6;
+  color: $color-text-secondary;
+}
+
+.text-label {
+  font-weight: 500;
+  font-size: $fs-small;
+  color: $color-brand;
+}
+
+// ==========================================
 // Global CTA Button
 // ==========================================
 

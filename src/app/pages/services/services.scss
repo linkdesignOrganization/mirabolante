@@ -256,13 +256,7 @@
   color: $color-brand;
 }
 
-.s-coverage__heading {
-  font-weight: 500;
-  font-size: $fs-h1;
-  line-height: 1.2;
-  color: $color-text-primary;
-  letter-spacing: -0.02em;
-}
+.s-coverage__heading {}
 
 .s-coverage__text {
   font-weight: 400;
@@ -358,8 +352,6 @@
 }
 
 .s-coverage__card-title {
-  font-weight: 500;
-  font-size: $fs-h3;
   color: $color-white;
 }
 
@@ -368,4 +360,312 @@
   font-size: $fs-small;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.7);
+}
+
+// ==========================================
+// Services Products
+// ==========================================
+
+.s-products {
+  background-color: $color-white;
+  padding: 0 $container-padding-mobile;
+}
+
+@media screen and (min-width: $bp-tablet) {
+  .s-products {
+    padding: 0 $container-padding-desktop;
+  }
+}
+
+.s-products__header {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.s-products__label {
+  font-size: $fs-small;
+  font-weight: 500;
+  color: $color-brand;
+}
+
+.s-products__heading {}
+
+.s-products__subtext {
+  font-weight: 400;
+  font-size: $fs-small;
+  line-height: 1.6;
+  color: $color-text-secondary;
+}
+
+// Products content (sticky left + cards right)
+.s-products__content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: $container-max;
+  margin: 60px auto 0;
+  padding-bottom: 80px;
+  border-bottom: 1px solid $color-border;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+@media screen and (min-width: $bp-tablet) {
+  .s-products__content {
+    flex-direction: row;
+    gap: 60px;
+    align-items: flex-start;
+    margin-top: 80px;
+  }
+}
+
+.s-products__sticky {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  @media screen and (min-width: $bp-tablet) {
+    position: sticky;
+    top: 120px;
+    width: 280px;
+    flex-shrink: 0;
+  }
+}
+
+.s-products__sticky-label {
+  font-size: $fs-small;
+  font-weight: 500;
+  color: $color-brand;
+}
+
+.s-products__sticky-title {}
+
+.s-products__sticky-text {
+  font-weight: 400;
+  font-size: $fs-small;
+  line-height: 1.6;
+  color: $color-text-secondary;
+}
+
+// Products list
+.s-products__list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  flex: 1;
+}
+
+@media screen and (min-width: $bp-tablet) {
+  .s-products__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+// Product card
+.s-products__card {
+  padding: 28px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-bottom: 1px solid $color-border;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+@media screen and (min-width: $bp-tablet) {
+  .s-products__list {
+    gap: 0;
+  }
+
+  .s-products__card {
+    padding: 28px;
+    border-bottom: 1px solid $color-border;
+    border-right: 1px solid $color-border;
+
+    &:nth-child(even) {
+      border-right: none;
+    }
+
+    &:last-child,
+    &:nth-last-child(2):nth-child(odd) {
+      border-bottom: none;
+    }
+  }
+}
+
+.s-products__card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.s-products__card-number {
+  width: 28px;
+  height: 28px;
+  border-radius: $radius-full;
+  background-color: $color-brand;
+  color: $color-white;
+  font-size: $fs-small;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.s-products__card-title {}
+
+.s-products__card-desc {
+  font-weight: 400;
+  font-size: $fs-small;
+  line-height: 1.6;
+  color: $color-text-secondary;
+}
+
+.s-products__card-img {
+  border-radius: $radius-md;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+// ==========================================
+// Services CTA
+// ==========================================
+
+.s-cta {
+  position: relative;
+  overflow: hidden;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  margin: 0 $container-padding-mobile $section-padding-mobile;
+  border-radius: $radius-md;
+
+  @media screen and (min-width: $bp-tablet) {
+    margin: 0 $container-padding-desktop $section-padding-desktop;
+  }
+}
+
+.s-cta::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 200px;
+  height: 212px;
+  z-index: 2;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 143 152'%3E%3Cpolygon points='0 152 143 152 143 0 0 152' fill='white'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.s-cta__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.s-cta__bg-img {
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  will-change: transform;
+}
+
+.s-cta__container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: $container-max;
+  margin: 0 auto;
+  padding: 40px $container-padding-mobile;
+  display: flex;
+  justify-content: flex-start;
+}
+
+@media screen and (min-width: $bp-tablet) {
+  .s-cta__container {
+    padding: 40px $container-padding-desktop;
+  }
+}
+
+.s-cta__card {
+  background-color: $color-brand;
+  border-radius: $radius-md;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+
+  @media screen and (min-width: $bp-tablet) {
+    max-width: 600px;
+  }
+}
+
+.s-cta__title {
+  color: $color-white;
+}
+
+.s-cta__text {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.s-cta__info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.s-cta__info-item--full {
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.s-cta__info-row {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @media screen and (min-width: $bp-tablet) {
+    flex-direction: row;
+    gap: 32px;
+  }
+}
+
+.s-cta__info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.s-cta__info-label {
+  font-size: $fs-xs;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+}
+
+.s-cta__info-value {
+  font-size: $fs-small;
+  font-weight: 500;
+  color: $color-white;
 }
