@@ -29,6 +29,8 @@
   flex-direction: column;
   gap: 40px;
   max-width: 700px;
+  position: relative;
+  z-index: 1;
 }
 
 .s-hero__text {
@@ -57,6 +59,7 @@
   position: absolute;
   bottom: 0;
   right: 0;
+  z-index: 0;
 
   img {
     display: block;

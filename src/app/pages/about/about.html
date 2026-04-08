@@ -1,1 +1,324 @@
+<section class="about-hero">
+  <div class="about-hero__container">
+    <div class="about-hero__top">
+      <div class="about-hero__title-block">
+        <div class="about-hero__label-wrap">
+          <span class="about-hero__label text-label">Sobre Mirabolante</span>
+        </div>
 
+        <h1 class="about-hero__title heading-h1">
+          Una trading house construida sobre relaciones comerciales de largo plazo.
+        </h1>
+      </div>
+
+      <aside class="about-hero__card">
+        <div class="about-hero__card-number">100%</div>
+
+        <div class="about-hero__card-copy">
+          <h2 class="about-hero__card-title heading-h3">Operación propia</h2>
+
+          <p class="about-hero__card-text text-small">
+            Sin intermediarios adicionales. Mirabolante gestiona directamente la
+            relación con proveedores, la negociación y la logística de cada
+            embarque.
+          </p>
+        </div>
+      </aside>
+    </div>
+
+    <div class="about-hero__image-wrap" #heroMedia>
+      <img
+        src="images/npc.jpg"
+        alt="Buque portacontenedores en operación marítima"
+        class="about-hero__image"
+        #heroImage
+      />
+    </div>
+  </div>
+</section>
+
+<section class="about-section">
+  <div class="about-section__intro">
+    <div class="about-section__intro-container">
+      <div class="about-section__intro-copy">
+        <span class="about-section__intro-label text-label">Diferenciales</span>
+
+        <h2 class="about-section__intro-title heading-h3">
+          Cada operación combina acceso, validación y gestión integral.
+        </h2>
+      </div>
+
+      <div class="about-section__feature-grid">
+        <article class="about-section__feature">
+          <img
+            src="images/c1_1.svg"
+            alt="Acceso a volúmenes grandes"
+            class="about-section__feature-icon"
+          />
+
+          <div class="about-section__feature-copy">
+            <h3 class="about-section__feature-title text-body">
+              Monitoreo de mercados
+            </h3>
+
+            <p class="about-section__feature-text text-small">
+              Le avisamos cuando hay buenos precios o cuando conviene esperar.
+            </p>
+          </div>
+        </article>
+
+        <article class="about-section__feature">
+          <img
+            src="images/c3.svg"
+            alt="Muestras antes de embarque"
+            class="about-section__feature-icon"
+          />
+
+          <div class="about-section__feature-copy">
+            <h3 class="about-section__feature-title text-body">
+              Muestras antes de embarque
+            </h3>
+
+            <p class="about-section__feature-text text-small">
+              Aprobación contra ficha técnica y muestra física antes de cualquier
+              compra.
+            </p>
+          </div>
+        </article>
+
+        <article class="about-section__feature">
+          <img
+            src="images/c2.svg"
+            alt="Gestión integral"
+            class="about-section__feature-icon"
+          />
+
+          <div class="about-section__feature-copy">
+            <h3 class="about-section__feature-title text-body">
+              Gestión integral
+            </h3>
+
+            <p class="about-section__feature-text text-small">
+              Desde la cotización hasta la entrega en puerto, todo en una sola
+              operación.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-section__story">
+    <div class="about-section__media">
+      <video
+        #aboutVideo
+        class="about-section__video"
+        muted
+        playsinline
+        autoplay
+        preload="auto"
+        [attr.poster]="aboutVideoPoster"
+        (ended)="onAboutVideoEnded()"
+      ></video>
+    </div>
+
+    <div class="about-section__content">
+      <div class="about-section__content-inner">
+        <span class="about-section__content-label">Quiénes somos</span>
+
+        <h2 class="about-section__content-title heading-h1">
+          Conectamos su operación con los proveedores que necesita.
+        </h2>
+
+        <p class="about-section__content-text text-body">
+          Mirabolante es una trading house internacional con base en Panamá y
+          equipo operativo en Costa Rica. Compramos materias primas e ingredientes
+          alimentarios en Sudamérica y los entregamos a clientes industriales en
+          toda Latinoamérica. Gestionamos todo el proceso: cotización,
+          negociación, logística y documentación.
+        </p>
+
+        <div class="about-section__metrics">
+          <div class="about-section__metric">
+            <span class="about-section__metric-value heading-h1">50k</span>
+            <span class="about-section__metric-label">
+              <span>Toneladas</span>
+              <span>anuales</span>
+            </span>
+          </div>
+
+          <div class="about-section__metric">
+            <span class="about-section__metric-value heading-h1">5</span>
+            <span class="about-section__metric-label">
+              <span>Países de</span>
+              <span>origen</span>
+            </span>
+          </div>
+
+          <div class="about-section__metric">
+            <span class="about-section__metric-value heading-h1">20+</span>
+            <span class="about-section__metric-label">
+              <span>Proveedores</span>
+              <span>activos</span>
+            </span>
+          </div>
+        </div>
+
+        <a
+          routerLink="/services"
+          class="btn-cta"
+          style="--btn-color: #fff; --btn-text-color: #0044BD"
+        >
+          <span class="btn-cta__text">Conozca nuestros servicios</span>
+          <span class="btn-cta__arrow">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path
+                d="M1 13L13 1M13 1H3M13 1V11"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-team">
+  <div class="about-team__container">
+    <div class="about-team__sticky">
+      <div class="about-team__sticky-inner">
+        <span class="about-team__label text-label">Nuestro equipo</span>
+
+        <h2 class="about-team__title heading-h1">
+          El equipo detrás de Mirabolante
+        </h2>
+      </div>
+    </div>
+
+    <div class="about-team__collection">
+      @for (member of teamMembers; track member.name) {
+        <article class="about-team__card">
+          <div class="about-team__image-wrap">
+            <img
+              [src]="member.image"
+              [alt]="member.alt"
+              class="about-team__image"
+            />
+          </div>
+
+          <div class="about-team__card-copy">
+            <p class="about-team__quote text-body">{{ member.quote }}</p>
+
+            <div class="about-team__info">
+              <h3 class="about-team__name heading-h3">{{ member.name }}</h3>
+              <p class="about-team__role text-small">{{ member.role }}</p>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="about-cta">
+  <div class="about-cta__media" #ctaMedia>
+    <img
+      src="images/cm1.jpg"
+      alt="Vista aérea de operación industrial"
+      class="about-cta__image"
+      #ctaImage
+    />
+  </div>
+
+  <div class="about-cta__panel">
+    <div class="about-cta__panel-inner">
+      <h2 class="about-cta__title heading-h1">
+        Si su operación necesita un proveedor de materias primas con acceso internacional, gestión logística completa y transparencia en cada etapa del proceso, hablemos.
+      </h2>
+
+      <a
+        routerLink="/contact"
+        class="btn-cta"
+        style="--btn-color: #fff; --btn-text-color: #0044BD"
+      >
+        <span class="btn-cta__text">Contáctenos</span>
+        <span class="btn-cta__arrow">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path
+              d="M1 13L13 1M13 1H3M13 1V11"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </span>
+      </a>
+
+      <div class="about-cta__marquee" aria-hidden="true">
+        <div class="about-cta__marquee-track">
+          <div class="about-cta__marquee-item">
+            <img
+              src="logohorizontalblanco.svg"
+              alt=""
+              class="about-cta__marquee-logo"
+            />
+          </div>
+          <div class="about-cta__marquee-item">
+            <img
+              src="logohorizontalnegro.svg"
+              alt=""
+              class="about-cta__marquee-logo"
+            />
+          </div>
+          <div class="about-cta__marquee-item">
+            <img
+              src="logohorizontalblanco.svg"
+              alt=""
+              class="about-cta__marquee-logo"
+            />
+          </div>
+          <div class="about-cta__marquee-item">
+            <img
+              src="logohorizontalnegro.svg"
+              alt=""
+              class="about-cta__marquee-logo"
+            />
+          </div>
+          <div class="about-cta__marquee-item">
+            <img
+              src="logohorizontalblanco.svg"
+              alt=""
+              class="about-cta__marquee-logo"
+            />
+          </div>
+          <div class="about-cta__marquee-item">
+            <img
+              src="logohorizontalnegro.svg"
+              alt=""
+              class="about-cta__marquee-logo"
+            />
+          </div>
+          <div class="about-cta__marquee-item">
+            <img
+              src="logohorizontalblanco.svg"
+              alt=""
+              class="about-cta__marquee-logo"
+            />
+          </div>
+          <div class="about-cta__marquee-item">
+            <img
+              src="logohorizontalnegro.svg"
+              alt=""
+              class="about-cta__marquee-logo"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

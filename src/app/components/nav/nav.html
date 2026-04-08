@@ -1,4 +1,4 @@
-<nav class="nav">
+<nav class="nav" [class.nav--dark]="navTheme === 'dark'">
   <div class="nav__links nav__links--left">
     <a routerLink="/about" class="nav__link">Nosotros</a>
     <a href="#" class="nav__link">Productos</a>
@@ -6,7 +6,11 @@
   </div>
 
   <a routerLink="/" class="nav__logo">
-    <img src="logo.svg" alt="Mirabolante" class="nav__logo-img" />
+    <img
+      [src]="navTheme === 'dark' ? 'logocolor.svg' : 'logo.svg'"
+      alt="Mirabolante"
+      class="nav__logo-img"
+    />
   </a>
 
   <div class="nav__links nav__links--right">
