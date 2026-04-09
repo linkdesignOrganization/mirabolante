@@ -666,7 +666,7 @@
 
 .about {
   position: relative;
-  height: clamp(920px, 135vh, 1320px);
+  height: 90vh;
 }
 
 .about__bg {
@@ -768,7 +768,7 @@
 
 @media screen and (min-width: $bp-tablet) and (max-width: #{$bp-desktop - 1}) {
   .about {
-    height: clamp(1040px, 145vh, 1480px);
+    height: 70vh;
   }
 
   .about__bg-img {

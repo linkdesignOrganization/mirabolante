@@ -75,6 +75,14 @@ export class Nav {
     return this.isMobileMenuOpen() || this.navTheme !== 'dark' ? 'logo.svg' : 'logocolor.svg';
   }
 
+  get mobileLogoSrc() {
+    if (this.isMobileMenuOpen()) {
+      return 'iso.svg';
+    }
+
+    return this.navTheme === 'dark' ? 'isocolor.svg' : 'iso.svg';
+  }
+
   toggleMobileMenu() {
     if (!this.isMobileViewport()) {
       return;

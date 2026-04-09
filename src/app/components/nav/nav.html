@@ -7,7 +7,7 @@
     <div class="nav__mobile-shell">
       <div class="nav__mobile-top">
         <a [routerLink]="i18n.buildLink('home')" class="nav__mobile-logo" (click)="onMobileNavigation()">
-          <img src="iso.svg" [alt]="i18n.t('global.nav.logoAlt')" class="nav__mobile-logo-img" />
+          <img [src]="mobileLogoSrc" [alt]="i18n.t('global.nav.logoAlt')" class="nav__mobile-logo-img" />
         </a>
 
         <div class="nav__mobile-tools">

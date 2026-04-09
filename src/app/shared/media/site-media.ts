@@ -107,10 +107,10 @@ export const PROCESS_MEDIA = {
   } satisfies ResponsiveImageAsset,
   sourcingImage: {
     desktopSrc: 'images/optimized/process1-desktop.webp',
-    mobileSrc: 'images/optimized/process1-mobile.webp',
+    mobileSrc: 'images/optimized/procesrieles1-mobile.webp',
   } satisfies ResponsiveImageAsset,
   flexibilityImage: {
     desktopSrc: 'images/optimized/cm3-desktop.webp',
-    mobileSrc: 'images/optimized/cm3-mobile.webp',
+    mobileSrc: 'images/optimized/procesrieles2-mobile.webp',
   } satisfies ResponsiveImageAsset,
 } as const;
