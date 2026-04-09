@@ -10,7 +10,6 @@ import {
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LocaleService } from '../../i18n/locale.service';
-import { BufferedVideoSequenceController } from '../../shared/media/buffered-video-sequence';
 import { ABOUT_MEDIA } from '../../shared/media/site-media';
 
 @Component({
@@ -27,36 +26,20 @@ export class About implements AfterViewInit, OnDestroy {
 
   @ViewChild('heroMedia') heroMediaRef!: ElementRef<HTMLElement>;
   @ViewChild('heroImage') heroImageRef!: ElementRef<HTMLImageElement>;
-  @ViewChild('aboutVideoPrimary') aboutVideoPrimaryRef!: ElementRef<HTMLVideoElement>;
-  @ViewChild('aboutVideoSecondary') aboutVideoSecondaryRef!: ElementRef<HTMLVideoElement>;
+  @ViewChild('storyVideo') storyVideoRef!: ElementRef<HTMLVideoElement>;
   @ViewChild('ctaMedia') ctaMediaRef!: ElementRef<HTMLElement>;
   @ViewChild('ctaImage') ctaImageRef!: ElementRef<HTMLImageElement>;
 
-  isMobileView = false;
   storyLoaded = false;
-  storyActiveSlot: 0 | 1 = 0;
+  private currentStoryIndex = 0;
+  private isMobileView =
+    typeof window !== 'undefined'
+      ? window.matchMedia('(max-width: 767px)').matches
+      : false;
 
   private scrollHandler?: () => void;
   private resizeHandler?: () => void;
   private rafId = 0;
-  private readonly storyController = new BufferedVideoSequenceController({
-    ...ABOUT_MEDIA.story,
-    onReadyChange: (ready) => {
-      this.ngZone.run(() => {
-        this.storyLoaded = ready;
-      });
-    },
-    onActiveSlotChange: (slot) => {
-      this.ngZone.run(() => {
-        this.storyActiveSlot = slot;
-      });
-    },
-    onViewportChange: (isMobile) => {
-      this.ngZone.run(() => {
-        this.isMobileView = isMobile;
-      });
-    },
-  });
 
   constructor(private ngZone: NgZone) {}
 
@@ -74,7 +57,7 @@ export class About implements AfterViewInit, OnDestroy {
       this.scrollHandler = queueParallax;
       this.resizeHandler = () => {
         queueParallax();
-        this.storyController.syncViewport();
+        this.syncStoryViewport();
       };
 
       window.addEventListener('scroll', queueParallax, { passive: true });
@@ -83,10 +66,7 @@ export class About implements AfterViewInit, OnDestroy {
       queueParallax();
     });
 
-    this.storyController.mount([
-      this.aboutVideoPrimaryRef.nativeElement,
-      this.aboutVideoSecondaryRef.nativeElement,
-    ]);
+    this.initStoryVideo();
   }
 
   ngOnDestroy() {
@@ -102,7 +82,6 @@ export class About implements AfterViewInit, OnDestroy {
       cancelAnimationFrame(this.rafId);
     }
 
-    this.storyController.destroy();
   }
 
   private updateParallax() {
@@ -129,7 +108,48 @@ export class About implements AfterViewInit, OnDestroy {
     image.style.transform = `translateY(${parallaxOffset}px)`;
   }
 
-  get showStoryVideo() {
-    return !this.isMobileView;
+  private get storyVideos() {
+    return this.isMobileView
+      ? this.media.story.mobileSources
+      : this.media.story.desktopSources;
+  }
+
+  onStoryCanPlay() {
+    if (!this.storyLoaded) {
+      this.storyLoaded = true;
+    }
+  }
+
+  onStoryEnded() {
+    this.currentStoryIndex = (this.currentStoryIndex + 1) % this.storyVideos.length;
+    this.playCurrentStoryVideo();
+  }
+
+  private initStoryVideo() {
+    this.storyLoaded = false;
+    this.currentStoryIndex = 0;
+    this.playCurrentStoryVideo();
+  }
+
+  private syncStoryViewport() {
+    const nextIsMobile = window.matchMedia('(max-width: 767px)').matches;
+    if (nextIsMobile === this.isMobileView) return;
+    this.isMobileView = nextIsMobile;
+    this.initStoryVideo();
+  }
+
+  private playCurrentStoryVideo() {
+    const video = this.storyVideoRef?.nativeElement;
+    if (!video) return;
+
+    video.pause();
+    video.defaultMuted = true;
+    video.muted = true;
+    video.playsInline = true;
+    video.autoplay = true;
+    video.preload = 'auto';
+    video.src = this.storyVideos[this.currentStoryIndex];
+    video.load();
+    void video.play().catch(() => {});
   }
 }

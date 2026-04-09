@@ -208,6 +208,10 @@
     gap: 48px;
   }
 
+  .site-footer__brand {
+    grid-column: auto;
+  }
+
   .site-footer__grid > .site-footer__column:last-child {
     grid-column: auto;
   }

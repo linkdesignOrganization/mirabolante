@@ -38,7 +38,7 @@ export class BufferedVideoSequenceController {
       video.muted = true;
       video.playsInline = true;
       video.preload = 'auto';
-      video.autoplay = false;
+      video.autoplay = true;
 
       const canPlayHandler = () => this.handleCanPlay(index as SlotIndex);
       const endedHandler = () => this.handleEnded(index as SlotIndex);

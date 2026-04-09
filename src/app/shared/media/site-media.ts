@@ -8,8 +8,8 @@ export interface ResponsiveImageAsset {
 export interface VideoSequenceAsset {
   desktopSources: string[];
   mobileSources: string[];
-  desktopPoster: string;
-  mobilePoster: string;
+  desktopPoster?: string;
+  mobilePoster?: string;
   mobileMode: MobileMediaMode;
 }
 
@@ -46,7 +46,7 @@ export const HOME_MEDIA = {
     mobileMode: 'poster',
   } satisfies ResponsiveVideoAsset,
   aboutImage: {
-    desktopSrc: 'images/optimized/rieles-desktop.webp',
+    desktopSrc: 'images/optimized/aboutimg-desktop.webp',
     mobileSrc: 'images/optimized/rieles-mobile.webp',
   } satisfies ResponsiveImageAsset,
   cards: [
@@ -77,9 +77,7 @@ export const ABOUT_MEDIA = {
   story: {
     desktopSources: HOME_MEDIA.hero.desktopSources,
     mobileSources: HOME_MEDIA.hero.mobileSources,
-    desktopPoster: HOME_MEDIA.hero.desktopPoster,
-    mobilePoster: HOME_MEDIA.hero.mobilePoster,
-    mobileMode: 'poster',
+    mobileMode: 'video',
   } satisfies VideoSequenceAsset,
   ctaImage: {
     desktopSrc: 'images/optimized/cm1-desktop.webp',

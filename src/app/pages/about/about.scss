@@ -129,13 +129,13 @@
     min-height: 250px;
     position: absolute;
     right: 0;
-    bottom: 0;
+    bottom: -80px;
     z-index: 3;
   }
 
   .about-hero__image-wrap {
     height: 520px;
-    margin-top: -60px;
+    margin-top: 0;
     position: relative;
     z-index: 1;
   }
@@ -266,25 +266,6 @@
   line-height: 0;
 }
 
-.about-section__poster {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  transition: opacity 0.35s ease;
-}
-
-.about-section__poster--hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.about-section__poster-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
 .about-section__video {
   position: absolute;
   inset: 0;
@@ -300,11 +281,6 @@
 .about-section__video--active {
   opacity: 1;
   z-index: 2;
-}
-
-.about-section__media--poster-only .about-section__video {
-  opacity: 0 !important;
-  pointer-events: none;
 }
 
 .about-section__content {
@@ -414,6 +390,26 @@
     flex: 1;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 44px;
+  }
+
+  .about-section__feature {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .about-section__feature-icon {
+    flex-shrink: 0;
+  }
+
+  .about-section__feature-copy {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .about-section__feature-title,
+  .about-section__feature-text {
+    max-width: none;
   }
 
   .about-section__story {

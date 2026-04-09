@@ -209,6 +209,15 @@
   }
 }
 
+@media screen and (min-width: $bp-desktop) {
+  .hero__text-group {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
 // ==========================================
 // Solutions Section
 // ==========================================
@@ -795,6 +804,7 @@
 @media screen and (min-width: $bp-desktop) {
   .about {
     height: 118vh;
+    padding-inline: 40px;
   }
 
   .about__bg-img {

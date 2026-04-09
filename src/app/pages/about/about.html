@@ -76,38 +76,16 @@
   </div>
 
   <div class="about-section__story">
-    <div class="about-section__media" [class.about-section__media--poster-only]="!showStoryVideo">
-      <picture
-        class="about-section__poster"
-        [class.about-section__poster--hidden]="storyLoaded && showStoryVideo"
-      >
-        <source media="(max-width: 767px)" [srcset]="media.story.mobilePoster" />
-        <img
-          [src]="media.story.desktopPoster"
-          alt=""
-          class="about-section__poster-image"
-          loading="lazy"
-          decoding="async"
-          aria-hidden="true"
-        />
-      </picture>
-
+    <div class="about-section__media">
       <video
-        #aboutVideoPrimary
-        class="about-section__video"
-        [class.about-section__video--active]="storyActiveSlot === 0 && showStoryVideo"
+        #storyVideo
+        class="about-section__video about-section__video--active"
         muted
         playsinline
+        autoplay
         preload="auto"
-        aria-hidden="true"
-      ></video>
-      <video
-        #aboutVideoSecondary
-        class="about-section__video"
-        [class.about-section__video--active]="storyActiveSlot === 1 && showStoryVideo"
-        muted
-        playsinline
-        preload="auto"
+        (canplay)="onStoryCanPlay()"
+        (ended)="onStoryEnded()"
         aria-hidden="true"
       ></video>
     </div>
