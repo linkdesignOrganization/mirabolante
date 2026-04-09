@@ -144,54 +144,60 @@
   </section>
 
   <section class="s-cta">
-    <div class="s-cta__bg">
-      <picture class="s-cta__bg-picture">
-        <source media="(max-width: 767px)" [srcset]="media.ctaImage.mobileSrc" />
-        <img
-          [src]="media.ctaImage.desktopSrc"
-          [alt]="content().cta.imageAlt"
-          class="s-cta__bg-img"
-          loading="lazy"
-          decoding="async"
-        />
-      </picture>
-    </div>
-
-    <div class="s-cta__container">
-      <div class="s-cta__card">
-        <h2 class="s-cta__title heading-h2">{{ content().cta.title }}</h2>
-        <p class="s-cta__text text-small">{{ content().cta.text }}</p>
-
-        <div class="s-cta__info">
-          <div class="s-cta__info-item s-cta__info-item--full">
-            <span class="s-cta__info-label">{{ content().cta.emailLabel }}</span>
-            <span class="s-cta__info-value">comercial@mirabolante.com</span>
-          </div>
-          <div class="s-cta__info-row">
-            <div class="s-cta__info-item">
-              <span class="s-cta__info-label">{{ content().cta.phoneLabel }}</span>
-              <span class="s-cta__info-value">+507 6000-0000</span>
-            </div>
-            <div class="s-cta__info-item">
-              <span class="s-cta__info-label">{{ content().cta.officeLabel }}</span>
-              <span class="s-cta__info-value">{{ i18n.t('global.footer.city') }}</span>
-            </div>
-          </div>
+    <div class="s-cta__frame">
+      <div class="s-cta__shell">
+        <div class="s-cta__bg">
+          <picture class="s-cta__bg-picture">
+            <source media="(max-width: 767px)" [srcset]="media.ctaImage.mobileSrc" />
+            <img
+              [src]="media.ctaImage.desktopSrc"
+              [alt]="content().cta.imageAlt"
+              class="s-cta__bg-img"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
         </div>
 
-        <a
-          [routerLink]="i18n.buildLink('contact')"
-          class="btn-cta"
-          style="--btn-color: #fff; --btn-text-color: #0044BD"
-        >
-          <span class="btn-cta__text">{{ content().cta.cta.text }}</span>
-          <span class="btn-cta__arrow">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </a>
+        <div class="s-cta__container">
+          <div class="s-cta__card">
+            <h2 class="s-cta__title heading-h2">{{ content().cta.title }}</h2>
+            <p class="s-cta__text text-small">{{ content().cta.text }}</p>
+
+            <div class="s-cta__info">
+              <div class="s-cta__info-item s-cta__info-item--full">
+                <span class="s-cta__info-label">{{ content().cta.emailLabel }}</span>
+                <span class="s-cta__info-value">comercial@mirabolante.com</span>
+              </div>
+              <div class="s-cta__info-row">
+                <div class="s-cta__info-item">
+                  <span class="s-cta__info-label">{{ content().cta.phoneLabel }}</span>
+                  <span class="s-cta__info-value">+507 6000-0000</span>
+                </div>
+                <div class="s-cta__info-item">
+                  <span class="s-cta__info-label">{{ content().cta.officeLabel }}</span>
+                  <span class="s-cta__info-value">{{ i18n.t('global.footer.city') }}</span>
+                </div>
+              </div>
+            </div>
+
+            <a
+              [routerLink]="i18n.buildLink('contact')"
+              class="btn-cta"
+              style="--btn-color: #fff; --btn-text-color: #0044BD"
+            >
+              <span class="btn-cta__text">{{ content().cta.cta.text }}</span>
+              <span class="btn-cta__arrow">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
       </div>
+
+      <span class="s-cta__cutout" aria-hidden="true"></span>
     </div>
   </section>
 
