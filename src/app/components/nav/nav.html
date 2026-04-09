@@ -1,59 +1,176 @@
-<nav class="nav" [class.nav--dark]="navTheme === 'dark'">
-  <div
-    class="nav__locale-switch"
-    role="group"
-    [attr.aria-label]="i18n.t('global.language.switchLabel')"
-  >
-    <button
-      type="button"
-      class="nav__locale-button"
-      [class.nav__locale-button--active]="i18n.locale() === 'es'"
-      [attr.aria-pressed]="i18n.locale() === 'es'"
-      (click)="onLocaleSelect('es')"
-    >
-      {{ i18n.t('global.language.esShort') }}
-    </button>
-    <span class="nav__locale-divider">/</span>
-    <button
-      type="button"
-      class="nav__locale-button"
-      [class.nav__locale-button--active]="i18n.locale() === 'en'"
-      [attr.aria-pressed]="i18n.locale() === 'en'"
-      (click)="onLocaleSelect('en')"
-    >
-      {{ i18n.t('global.language.enShort') }}
-    </button>
-  </div>
+<nav
+  class="nav"
+  [class.nav--dark]="navTheme === 'dark'"
+  [class.nav--mobile-open]="isMobileViewport() && isMobileMenuOpen()"
+>
+  @if (isMobileViewport()) {
+    <div class="nav__mobile-shell">
+      <div class="nav__mobile-top">
+        <a [routerLink]="i18n.buildLink('home')" class="nav__mobile-logo" (click)="onMobileNavigation()">
+          <img src="iso.svg" [alt]="i18n.t('global.nav.logoAlt')" class="nav__mobile-logo-img" />
+        </a>
 
-  <div class="nav__links nav__links--left">
-    <a [routerLink]="i18n.buildLink('about')" class="nav__link">
-      {{ i18n.t('global.nav.about') }}
-    </a>
-    <a [routerLink]="i18n.buildLink('services')" class="nav__link">
-      {{ i18n.t('global.nav.services') }}
-    </a>
-    <a [routerLink]="i18n.buildLink('services')" fragment="productos-section" class="nav__link">
-      {{ i18n.t('global.nav.products') }}
-    </a>
-  </div>
+        <div class="nav__mobile-tools">
+          <button
+            type="button"
+            class="nav__locale-switch nav__locale-switch--mobile"
+            [attr.aria-label]="nextLocaleLabel"
+            (click)="toggleLocale()"
+          >
+            <span class="nav__locale-button" [class.nav__locale-button--active]="i18n.locale() === 'es'">
+              {{ i18n.t('global.language.esShort') }}
+            </span>
+            <span class="nav__locale-divider">/</span>
+            <span class="nav__locale-button" [class.nav__locale-button--active]="i18n.locale() === 'en'">
+              {{ i18n.t('global.language.enShort') }}
+            </span>
+          </button>
 
-  <a [routerLink]="i18n.buildLink('home')" class="nav__logo">
-    <img
-      [src]="navTheme === 'dark' ? 'logocolor.svg' : 'logo.svg'"
-      [alt]="i18n.t('global.nav.logoAlt')"
-      class="nav__logo-img"
-    />
-  </a>
+          <button
+            type="button"
+            class="nav__mobile-toggle"
+            [class.nav__mobile-toggle--open]="isMobileMenuOpen()"
+            [attr.aria-expanded]="isMobileMenuOpen()"
+            aria-controls="mobile-nav-menu"
+            [attr.aria-label]="
+              isMobileMenuOpen() ? i18n.t('global.nav.menuCloseLabel') : i18n.t('global.nav.menuOpenLabel')
+            "
+            (click)="toggleMobileMenu()"
+          >
+            <span class="nav__mobile-toggle-line"></span>
+            <span class="nav__mobile-toggle-line"></span>
+            <span class="nav__mobile-toggle-line"></span>
+          </button>
+        </div>
+      </div>
 
-  <div class="nav__links nav__links--right">
-    <a [routerLink]="i18n.buildLink('process')" class="nav__link">
-      {{ i18n.t('global.nav.process') }}
-    </a>
-    <a [routerLink]="i18n.buildLink('process')" fragment="mercados" class="nav__link">
-      {{ i18n.t('global.nav.markets') }}
-    </a>
-    <a [routerLink]="i18n.buildLink('contact')" class="nav__link">
-      {{ i18n.t('global.nav.contact') }}
-    </a>
-  </div>
+      <div class="nav__mobile-panel" id="mobile-nav-menu" [attr.hidden]="!isMobileMenuOpen() ? '' : null">
+        <div class="nav__mobile-panel-content">
+          <div class="nav__mobile-links">
+            @for (item of mobileMenuItems; track item.labelKey) {
+              @if (item.fragment) {
+                <a
+                  [routerLink]="i18n.buildLink(item.pageKey)"
+                  [fragment]="item.fragment"
+                  class="nav__mobile-link"
+                  (click)="onMobileNavigation()"
+                >
+                  {{ i18n.t(item.labelKey) }}
+                </a>
+              } @else {
+                <a
+                  [routerLink]="i18n.buildLink(item.pageKey)"
+                  class="nav__mobile-link"
+                  (click)="onMobileNavigation()"
+                >
+                  {{ i18n.t(item.labelKey) }}
+                </a>
+              }
+            }
+          </div>
+
+          <div class="nav__mobile-quick-actions">
+            <a
+              [href]="contactHref"
+              class="nav__mobile-quick-action"
+              [attr.aria-label]="i18n.t('global.nav.quickCall')"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M6.7 10.8a15.5 15.5 0 0 0 6.5 6.5l2.2-2.2a1 1 0 0 1 1-.24c1.1.36 2.27.54 3.46.54a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.3 21 3 13.7 3 4.5a1 1 0 0 1 1-1h3.6a1 1 0 0 1 1 1c0 1.19.18 2.35.54 3.46a1 1 0 0 1-.24 1z"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.8"
+                />
+              </svg>
+            </a>
+            <a
+              [href]="whatsappHref"
+              class="nav__mobile-quick-action"
+              target="_blank"
+              rel="noreferrer"
+              [attr.aria-label]="i18n.t('global.nav.quickWhatsapp')"
+            >
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"
+                  fill="currentColor"
+                />
+              </svg>
+            </a>
+            <a
+              [href]="emailHref"
+              class="nav__mobile-quick-action"
+              [attr.aria-label]="i18n.t('global.nav.quickEmail')"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M4 6h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1Z"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linejoin="round"
+                  stroke-width="1.8"
+                />
+                <path
+                  d="m4 8 8 5 8-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.8"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <div class="nav__desktop-shell">
+      <button
+        type="button"
+        class="nav__locale-switch nav__locale-switch--desktop"
+        [attr.aria-label]="nextLocaleLabel"
+        (click)="toggleLocale()"
+      >
+        <span class="nav__locale-button" [class.nav__locale-button--active]="i18n.locale() === 'es'">
+          {{ i18n.t('global.language.esShort') }}
+        </span>
+        <span class="nav__locale-divider">/</span>
+        <span class="nav__locale-button" [class.nav__locale-button--active]="i18n.locale() === 'en'">
+          {{ i18n.t('global.language.enShort') }}
+        </span>
+      </button>
+
+      <div class="nav__links nav__links--left">
+        <a [routerLink]="i18n.buildLink('about')" class="nav__link">
+          {{ i18n.t('global.nav.about') }}
+        </a>
+        <a [routerLink]="i18n.buildLink('services')" class="nav__link">
+          {{ i18n.t('global.nav.services') }}
+        </a>
+        <a [routerLink]="i18n.buildLink('services')" fragment="productos-section" class="nav__link">
+          {{ i18n.t('global.nav.products') }}
+        </a>
+      </div>
+
+      <a [routerLink]="i18n.buildLink('home')" class="nav__logo">
+        <img [src]="logoSrc" [alt]="i18n.t('global.nav.logoAlt')" class="nav__logo-img" />
+      </a>
+
+      <div class="nav__links nav__links--right">
+        <a [routerLink]="i18n.buildLink('process')" class="nav__link">
+          {{ i18n.t('global.nav.process') }}
+        </a>
+        <a [routerLink]="i18n.buildLink('process')" fragment="mercados" class="nav__link">
+          {{ i18n.t('global.nav.markets') }}
+        </a>
+        <a [routerLink]="i18n.buildLink('contact')" class="nav__link">
+          {{ i18n.t('global.nav.contact') }}
+        </a>
+      </div>
+    </div>
+  }
 </nav>

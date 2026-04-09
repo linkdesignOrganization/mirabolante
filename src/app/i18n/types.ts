@@ -277,6 +277,11 @@ export interface LocaleDictionary {
       markets: string;
       contact: string;
       logoAlt: string;
+      menuOpenLabel: string;
+      menuCloseLabel: string;
+      quickCall: string;
+      quickWhatsapp: string;
+      quickEmail: string;
     };
     footer: {
       brandTitle: string;

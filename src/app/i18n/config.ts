@@ -61,6 +61,11 @@ export const DICTIONARIES: Record<SupportedLocale, LocaleDictionary> = {
         markets: 'Mercados',
         contact: 'Contacto',
         logoAlt: 'Mirabolante',
+        menuOpenLabel: 'Abrir menu',
+        menuCloseLabel: 'Cerrar menu',
+        quickCall: 'Llamar a Mirabolante',
+        quickWhatsapp: 'Escribir por WhatsApp',
+        quickEmail: 'Enviar correo a Mirabolante',
       },
       footer: {
         brandTitle: 'Su socio en comercio internacional',
@@ -101,6 +106,11 @@ export const DICTIONARIES: Record<SupportedLocale, LocaleDictionary> = {
         markets: 'Markets',
         contact: 'Contact',
         logoAlt: 'Mirabolante',
+        menuOpenLabel: 'Open menu',
+        menuCloseLabel: 'Close menu',
+        quickCall: 'Call Mirabolante',
+        quickWhatsapp: 'Chat on WhatsApp',
+        quickEmail: 'Email Mirabolante',
       },
       footer: {
         brandTitle: 'Your partner in international trade',
