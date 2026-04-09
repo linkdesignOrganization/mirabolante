@@ -1,7 +1,10 @@
 import {
   Component,
+  ChangeDetectorRef,
   ElementRef,
   ViewChild,
+  ViewChildren,
+  QueryList,
   AfterViewInit,
   OnInit,
   OnDestroy,
@@ -9,6 +12,7 @@ import {
   computed,
   inject,
 } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { RouterLink } from '@angular/router';
 import { LocaleService } from '../../i18n/locale.service';
 import { HOME_MEDIA } from '../../shared/media/site-media';
@@ -20,6 +24,10 @@ import { HOME_MEDIA } from '../../shared/media/site-media';
   styleUrl: './home.scss',
 })
 export class Home implements OnInit, AfterViewInit, OnDestroy {
+  private static readonly MOBILE_HOME_CARDS_MAX_WIDTH = 768;
+  private static readonly MOBILE_HOME_CARDS_BAND_START = 0.63;
+  private static readonly MOBILE_HOME_CARDS_BAND_HEIGHT = 10;
+
   readonly i18n = inject(LocaleService);
   readonly content = computed(() => this.i18n.pageContent('home'));
   readonly media = HOME_MEDIA;
@@ -35,9 +43,16 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
     'images/p7.webp',
   ];
   readonly homeCardImages = HOME_MEDIA.cards;
+  readonly homeCardLayouts = [
+    { index: 0, size: 'wide' },
+    { index: 1, size: 'narrow' },
+    { index: 2, size: 'narrow' },
+    { index: 3, size: 'wide' },
+  ] as const;
 
   @ViewChild('aboutSection') aboutSection!: ElementRef<HTMLElement>;
   @ViewChild('heroVideo') heroVideoRef!: ElementRef<HTMLVideoElement>;
+  @ViewChildren('homeCard') homeCardRefs!: QueryList<ElementRef<HTMLElement>>;
 
   loaded = false;
   faqOpen: number | null = null;
@@ -49,8 +64,13 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
   private scrollHandler?: () => void;
   private resizeHandler?: () => void;
   private currentHeroIndex = 0;
+  private activeMobileHomeCardIndex: number | null = null;
+  private homeCardsChangesSub?: Subscription;
 
-  constructor(private ngZone: NgZone) {}
+  constructor(
+    private ngZone: NgZone,
+    private changeDetectorRef: ChangeDetectorRef,
+  ) {}
 
   ngOnInit() {}
 
@@ -76,15 +96,32 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
     this.faqOpen = this.faqOpen === index ? null : index;
   }
 
+  isHomeCardActive(index: number) {
+    return this.activeMobileHomeCardIndex === index;
+  }
+
   ngAfterViewInit() {
     this.ngZone.runOutsideAngular(() => {
-      this.scrollHandler = () => this.onScroll();
-      this.resizeHandler = () => this.syncHeroViewport();
+      this.scrollHandler = () => {
+        this.onScroll();
+        this.updateHomeCardsActiveState();
+      };
+      this.resizeHandler = () => {
+        this.syncHeroViewport();
+        this.updateHomeCardsActiveState();
+      };
       window.addEventListener('scroll', this.scrollHandler, { passive: true });
       window.addEventListener('resize', this.resizeHandler, { passive: true });
     });
 
     this.initHeroVideo();
+    this.homeCardsChangesSub = this.homeCardRefs.changes.subscribe(() => {
+      this.updateHomeCardsActiveState();
+    });
+    this.updateHomeCardsActiveState();
+    if (typeof window !== 'undefined') {
+      window.setTimeout(() => this.updateHomeCardsActiveState(), 120);
+    }
   }
 
   ngOnDestroy() {
@@ -95,6 +132,8 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
     if (this.resizeHandler) {
       window.removeEventListener('resize', this.resizeHandler);
     }
+
+    this.homeCardsChangesSub?.unsubscribe();
   }
 
   onHeroEnded() {
@@ -151,5 +190,69 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
     video.src = this.heroVideos[this.currentHeroIndex];
     video.load();
     void video.play().catch(() => {});
+  }
+
+  private updateHomeCardsActiveState() {
+    if (typeof window === 'undefined' || !this.homeCardRefs?.length) {
+      return;
+    }
+
+    if (window.innerWidth > Home.MOBILE_HOME_CARDS_MAX_WIDTH) {
+      if (this.activeMobileHomeCardIndex !== null) {
+        this.ngZone.run(() => {
+          this.activeMobileHomeCardIndex = null;
+        });
+      }
+      return;
+    }
+
+    const viewportHeight = window.innerHeight;
+    const bandTop = viewportHeight * Home.MOBILE_HOME_CARDS_BAND_START;
+    const bandBottom = bandTop + Home.MOBILE_HOME_CARDS_BAND_HEIGHT;
+    const bandCenter = (bandTop + bandBottom) / 2;
+    let nextActiveIndex: number | null = null;
+    let bestIntersectionHeight = 0;
+    let bestCenterDistance = Number.POSITIVE_INFINITY;
+
+    this.homeCardRefs.forEach((cardRef) => {
+      const element = cardRef.nativeElement;
+      const rect = element.getBoundingClientRect();
+      const index = Number(element.dataset['cardIndex']);
+
+      if (Number.isNaN(index)) {
+        return;
+      }
+
+      if (rect.bottom <= 0 || rect.top >= viewportHeight) {
+        return;
+      }
+
+      const intersectionTop = Math.max(rect.top, bandTop);
+      const intersectionBottom = Math.min(rect.bottom, bandBottom);
+      const intersectionHeight = Math.max(0, intersectionBottom - intersectionTop);
+
+      if (intersectionHeight <= 0) {
+        return;
+      }
+
+      const distanceToBandCenter = Math.abs(rect.top + rect.height / 2 - bandCenter);
+
+      if (
+        intersectionHeight > bestIntersectionHeight ||
+        (intersectionHeight === bestIntersectionHeight &&
+          distanceToBandCenter < bestCenterDistance)
+      ) {
+        bestIntersectionHeight = intersectionHeight;
+        bestCenterDistance = distanceToBandCenter;
+        nextActiveIndex = index;
+      }
+    });
+
+    if (this.activeMobileHomeCardIndex !== nextActiveIndex) {
+      this.ngZone.run(() => {
+        this.activeMobileHomeCardIndex = nextActiveIndex;
+        this.changeDetectorRef.detectChanges();
+      });
+    }
   }
 }

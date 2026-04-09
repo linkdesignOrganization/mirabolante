@@ -834,16 +834,21 @@
   position: relative;
 }
 
-.home-cards__row {
-  display: flex;
-  flex-direction: column;
+.home-cards__grid {
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 12px;
   padding: 0 $container-padding-mobile;
+  max-width: $container-max;
+  margin: 0 auto;
 }
 
-.home-cards__col {
-  flex: 1 1 auto;
-  transition: all $transition-base;
+.home-cards__item {
+  --card-inset: 2px;
+  position: relative;
+  width: 100%;
+  padding: 0 var(--card-inset) var(--card-inset) 0;
+  overflow: visible;
 }
 
 .home-cards__card {
@@ -853,22 +858,18 @@
   overflow: hidden;
   width: 100%;
   text-decoration: none;
-  padding: 22.5px 25px;
-  height: 280px;
+  border-radius: $radius-md;
+  padding: 24px 22px;
+  min-height: 252px;
   text-align: left;
-  transition: all 0.3s ease-in-out;
-
-  &:hover .home-cards__content {
-    opacity: 1;
-    visibility: visible;
-  }
+  transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .home-cards__figure {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  border-radius: $radius-md;
+  border-radius: inherit;
   margin: 0;
   transition: all 0.3s ease-in-out;
   z-index: 1;
@@ -890,27 +891,50 @@
   }
 }
 
+.home-cards__cutout {
+  --cutout-width: 92px;
+  --cutout-height: 100px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: calc(var(--cutout-width) + 2px);
+  height: calc(var(--cutout-height) + 2px);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.home-cards__cutout::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background-color: $color-white;
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
 .home-cards__overlay {
   position: absolute;
   inset: 0;
   z-index: 2;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
-  transition: background 0.3s ease-in-out;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5));
+  transition: background 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .home-cards__body {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
+  gap: 24px;
   height: 100%;
-  z-index: 3;
+  z-index: 4;
   position: relative;
+  width: 100%;
 }
 
 .home-cards__top {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 16px;
 }
 
 .home-cards__label {
@@ -923,7 +947,6 @@
   border-radius: $radius-pill;
   padding: 4px 8px;
   text-transform: uppercase;
-  margin-bottom: 20px;
 }
 
 .home-cards__heading {
@@ -931,7 +954,8 @@
   font-size: $fs-h2;
   line-height: 1.2;
   color: $color-white;
-  max-width: 175px;
+  width: 100%;
+  max-width: none;
   margin: 0;
 }
 
@@ -939,187 +963,112 @@
   color: $color-white;
   font-size: $fs-small;
   line-height: 1.6;
-  display: none;
-  margin-top: auto;
-  max-width: 300px;
+  max-width: calc(100% - 88px);
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease-in-out;
+  max-height: 0;
+  overflow: hidden;
+  transform: translateY(18px);
+  transition:
+    opacity 0.28s ease,
+    visibility 0.28s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    max-height 0.45s cubic-bezier(0.22, 1, 0.36, 1);
   z-index: 3;
   position: relative;
 
   p { margin: 0; }
 }
 
-.home-cards__icon {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  z-index: 4;
-  aspect-ratio: 1;
-  height: 50px;
-  width: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: $color-brand;
-  border-radius: $radius-full;
-  transition: all 0.3s ease-in-out;
-
-  svg {
-    color: $color-white;
-    transform: rotate(45deg);
-  }
-}
-
-// Mobile hover
-@media screen and (max-width: $bp-tablet - 1) {
+@media screen and (min-width: $bp-tablet) and (hover: hover) and (pointer: fine) {
   .home-cards__card:hover .home-cards__overlay {
     background: $color-dark;
   }
+
+  .home-cards__card:hover .home-cards__content {
+    opacity: 1;
+    visibility: visible;
+    max-height: 220px;
+    transform: translateY(0);
+  }
 }
 
-// Tablet+
-@media screen and (min-width: $bp-tablet) {
-  .home-cards {
-    padding-top: $section-padding-desktop;
-    gap: 20px;
+@media screen and (max-width: #{$bp-tablet - 1}) {
+  .home-cards__item--active .home-cards__overlay {
+    background: $color-dark;
   }
 
-  .home-cards__row {
-    flex-direction: row;
-    flex-wrap: nowrap;
+  .home-cards__item--active .home-cards__content {
+    opacity: 1;
+    visibility: visible;
+    max-height: 220px;
+    transform: translateY(0);
+  }
+}
+
+@media screen and (min-width: $bp-tablet) and (max-width: #{$bp-desktop - 1}) {
+  .home-cards {
+    padding-top: $section-padding-desktop;
+  }
+
+  .home-cards__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
     padding: 0 $container-padding-desktop;
     max-width: 1440px;
-    margin: 0 auto;
-
-    & + .home-cards__row {
-      margin-top: 20px;
-    }
-  }
-
-  .home-cards__col--wide {
-    flex: 1 1 58.33333%;
-    max-width: 58.33333%;
-  }
-
-  .home-cards__col--narrow {
-    flex: 1 1 41.66667%;
-    max-width: 41.66667%;
   }
 
   .home-cards__card {
-    flex-direction: column;
-    padding: 40px;
-    height: 350px;
+    padding: 32px 28px;
+    min-height: 314px;
   }
 
-  .home-cards__heading {
-    max-width: 340px;
+  .home-cards__cutout {
+    --cutout-width: 118px;
+    --cutout-height: 126px;
   }
 
   .home-cards__content {
-    display: block;
-    transform: translateY(250%);
-
-    .home-cards__card:hover & {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-  }
-
-  .home-cards__body {
-    justify-content: space-between;
-  }
-
-  // Image cutout — always visible
-  .home-cards__figure::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 143px;
-    height: 152px;
-    z-index: 3;
-    pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 143 152'%3E%3Cpolygon points='0 152 143 152 143 0 0 152' fill='white'/%3E%3C/svg%3E");
-    background-size: contain;
-    background-repeat: no-repeat;
-  }
-
-  // Icon — circular, with border
-  .home-cards__icon {
-    height: 60px;
-    width: 60px;
-    max-width: 60px;
-    background-color: transparent;
-    border: 1px solid $color-dark;
-    border-radius: $radius-full;
-
-    svg { color: $color-dark; }
-  }
-
-  .home-cards__card--image .home-cards__icon {
-    border-color: $color-brand;
-
-    svg { color: $color-brand; }
-  }
-
-  .home-cards__card--image:hover .home-cards__icon {
-    background-color: $color-brand;
-
-    svg { color: $color-white; }
-  }
-
-  // Overlay desktop
-  .home-cards__overlay {
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5));
-  }
-
-  .home-cards__card:hover .home-cards__overlay {
-    background: $color-dark;
-  }
-
-  // Hover flex expansion — scoped per row
-  .home-cards__row:has(.home-cards__col--wide:hover) .home-cards__col--wide {
-    flex-basis: 63.33333%;
-    max-width: 63.33333%;
-  }
-
-  .home-cards__row:has(.home-cards__col--wide:hover) .home-cards__col--narrow {
-    flex-basis: 36.66667%;
-    max-width: 36.66667%;
-  }
-
-  .home-cards__row:has(.home-cards__col--narrow:hover) .home-cards__col--narrow {
-    flex-basis: 50%;
-    max-width: 50%;
-  }
-
-  .home-cards__row:has(.home-cards__col--narrow:hover) .home-cards__col--wide {
-    flex-basis: 50%;
-    max-width: 50%;
+    max-width: min(300px, calc(100% - 112px));
   }
 
   .home-cards__label { padding: 8px 16px; }
 }
 
 @media screen and (min-width: $bp-desktop) {
+  .home-cards__grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 20px;
+    padding: 0 $container-padding-desktop;
+    max-width: 1440px;
+  }
+
+  .home-cards__item--wide {
+    grid-column: span 7;
+  }
+
+  .home-cards__item--narrow {
+    grid-column: span 5;
+  }
+
   .home-cards__card {
-    height: 350px;
+    min-height: 350px;
     padding: 40px;
   }
 
-  .home-cards__figure {
-    border-radius: $radius-md;
+  .home-cards__cutout {
+    --cutout-width: 143px;
+    --cutout-height: 152px;
+  }
+
+  .home-cards__content {
+    max-width: min(300px, calc(100% - 132px));
   }
 }
 
 @media screen and (min-width: $bp-wide) {
   .home-cards__card {
-    height: 420px;
+    min-height: 420px;
   }
 }
 

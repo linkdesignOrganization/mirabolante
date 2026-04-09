@@ -196,112 +196,42 @@
 </section>
 
 <section class="home-cards">
-  <div class="home-cards__row">
-    <div class="home-cards__col home-cards__col--wide">
-      <div class="home-cards__card home-cards__card--image">
-        <figure class="home-cards__figure">
-          <picture>
-            <source media="(max-width: 767px)" [srcset]="homeCardImages[0].mobileSrc" />
-            <img
-              [src]="homeCardImages[0].desktopSrc"
-              [alt]="content().cards.items[0].imageAlt"
-              loading="lazy"
-              decoding="async"
-            />
-          </picture>
-          <div class="home-cards__overlay"></div>
-        </figure>
-        <div class="home-cards__body">
-          <div class="home-cards__top">
-            <span class="home-cards__label">{{ content().cards.items[0].label }}</span>
-            <h3 class="home-cards__heading">{{ content().cards.items[0].heading }}</h3>
-          </div>
-          <div class="home-cards__content">
-            <p>{{ content().cards.items[0].text }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="home-cards__col home-cards__col--narrow">
-      <div class="home-cards__card home-cards__card--image">
-        <figure class="home-cards__figure">
-          <picture>
-            <source media="(max-width: 767px)" [srcset]="homeCardImages[1].mobileSrc" />
-            <img
-              [src]="homeCardImages[1].desktopSrc"
-              [alt]="content().cards.items[1].imageAlt"
-              loading="lazy"
-              decoding="async"
-            />
-          </picture>
-          <div class="home-cards__overlay"></div>
-        </figure>
-        <div class="home-cards__body">
-          <div class="home-cards__top">
-            <span class="home-cards__label">{{ content().cards.items[1].label }}</span>
-            <h3 class="home-cards__heading">{{ content().cards.items[1].heading }}</h3>
-          </div>
-          <div class="home-cards__content">
-            <p>{{ content().cards.items[1].text }}</p>
+  <div class="home-cards__grid">
+    @for (card of homeCardLayouts; track card.index) {
+      <div
+        #homeCard
+        class="home-cards__item"
+        [class.home-cards__item--wide]="card.size === 'wide'"
+        [class.home-cards__item--narrow]="card.size === 'narrow'"
+        [class.home-cards__item--active]="isHomeCardActive(card.index)"
+        [attr.data-card-index]="card.index"
+      >
+        <span class="home-cards__cutout" aria-hidden="true"></span>
+        <div class="home-cards__card home-cards__card--image">
+          <figure class="home-cards__figure">
+            <picture>
+              <source media="(max-width: 767px)" [srcset]="homeCardImages[card.index].mobileSrc" />
+              <img
+                [src]="homeCardImages[card.index].desktopSrc"
+                [alt]="content().cards.items[card.index].imageAlt"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+            <div class="home-cards__overlay"></div>
+          </figure>
+          <div class="home-cards__body">
+            <div class="home-cards__top">
+              <span class="home-cards__label">{{ content().cards.items[card.index].label }}</span>
+              <h3 class="home-cards__heading">{{ content().cards.items[card.index].heading }}</h3>
+            </div>
+            <div class="home-cards__content">
+              <p>{{ content().cards.items[card.index].text }}</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <div class="home-cards__row">
-    <div class="home-cards__col home-cards__col--narrow">
-      <div class="home-cards__card home-cards__card--image">
-        <figure class="home-cards__figure">
-          <picture>
-            <source media="(max-width: 767px)" [srcset]="homeCardImages[2].mobileSrc" />
-            <img
-              [src]="homeCardImages[2].desktopSrc"
-              [alt]="content().cards.items[2].imageAlt"
-              loading="lazy"
-              decoding="async"
-            />
-          </picture>
-          <div class="home-cards__overlay"></div>
-        </figure>
-        <div class="home-cards__body">
-          <div class="home-cards__top">
-            <span class="home-cards__label">{{ content().cards.items[2].label }}</span>
-            <h3 class="home-cards__heading">{{ content().cards.items[2].heading }}</h3>
-          </div>
-          <div class="home-cards__content">
-            <p>{{ content().cards.items[2].text }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="home-cards__col home-cards__col--wide">
-      <div class="home-cards__card home-cards__card--image">
-        <figure class="home-cards__figure">
-          <picture>
-            <source media="(max-width: 767px)" [srcset]="homeCardImages[3].mobileSrc" />
-            <img
-              [src]="homeCardImages[3].desktopSrc"
-              [alt]="content().cards.items[3].imageAlt"
-              loading="lazy"
-              decoding="async"
-            />
-          </picture>
-          <div class="home-cards__overlay"></div>
-        </figure>
-        <div class="home-cards__body">
-          <div class="home-cards__top">
-            <span class="home-cards__label">{{ content().cards.items[3].label }}</span>
-            <h3 class="home-cards__heading">{{ content().cards.items[3].heading }}</h3>
-          </div>
-          <div class="home-cards__content">
-            <p>{{ content().cards.items[3].text }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    }
   </div>
 </section>
 
