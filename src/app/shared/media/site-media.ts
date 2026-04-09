@@ -46,8 +46,8 @@ export const HOME_MEDIA = {
     mobileMode: 'poster',
   } satisfies ResponsiveVideoAsset,
   aboutImage: {
-    desktopSrc: 'images/optimized/aboutimg-desktop.webp',
-    mobileSrc: 'images/optimized/aboutimg-mobile.webp',
+    desktopSrc: 'images/optimized/rieles-desktop.webp',
+    mobileSrc: 'images/optimized/rieles-mobile.webp',
   } satisfies ResponsiveImageAsset,
   cards: [
     {

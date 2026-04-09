@@ -152,8 +152,4 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
     video.load();
     void video.play().catch(() => {});
   }
-
-  get showHighlightVideo() {
-    return !this.isMobileView;
-  }
 }

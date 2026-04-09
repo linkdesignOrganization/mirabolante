@@ -91,31 +91,17 @@
   <div class="highlight__container">
     <div class="highlight__left">
       <div class="highlight__video-wrapper">
-        @if (showHighlightVideo) {
-          <video
-            class="highlight__video"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="metadata"
-            [attr.poster]="media.highlight.desktopPoster"
-          >
-            <source [src]="media.highlight.desktopSrc" type="video/mp4" />
-          </video>
-        } @else {
-          <picture class="highlight__picture">
-            <source media="(max-width: 767px)" [srcset]="media.highlight.mobilePoster" />
-            <img
-              [src]="media.highlight.desktopPoster"
-              alt=""
-              class="highlight__poster"
-              loading="lazy"
-              decoding="async"
-              aria-hidden="true"
-            />
-          </picture>
-        }
+        <video
+          class="highlight__video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+          [attr.poster]="media.highlight.mobilePoster"
+        >
+          <source [src]="media.highlight.desktopSrc" type="video/mp4" />
+        </video>
       </div>
       <div class="highlight__card">
         <span class="highlight__stat">{{ content().highlight.stat }}</span>
