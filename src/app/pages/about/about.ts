@@ -1,12 +1,15 @@
 import {
   AfterViewInit,
   Component,
+  computed,
   ElementRef,
   NgZone,
   OnDestroy,
   ViewChild,
+  inject,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { LocaleService } from '../../i18n/locale.service';
 
 @Component({
   selector: 'app-about',
@@ -15,6 +18,10 @@ import { RouterLink } from '@angular/router';
   styleUrl: './about.scss',
 })
 export class About implements AfterViewInit, OnDestroy {
+  readonly i18n = inject(LocaleService);
+  readonly content = computed(() => this.i18n.pageContent('about'));
+  readonly featureIcons = ['images/c1_1.svg', 'images/c3.svg', 'images/c2.svg'];
+
   @ViewChild('heroMedia') heroMediaRef!: ElementRef<HTMLElement>;
   @ViewChild('heroImage') heroImageRef!: ElementRef<HTMLImageElement>;
   @ViewChild('aboutVideo') aboutVideoRef!: ElementRef<HTMLVideoElement>;
@@ -22,35 +29,6 @@ export class About implements AfterViewInit, OnDestroy {
   @ViewChild('ctaImage') ctaImageRef!: ElementRef<HTMLImageElement>;
 
   aboutVideoPoster = 'images/hero-poster-d.jpg';
-  readonly teamMembers = [
-    {
-      name: 'Valeria Gómez',
-      role: 'Directora Comercial',
-      quote:
-        '“Una buena operación no empieza en el precio final, sino en saber cuándo comprar y con quién hacerlo.”',
-      image:
-        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80',
-      alt: 'Retrato mock de Valeria Gómez',
-    },
-    {
-      name: 'Andrés Rojas',
-      role: 'Líder de Abastecimiento',
-      quote:
-        '“Validamos cada origen, cada muestra y cada condición antes de comprometer una compra.”',
-      image:
-        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80',
-      alt: 'Retrato mock de Andrés Rojas',
-    },
-    {
-      name: 'Sofía Méndez',
-      role: 'Coordinadora de Logística',
-      quote:
-        '“Nuestro trabajo es que cada embarque llegue con visibilidad, documentación clara y ejecución ordenada.”',
-      image:
-        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=900&q=80',
-      alt: 'Retrato mock de Sofía Méndez',
-    },
-  ] as const;
 
   private scrollHandler?: () => void;
   private resizeHandler?: () => void;

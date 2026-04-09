@@ -2,6 +2,8 @@ import { DestroyRef, inject, Component } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter, startWith } from 'rxjs';
+import { LocaleService } from '../../i18n/locale.service';
+import { SupportedLocale } from '../../i18n/types';
 
 type NavTheme = 'light' | 'dark';
 
@@ -13,6 +15,7 @@ type NavTheme = 'light' | 'dark';
 })
 export class Nav {
   navTheme: NavTheme = 'light';
+  readonly i18n = inject(LocaleService);
 
   private readonly destroyRef = inject(DestroyRef);
   private readonly router = inject(Router);
@@ -28,6 +31,10 @@ export class Nav {
       .subscribe(() => {
         this.updateTheme();
       });
+  }
+
+  onLocaleSelect(locale: SupportedLocale) {
+    this.i18n.switchLocaleFromCurrentUrl(locale);
   }
 
   private updateTheme() {

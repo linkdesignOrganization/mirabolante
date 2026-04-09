@@ -1,11 +1,14 @@
 import {
   AfterViewInit,
   Component,
+  computed,
   ElementRef,
   NgZone,
   OnDestroy,
+  inject,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { LocaleService } from '../../i18n/locale.service';
 
 @Component({
   selector: 'app-process',
@@ -14,6 +17,9 @@ import { RouterLink } from '@angular/router';
   styleUrl: './process.scss',
 })
 export class Process implements AfterViewInit, OnDestroy {
+  readonly i18n = inject(LocaleService);
+  readonly content = computed(() => this.i18n.pageContent('process'));
+
   private scrollHandler?: () => void;
 
   constructor(

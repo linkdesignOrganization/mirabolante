@@ -2,16 +2,14 @@
   <div class="contact-page__container">
     <div class="contact-page__info">
       <div class="contact-page__copy">
-        <span class="contact-page__label text-label">Contacto</span>
+        <span class="contact-page__label text-label">{{ content().label }}</span>
 
         <h1 class="contact-page__title heading-h1">
-          Hablemos sobre su próxima operación.
+          {{ content().title }}
         </h1>
 
         <p class="contact-page__text text-body">
-          Cuéntenos qué producto necesita, en qué volumen y hacia dónde.
-          Nuestro equipo le responderá con una cotización y los tiempos
-          estimados.
+          {{ content().text }}
         </p>
       </div>
 
@@ -29,9 +27,9 @@
             </svg>
           </span>
           <div class="contact-page__detail-copy">
-            <span class="contact-page__detail-label text-small">Teléfono</span>
+            <span class="contact-page__detail-label text-small">{{ content().details.phoneLabel }}</span>
             <a href="tel:+50700000000" class="contact-page__detail-value text-body">
-              +507 0000-0000
+              {{ content().details.phoneValue }}
             </a>
           </div>
         </div>
@@ -55,12 +53,12 @@
             </svg>
           </span>
           <div class="contact-page__detail-copy">
-            <span class="contact-page__detail-label text-small">Email</span>
+            <span class="contact-page__detail-label text-small">{{ content().details.emailLabel }}</span>
             <a
               href="mailto:info@mirabolante.com"
               class="contact-page__detail-value text-body"
             >
-              info@mirabolante.com
+              {{ content().details.emailValue }}
             </a>
           </div>
         </div>
@@ -85,9 +83,9 @@
             </svg>
           </span>
           <div class="contact-page__detail-copy">
-            <span class="contact-page__detail-label text-small">Dirección</span>
+            <span class="contact-page__detail-label text-small">{{ content().details.addressLabel }}</span>
             <span class="contact-page__detail-value text-body">
-              Ciudad de Panamá, Panamá
+              {{ content().details.addressValue }}
             </span>
           </div>
         </div>
@@ -111,11 +109,10 @@
               </svg>
             </span>
             <h2 class="contact-page__success-title heading-h3">
-              Mensaje enviado correctamente
+              {{ content().form.successTitle }}
             </h2>
             <p class="contact-page__success-text text-body">
-              Gracias por escribirnos. Nuestro equipo revisará su solicitud y
-              le responderá con una cotización y tiempos estimados.
+              {{ content().form.successText }}
             </p>
           </div>
         </div>
@@ -129,7 +126,7 @@
           <div class="contact-page__form-grid">
             <label class="contact-page__field">
               <span class="contact-page__field-label text-small">
-                Nombre completo
+                {{ content().form.fullName.label }}
                 <span class="contact-page__field-required" aria-hidden="true">*</span>
               </span>
               <input
@@ -137,14 +134,14 @@
                 name="fullName"
                 [(ngModel)]="formData.fullName"
                 class="contact-page__input text-body"
-                placeholder="Su nombre"
+                [placeholder]="content().form.fullName.placeholder"
                 required
               />
             </label>
 
             <label class="contact-page__field">
               <span class="contact-page__field-label text-small">
-                Empresa
+                {{ content().form.company.label }}
                 <span class="contact-page__field-required" aria-hidden="true">*</span>
               </span>
               <input
@@ -152,14 +149,14 @@
                 name="company"
                 [(ngModel)]="formData.company"
                 class="contact-page__input text-body"
-                placeholder="Su empresa"
+                [placeholder]="content().form.company.placeholder"
                 required
               />
             </label>
 
             <label class="contact-page__field">
               <span class="contact-page__field-label text-small">
-                Teléfono
+                {{ content().form.phone.label }}
                 <span class="contact-page__field-required" aria-hidden="true">*</span>
               </span>
               <input
@@ -167,14 +164,14 @@
                 name="phone"
                 [(ngModel)]="formData.phone"
                 class="contact-page__input text-body"
-                placeholder="+507 0000-0000"
+                [placeholder]="content().form.phone.placeholder"
                 required
               />
             </label>
 
             <label class="contact-page__field">
               <span class="contact-page__field-label text-small">
-                Correo electrónico
+                {{ content().form.email.label }}
                 <span class="contact-page__field-required" aria-hidden="true">*</span>
               </span>
               <input
@@ -182,21 +179,21 @@
                 name="email"
                 [(ngModel)]="formData.email"
                 class="contact-page__input text-body"
-                placeholder="correo@empresa.com"
+                [placeholder]="content().form.email.placeholder"
                 required
               />
             </label>
 
             <label class="contact-page__field contact-page__field--full">
               <span class="contact-page__field-label text-small">
-                Mensaje
+                {{ content().form.message.label }}
                 <span class="contact-page__field-required" aria-hidden="true">*</span>
               </span>
               <textarea
                 name="message"
                 [(ngModel)]="formData.message"
                 class="contact-page__input contact-page__textarea text-body"
-                placeholder="Cuéntenos sobre su requerimiento"
+                [placeholder]="content().form.message.placeholder"
                 required
               ></textarea>
             </label>
@@ -207,11 +204,11 @@
             class="contact-page__submit text-body"
             [disabled]="isSubmitting"
           >
-            {{ isSubmitting ? 'Enviando...' : 'Enviar' }}
+            {{ isSubmitting ? content().form.submitBusy : content().form.submitIdle }}
           </button>
 
           <p *ngIf="submitError" class="contact-page__error text-small">
-            Error al enviar. Intente de nuevo.
+            {{ content().form.errorText }}
           </p>
         </form>
       }

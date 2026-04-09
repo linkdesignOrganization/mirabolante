@@ -1,21 +1,59 @@
 <nav class="nav" [class.nav--dark]="navTheme === 'dark'">
-  <div class="nav__links nav__links--left">
-    <a routerLink="/about" class="nav__link">Nosotros</a>
-    <a routerLink="/services" class="nav__link">Servicios</a>
-    <a routerLink="/services" fragment="productos-section" class="nav__link">Productos</a>
+  <div
+    class="nav__locale-switch"
+    role="group"
+    [attr.aria-label]="i18n.t('global.language.switchLabel')"
+  >
+    <button
+      type="button"
+      class="nav__locale-button"
+      [class.nav__locale-button--active]="i18n.locale() === 'es'"
+      [attr.aria-pressed]="i18n.locale() === 'es'"
+      (click)="onLocaleSelect('es')"
+    >
+      {{ i18n.t('global.language.esShort') }}
+    </button>
+    <span class="nav__locale-divider">/</span>
+    <button
+      type="button"
+      class="nav__locale-button"
+      [class.nav__locale-button--active]="i18n.locale() === 'en'"
+      [attr.aria-pressed]="i18n.locale() === 'en'"
+      (click)="onLocaleSelect('en')"
+    >
+      {{ i18n.t('global.language.enShort') }}
+    </button>
   </div>
 
-  <a routerLink="/" class="nav__logo">
+  <div class="nav__links nav__links--left">
+    <a [routerLink]="i18n.buildLink('about')" class="nav__link">
+      {{ i18n.t('global.nav.about') }}
+    </a>
+    <a [routerLink]="i18n.buildLink('services')" class="nav__link">
+      {{ i18n.t('global.nav.services') }}
+    </a>
+    <a [routerLink]="i18n.buildLink('services')" fragment="productos-section" class="nav__link">
+      {{ i18n.t('global.nav.products') }}
+    </a>
+  </div>
+
+  <a [routerLink]="i18n.buildLink('home')" class="nav__logo">
     <img
       [src]="navTheme === 'dark' ? 'logocolor.svg' : 'logo.svg'"
-      alt="Mirabolante"
+      [alt]="i18n.t('global.nav.logoAlt')"
       class="nav__logo-img"
     />
   </a>
 
   <div class="nav__links nav__links--right">
-    <a routerLink="/process" class="nav__link">Proceso</a>
-    <a routerLink="/process" fragment="mercados" class="nav__link">Mercados</a>
-    <a routerLink="/contact" class="nav__link">Contacto</a>
+    <a [routerLink]="i18n.buildLink('process')" class="nav__link">
+      {{ i18n.t('global.nav.process') }}
+    </a>
+    <a [routerLink]="i18n.buildLink('process')" fragment="mercados" class="nav__link">
+      {{ i18n.t('global.nav.markets') }}
+    </a>
+    <a [routerLink]="i18n.buildLink('contact')" class="nav__link">
+      {{ i18n.t('global.nav.contact') }}
+    </a>
   </div>
 </nav>

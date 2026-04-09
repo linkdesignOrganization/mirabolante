@@ -3,29 +3,28 @@
   <section class="s-hero">
     <div class="s-hero__content">
       <p class="s-hero__text">
-        Mirabolante conecta su operación con proveedores de materias primas a nivel global, gestiona la logística y entrega el producto en el puerto que usted elija.
+        {{ content().hero.text }}
       </p>
 
       <div class="s-hero__badges">
-        <span class="s-hero__badge">Precio CIF</span>
-        <span class="s-hero__badge">Trazabilidad completa</span>
-        <span class="s-hero__badge">Muestras antes de embarque</span>
-        <span class="s-hero__badge">Seguimiento en tiempo real</span>
+        @for (badge of content().hero.badges; track badge) {
+          <span class="s-hero__badge">{{ badge }}</span>
+        }
       </div>
     </div>
 
     <div class="s-hero__iso">
-      <img src="iso.svg" alt="Mirabolante" />
+      <img src="iso.svg" [alt]="content().hero.isoAlt" />
     </div>
   </section>
 
   <section class="s-overview">
     <div class="s-overview__top">
       <div class="s-overview__left">
-        <span class="s-overview__label">Servicios</span>
-        <h2 class="s-overview__heading">Mirabolante gestiona el abastecimiento de su operación de principio a fin.</h2>
-        <a routerLink="/contact" class="btn-cta" style="--btn-color: #0044BD">
-          <span class="btn-cta__text">Contáctenos</span>
+        <span class="s-overview__label">{{ content().overview.label }}</span>
+        <h2 class="s-overview__heading">{{ content().overview.heading }}</h2>
+        <a [routerLink]="i18n.buildLink('contact')" class="btn-cta" style="--btn-color: #0044BD">
+          <span class="btn-cta__text">{{ content().overview.cta.text }}</span>
           <span class="btn-cta__arrow">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -35,32 +34,18 @@
       </div>
 
       <div class="s-overview__right">
-        <p class="s-overview__bigtext">Desde la búsqueda del proveedor hasta la entrega en puerto, nos encargamos de cada etapa del proceso: cotización, negociación, documentación, transporte y seguimiento.</p>
+        <p class="s-overview__bigtext">{{ content().overview.bigtext }}</p>
 
         <div class="s-overview__cards">
-      <div class="s-overview__card">
-        <div class="s-overview__card-header">
-          <span class="s-overview__card-number">1</span>
-          <h3 class="s-overview__card-title">Originación</h3>
-        </div>
-        <p class="s-overview__card-desc">Identificamos proveedores que cumplan con sus especificaciones, cotizamos y coordinamos el envío de muestras para su aprobación.</p>
-      </div>
-
-      <div class="s-overview__card">
-        <div class="s-overview__card-header">
-          <span class="s-overview__card-number">2</span>
-          <h3 class="s-overview__card-title">Logística internacional</h3>
-        </div>
-        <p class="s-overview__card-desc">Compramos el producto, gestionamos documentación y transporte marítimo, y entregamos en el puerto que usted designe.</p>
-      </div>
-
-      <div class="s-overview__card">
-        <div class="s-overview__card-header">
-          <span class="s-overview__card-number">3</span>
-          <h3 class="s-overview__card-title">Seguimiento continuo</h3>
-        </div>
-        <p class="s-overview__card-desc">Monitoreamos su carga en tiempo real y le informamos sobre condiciones de mercado para futuras operaciones.</p>
-      </div>
+          @for (card of content().overview.cards; track card.number) {
+            <div class="s-overview__card">
+              <div class="s-overview__card-header">
+                <span class="s-overview__card-number">{{ card.number }}</span>
+                <h3 class="s-overview__card-title">{{ card.title }}</h3>
+              </div>
+              <p class="s-overview__card-desc">{{ card.description }}</p>
+            </div>
+          }
         </div>
       </div>
     </div>
@@ -69,26 +54,20 @@
   <section class="s-coverage">
     <div class="s-coverage__container">
       <div class="s-coverage__left">
-        <span class="s-coverage__label">Cobertura</span>
-        <h2 class="s-coverage__heading heading-h1">Conectamos proveedores de Sudamérica con operaciones en toda Latinoamérica.</h2>
-        <p class="s-coverage__text">Nuestra red de proveedores está concentrada en las principales regiones productoras del continente. Desde ahí, gestionamos embarques hacia los puertos que nuestros clientes designen.</p>
+        <span class="s-coverage__label">{{ content().coverage.label }}</span>
+        <h2 class="s-coverage__heading heading-h1">{{ content().coverage.heading }}</h2>
+        <p class="s-coverage__text">{{ content().coverage.text }}</p>
 
         <div class="s-coverage__items">
-          <div class="s-coverage__item">
-            <img src="images/c2.svg" alt="Origen" class="s-coverage__item-icon" />
-            <div class="s-coverage__item-content">
-              <h3 class="s-coverage__item-title">Origen</h3>
-              <p class="s-coverage__item-desc">Brasil, Uruguay, Paraguay, Colombia y Argentina.</p>
+          @for (item of content().coverage.items; track item.title; let index = $index) {
+            <div class="s-coverage__item">
+              <img [src]="coverageIcons[index]" [alt]="item.alt" class="s-coverage__item-icon" />
+              <div class="s-coverage__item-content">
+                <h3 class="s-coverage__item-title">{{ item.title }}</h3>
+                <p class="s-coverage__item-desc">{{ item.description }}</p>
+              </div>
             </div>
-          </div>
-
-          <div class="s-coverage__item">
-            <img src="images/c4.svg" alt="Destino" class="s-coverage__item-icon" />
-            <div class="s-coverage__item-content">
-              <h3 class="s-coverage__item-title">Destino</h3>
-              <p class="s-coverage__item-desc">Centroamérica, México, El Caribe y Sudamérica.</p>
-            </div>
-          </div>
+          }
         </div>
       </div>
 
@@ -98,9 +77,9 @@
         </video>
 
         <div class="s-coverage__card">
-          <span class="s-coverage__card-number">5</span>
-          <h3 class="s-coverage__card-title heading-h3">Países de origen activos</h3>
-          <p class="s-coverage__card-desc">Proveedores establecidos con los que mantenemos relaciones comerciales de largo plazo y condiciones preferenciales de compra.</p>
+          <span class="s-coverage__card-number">{{ content().coverage.card.number }}</span>
+          <h3 class="s-coverage__card-title heading-h3">{{ content().coverage.card.title }}</h3>
+          <p class="s-coverage__card-desc">{{ content().coverage.card.description }}</p>
         </div>
       </div>
     </div>
@@ -108,174 +87,73 @@
 
   <section class="s-products" id="productos-section">
     <div class="s-products__header">
-      <span class="s-products__label">Productos</span>
-      <h2 class="s-products__heading heading-h1">Estas son las líneas de producto que manejamos de forma recurrente.</h2>
-      <p class="s-products__subtext">Si su operación requiere un insumo diferente, lo buscamos dentro de nuestra red de proveedores.</p>
+      <span class="s-products__label">{{ content().products.label }}</span>
+      <h2 class="s-products__heading heading-h1">{{ content().products.heading }}</h2>
+      <p class="s-products__subtext">{{ content().products.subtext }}</p>
     </div>
 
-    <div class="s-products__content" id="consumo-humano">
-      <div class="s-products__sticky">
-        <span class="s-products__sticky-label">Línea de productos</span>
-        <h3 class="s-products__sticky-title heading-h3">Consumo humano</h3>
-        <p class="s-products__sticky-text">Materias primas e ingredientes para la industria alimentaria.</p>
-      </div>
-
-      <div class="s-products__list">
-        <div class="s-products__card">
-          <div class="s-products__card-header">
-            <span class="s-products__card-number">1</span>
-            <h3 class="s-products__card-title heading-h3">Arroz</h3>
-          </div>
-          <p class="s-products__card-desc">Grano pulido y paddy en distintas variedades según especificación del cliente. Orígenes principales: Uruguay, Paraguay y Brasil.</p>
-          <div class="s-products__card-img">
-            <img src="images/products/1.webp" alt="Arroz" />
-          </div>
+    @for (line of content().products.lines; track line.title; let lineIndex = $index) {
+      <div class="s-products__content" [id]="productLineIds[lineIndex]">
+        <div class="s-products__sticky">
+          <span class="s-products__sticky-label text-label">{{ line.stickyLabel }}</span>
+          <h3 class="s-products__sticky-title heading-h3">{{ line.title }}</h3>
+          <p class="s-products__sticky-text text-small">{{ line.text }}</p>
         </div>
 
-        <div class="s-products__card">
-          <div class="s-products__card-header">
-            <span class="s-products__card-number">2</span>
-            <h3 class="s-products__card-title heading-h3">Frijoles</h3>
-          </div>
-          <p class="s-products__card-desc">Frijol negro, rojo y otros granos secos para procesadores industriales y distribuidores mayoristas.</p>
-          <div class="s-products__card-img">
-            <img src="images/products/2.webp" alt="Frijoles" />
-          </div>
-        </div>
+        <div class="s-products__list">
+          @for (card of line.cards; track card.number; let cardIndex = $index) {
+            <div class="s-products__card">
+              <div class="s-products__card-header">
+                <span class="s-products__card-number">{{ card.number }}</span>
+                <h3 class="s-products__card-title heading-h3">{{ card.title }}</h3>
+              </div>
+              <p class="s-products__card-desc">{{ card.description }}</p>
 
-        <div class="s-products__card">
-          <div class="s-products__card-header">
-            <span class="s-products__card-number">3</span>
-            <h3 class="s-products__card-title heading-h3">Maíz</h3>
-          </div>
-          <p class="s-products__card-desc">Maíz en grano y productos derivados para la industria alimentaria y de consumo masivo.</p>
-          <div class="s-products__card-img">
-            <img src="images/products/3.webp" alt="Maíz" />
-          </div>
-        </div>
-
-        <div class="s-products__card">
-          <div class="s-products__card-header">
-            <span class="s-products__card-number">4</span>
-            <h3 class="s-products__card-title heading-h3">Azúcar</h3>
-          </div>
-          <p class="s-products__card-desc">Azúcar cruda y refinada en distintos grados de polarización (Icumsa). Origen principal: Brasil y Colombia.</p>
-          <div class="s-products__card-img">
-            <img src="images/products/4.webp" alt="Azúcar" />
-          </div>
-        </div>
-
-        <div class="s-products__card">
-          <div class="s-products__card-header">
-            <span class="s-products__card-number">5</span>
-            <h3 class="s-products__card-title heading-h3">Sal</h3>
-          </div>
-          <p class="s-products__card-desc">Sal industrial y de mesa para procesadores de alimentos y distribuidores.</p>
-          <div class="s-products__card-img">
-            <img src="images/products/5.webp" alt="Sal" />
-          </div>
-        </div>
-
-        <div class="s-products__card">
-          <div class="s-products__card-header">
-            <span class="s-products__card-number">6</span>
-            <h3 class="s-products__card-title heading-h3">Especias</h3>
-          </div>
-          <p class="s-products__card-desc">Especias a granel para la industria alimentaria según ficha técnica del cliente.</p>
-          <div class="s-products__card-img">
-            <img src="images/products/6.webp" alt="Especias" />
-          </div>
-        </div>
-
-        <div class="s-products__card">
-          <div class="s-products__card-header">
-            <span class="s-products__card-number">7</span>
-            <h3 class="s-products__card-title heading-h3">Harina de trigo</h3>
-          </div>
-          <p class="s-products__card-desc">Harina para panificación y uso industrial en distintas especificaciones de fuerza y granulometría.</p>
-          <div class="s-products__card-img">
-            <img src="images/products/7.webp" alt="Harina de trigo" />
-          </div>
+              @if (card.imageAlt) {
+                <div class="s-products__card-img">
+                  <img [src]="humanProductImages[cardIndex]" [alt]="card.imageAlt" />
+                </div>
+              }
+            </div>
+          }
         </div>
       </div>
-    </div>
-
-    <div class="s-products__content" id="consumo-animal">
-      <div class="s-products__sticky">
-        <span class="s-products__sticky-label text-label">Línea de productos</span>
-        <h3 class="s-products__sticky-title heading-h3">Consumo animal</h3>
-        <p class="s-products__sticky-text text-small">Materias primas para formulación de alimentos balanceados y nutrición pecuaria.</p>
-      </div>
-
-      <div class="s-products__list">
-        <div class="s-products__card">
-          <div class="s-products__card-header">
-            <span class="s-products__card-number">8</span>
-            <h3 class="s-products__card-title heading-h3">Salvado de trigo</h3>
-          </div>
-          <p class="s-products__card-desc">Subproducto de molienda para formulación de alimentos balanceados.</p>
-        </div>
-
-        <div class="s-products__card">
-          <div class="s-products__card-header">
-            <span class="s-products__card-number">9</span>
-            <h3 class="s-products__card-title heading-h3">Torta de soja</h3>
-          </div>
-          <p class="s-products__card-desc">Subproducto de extracción de aceite, alto contenido proteico para nutrición animal.</p>
-        </div>
-
-        <div class="s-products__card">
-          <div class="s-products__card-header">
-            <span class="s-products__card-number">10</span>
-            <h3 class="s-products__card-title heading-h3">Harina de soya</h3>
-          </div>
-          <p class="s-products__card-desc">Harina de soya para formulación de alimentos balanceados y uso industrial.</p>
-        </div>
-
-        <div class="s-products__card">
-          <div class="s-products__card-header">
-            <span class="s-products__card-number">11</span>
-            <h3 class="s-products__card-title heading-h3">Sales y minerales</h3>
-          </div>
-          <p class="s-products__card-desc">Premezclas minerales y sales para suplementación de ganado y producción pecuaria.</p>
-        </div>
-      </div>
-    </div>
+    }
   </section>
 
   <section class="s-cta">
     <div class="s-cta__bg">
-      <img src="images/CTA.jpg" alt="Contacto Mirabolante" class="s-cta__bg-img" />
+      <img src="images/CTA.jpg" [alt]="content().cta.imageAlt" class="s-cta__bg-img" />
     </div>
 
     <div class="s-cta__container">
       <div class="s-cta__card">
-        <h2 class="s-cta__title heading-h2">¿Listo para optimizar su cadena de abastecimiento?</h2>
-        <p class="s-cta__text text-small">Contáctenos para discutir su próxima operación. Nuestro equipo está disponible para analizar sus requerimientos.</p>
+        <h2 class="s-cta__title heading-h2">{{ content().cta.title }}</h2>
+        <p class="s-cta__text text-small">{{ content().cta.text }}</p>
 
         <div class="s-cta__info">
           <div class="s-cta__info-item s-cta__info-item--full">
-            <span class="s-cta__info-label">Email</span>
+            <span class="s-cta__info-label">{{ content().cta.emailLabel }}</span>
             <span class="s-cta__info-value">comercial@mirabolante.com</span>
           </div>
           <div class="s-cta__info-row">
             <div class="s-cta__info-item">
-              <span class="s-cta__info-label">Teléfono</span>
+              <span class="s-cta__info-label">{{ content().cta.phoneLabel }}</span>
               <span class="s-cta__info-value">+507 6000-0000</span>
             </div>
             <div class="s-cta__info-item">
-              <span class="s-cta__info-label">Oficina</span>
-              <span class="s-cta__info-value">Ciudad de Panamá, Panamá</span>
+              <span class="s-cta__info-label">{{ content().cta.officeLabel }}</span>
+              <span class="s-cta__info-value">{{ i18n.t('global.footer.city') }}</span>
             </div>
           </div>
         </div>
 
         <a
-          routerLink="/contact"
+          [routerLink]="i18n.buildLink('contact')"
           class="btn-cta"
           style="--btn-color: #fff; --btn-text-color: #0044BD"
         >
-          <span class="btn-cta__text">Contáctenos</span>
+          <span class="btn-cta__text">{{ content().cta.cta.text }}</span>
           <span class="btn-cta__arrow">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

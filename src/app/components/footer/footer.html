@@ -4,58 +4,59 @@
       <div class="site-footer__grid">
         <div class="site-footer__brand">
           <h2 class="site-footer__brand-title heading-h2">
-            Su socio en comercio internacional
+            {{ i18n.t('global.footer.brandTitle') }}
           </h2>
 
           <p class="site-footer__brand-text text-small">
-            Trading house internacional especializada en materias primas e
-            ingredientes para la industria alimentaria en Latinoamérica.
+            {{ i18n.t('global.footer.brandDescription') }}
           </p>
         </div>
 
-        <nav class="site-footer__column" aria-label="Navegación del footer">
-          <h2 class="site-footer__title heading-h3">Navegación</h2>
+        <nav class="site-footer__column" [attr.aria-label]="i18n.t('global.footer.navigationAria')">
+          <h2 class="site-footer__title heading-h3">{{ i18n.t('global.footer.navigation') }}</h2>
 
           <div class="site-footer__links">
-            <a routerLink="/" class="site-footer__link text-small">Inicio</a>
-            <a routerLink="/services" class="site-footer__link text-small">
-              Servicios y productos
+            <a [routerLink]="i18n.buildLink('home')" class="site-footer__link text-small">
+              {{ i18n.t('global.footer.home') }}
             </a>
-            <a routerLink="/process" class="site-footer__link text-small">
-              Proceso
+            <a [routerLink]="i18n.buildLink('services')" class="site-footer__link text-small">
+              {{ i18n.t('global.footer.servicesAndProducts') }}
             </a>
-            <a routerLink="/about" class="site-footer__link text-small">
-              Quiénes somos
+            <a [routerLink]="i18n.buildLink('process')" class="site-footer__link text-small">
+              {{ i18n.t('global.nav.process') }}
             </a>
-            <a routerLink="/contact" class="site-footer__link text-small">
-              Contacto
+            <a [routerLink]="i18n.buildLink('about')" class="site-footer__link text-small">
+              {{ i18n.t('global.footer.about') }}
+            </a>
+            <a [routerLink]="i18n.buildLink('contact')" class="site-footer__link text-small">
+              {{ i18n.t('global.footer.contact') }}
             </a>
           </div>
         </nav>
 
-        <nav class="site-footer__column" aria-label="Productos del footer">
-          <h2 class="site-footer__title heading-h3">Productos</h2>
+        <nav class="site-footer__column" [attr.aria-label]="i18n.t('global.footer.productsAria')">
+          <h2 class="site-footer__title heading-h3">{{ i18n.t('global.footer.products') }}</h2>
 
           <div class="site-footer__links">
             <a
-              routerLink="/services"
+              [routerLink]="i18n.buildLink('services')"
               fragment="consumo-humano"
               class="site-footer__link text-small"
             >
-              Consumo humano
+              {{ i18n.t('global.footer.humanConsumption') }}
             </a>
             <a
-              routerLink="/services"
+              [routerLink]="i18n.buildLink('services')"
               fragment="consumo-animal"
               class="site-footer__link text-small"
             >
-              Consumo animal
+              {{ i18n.t('global.footer.animalConsumption') }}
             </a>
           </div>
         </nav>
 
         <div class="site-footer__column">
-          <h2 class="site-footer__title heading-h3">Contacto</h2>
+          <h2 class="site-footer__title heading-h3">{{ i18n.t('global.footer.contact') }}</h2>
 
           <div class="site-footer__contact-list">
             <a href="tel:+50700000000" class="site-footer__contact-item site-footer__link text-small">
@@ -85,7 +86,7 @@
                   <path d="M12 11.5A2.5 2.5 0 1 0 12 6.5A2.5 2.5 0 0 0 12 11.5Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
-              <span>Ciudad de Panamá, Panamá</span>
+              <span>{{ i18n.t('global.footer.city') }}</span>
             </p>
           </div>
         </div>
@@ -93,7 +94,7 @@
 
       <div class="site-footer__bottom">
         <p class="site-footer__copyright text-small">
-          Copyright © 2026 Mirabolante Trading &amp; Global Food Sourcing.
+          {{ i18n.t('global.footer.copyright') }}
         </p>
       </div>
     </div>
@@ -102,13 +103,7 @@
   <div class="site-footer__marquee" aria-hidden="true">
     <div class="site-footer__marquee-track">
       <div class="site-footer__marquee-item">
-        <img src="logohorizontalnegro.svg" alt="" class="site-footer__marquee-logo" />
-      </div>
-      <div class="site-footer__marquee-item">
-        <img src="logohorizontalnegro.svg" alt="" class="site-footer__marquee-logo" />
-      </div>
-      <div class="site-footer__marquee-item">
-        <img src="logohorizontalnegro.svg" alt="" class="site-footer__marquee-logo" />
+        <img src="logohorizontalblanco.svg" alt="" class="site-footer__marquee-logo" />
       </div>
       <div class="site-footer__marquee-item">
         <img src="logohorizontalnegro.svg" alt="" class="site-footer__marquee-logo" />
@@ -117,13 +112,19 @@
         <img src="logohorizontalblanco.svg" alt="" class="site-footer__marquee-logo" />
       </div>
       <div class="site-footer__marquee-item">
-        <img src="logohorizontalblanco.svg" alt="" class="site-footer__marquee-logo" />
+        <img src="logohorizontalnegro.svg" alt="" class="site-footer__marquee-logo" />
       </div>
       <div class="site-footer__marquee-item">
         <img src="logohorizontalblanco.svg" alt="" class="site-footer__marquee-logo" />
       </div>
       <div class="site-footer__marquee-item">
+        <img src="logohorizontalnegro.svg" alt="" class="site-footer__marquee-logo" />
+      </div>
+      <div class="site-footer__marquee-item">
         <img src="logohorizontalblanco.svg" alt="" class="site-footer__marquee-logo" />
+      </div>
+      <div class="site-footer__marquee-item">
+        <img src="logohorizontalnegro.svg" alt="" class="site-footer__marquee-logo" />
       </div>
     </div>
   </div>

@@ -12,20 +12,19 @@
 
   <div class="hero__overlay"></div>
 
-
   <div class="hero__content">
     <div class="hero__bottom">
       <h1 class="hero__heading">
-        <span class="hero__heading-big">Trading</span>
+        <span class="hero__heading-big">{{ content().hero.headingBig }}</span>
         <span class="hero__heading-side">
-          <span>& Global</span>
-          <span>Food Sourcing</span>
+          <span>{{ content().hero.headingSideLines[0] }}</span>
+          <span>{{ content().hero.headingSideLines[1] }}</span>
         </span>
       </h1>
 
       <div class="hero__cta">
-        <a routerLink="/contact" class="btn-cta" style="--btn-color: #0044BD">
-          <span class="btn-cta__text">Let's talk</span>
+        <a [routerLink]="i18n.buildLink('contact')" class="btn-cta" style="--btn-color: #0044BD">
+          <span class="btn-cta__text">{{ content().hero.cta.text }}</span>
           <span class="btn-cta__arrow">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -40,19 +39,19 @@
 <section class="solutions">
   <div class="solutions__container">
     <div class="solutions__left">
-      <span class="solutions__label">Servicios</span>
+      <span class="solutions__label">{{ content().solutions.label }}</span>
 
       <h2 class="solutions__heading heading-h1">
-        Red internacional con eficiencia y transparencia en cada operación.
+        {{ content().solutions.heading }}
       </h2>
 
       <p class="solutions__description">
-        Gestionamos todo el proceso: desde la búsqueda del producto hasta la entrega en el puerto de su conveniencia.
+        {{ content().solutions.description }}
       </p>
 
       <div class="solutions__cta">
-        <a routerLink="/process" class="btn-cta" style="--btn-color: #0044BD">
-          <span class="btn-cta__text">Nuestro proceso</span>
+        <a [routerLink]="i18n.buildLink('process')" class="btn-cta" style="--btn-color: #0044BD">
+          <span class="btn-cta__text">{{ content().solutions.cta.text }}</span>
           <span class="btn-cta__arrow">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -63,45 +62,21 @@
     </div>
 
     <div class="solutions__right">
-      <a routerLink="/process" fragment="sourcing" class="solutions__item">
-        <div class="solutions__item-icon">
-          <img src="images/c1_1.svg" alt="Sourcing Global" />
-        </div>
-        <div class="solutions__item-content">
-          <h3 class="solutions__item-title">Sourcing Global</h3>
-          <p class="solutions__item-description">Acceso a proveedores en Brasil, Uruguay, Paraguay, Colombia y Argentina.</p>
-        </div>
-      </a>
-
-      <a routerLink="/process" fragment="logistica" class="solutions__item">
-        <div class="solutions__item-icon">
-          <img src="images/c2.svg" alt="Gestión Logística" />
-        </div>
-        <div class="solutions__item-content">
-          <h3 class="solutions__item-title">Gestión Logística</h3>
-          <p class="solutions__item-description">Coordinamos transporte, documentación y tiempos de tránsito reales.</p>
-        </div>
-      </a>
-
-      <a routerLink="/process" fragment="flexibilidad" class="solutions__item">
-        <div class="solutions__item-icon">
-          <img src="images/c3.svg" alt="Flexibilidad Comercial" />
-        </div>
-        <div class="solutions__item-content">
-          <h3 class="solutions__item-title">Flexibilidad Comercial</h3>
-          <p class="solutions__item-description">Estructuras de negociación adaptadas a su operación.</p>
-        </div>
-      </a>
-
-      <a routerLink="/process" fragment="trazabilidad" class="solutions__item">
-        <div class="solutions__item-icon">
-          <img src="images/c4.svg" alt="Trazabilidad Completa" />
-        </div>
-        <div class="solutions__item-content">
-          <h3 class="solutions__item-title">Trazabilidad Completa</h3>
-          <p class="solutions__item-description">Seguimiento en tiempo real desde origen hasta destino.</p>
-        </div>
-      </a>
+      @for (item of content().solutions.items; track item.title; let index = $index) {
+        <a
+          [routerLink]="i18n.buildLink('process')"
+          [fragment]="solutionFragments[index]"
+          class="solutions__item"
+        >
+          <div class="solutions__item-icon">
+            <img [src]="solutionIcons[index]" [alt]="item.alt" />
+          </div>
+          <div class="solutions__item-content">
+            <h3 class="solutions__item-title">{{ item.title }}</h3>
+            <p class="solutions__item-description">{{ item.description }}</p>
+          </div>
+        </a>
+      }
     </div>
   </div>
 </section>
@@ -121,10 +96,10 @@
         </video>
       </div>
       <div class="highlight__card">
-        <span class="highlight__stat">100%</span>
-        <h3 class="highlight__card-title">Adaptado a la medida de su negocio</h3>
+        <span class="highlight__stat">{{ content().highlight.stat }}</span>
+        <h3 class="highlight__card-title">{{ content().highlight.cardTitle }}</h3>
         <p class="highlight__card-text">
-          Cada operación tiene necesidades distintas. No ofrecemos soluciones genéricas: analizamos su requerimiento y buscamos la opción que mejor se adapte a su negocio.
+          {{ content().highlight.cardText }}
         </p>
       </div>
     </div>
@@ -132,15 +107,15 @@
     <div class="highlight__right">
       <div class="highlight__info-top">
         <h2 class="highlight__heading heading-h2">
-          Abastecimiento estratégico para la industria alimentaria.
+          {{ content().highlight.heading }}
         </h2>
         <a
-          routerLink="/services"
+          [routerLink]="i18n.buildLink('services')"
           fragment="productos-section"
           class="btn-cta"
           style="--btn-color: #fff; --btn-text-color: #1a1a1a"
         >
-          <span class="btn-cta__text">Contáctenos</span>
+          <span class="btn-cta__text">{{ content().highlight.cta.text }}</span>
           <span class="btn-cta__arrow">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -151,20 +126,16 @@
 
       <div class="highlight__marquee">
         <div class="highlight__marquee-track">
-          <div class="highlight__marquee-item"><img src="images/p1.webp" alt="Arroz" /></div>
-          <div class="highlight__marquee-item"><img src="images/p2.webp" alt="Frijoles" /></div>
-          <div class="highlight__marquee-item"><img src="images/p3.webp" alt="Maíz" /></div>
-          <div class="highlight__marquee-item"><img src="images/p4.webp" alt="Azúcar" /></div>
-          <div class="highlight__marquee-item"><img src="images/p5.webp" alt="Harina de trigo" /></div>
-          <div class="highlight__marquee-item"><img src="images/p6.webp" alt="Especias" /></div>
-          <div class="highlight__marquee-item"><img src="images/p7.webp" alt="Sal" /></div>
-          <div class="highlight__marquee-item"><img src="images/p1.webp" alt="Arroz" /></div>
-          <div class="highlight__marquee-item"><img src="images/p2.webp" alt="Frijoles" /></div>
-          <div class="highlight__marquee-item"><img src="images/p3.webp" alt="Maíz" /></div>
-          <div class="highlight__marquee-item"><img src="images/p4.webp" alt="Azúcar" /></div>
-          <div class="highlight__marquee-item"><img src="images/p5.webp" alt="Harina de trigo" /></div>
-          <div class="highlight__marquee-item"><img src="images/p6.webp" alt="Especias" /></div>
-          <div class="highlight__marquee-item"><img src="images/p7.webp" alt="Sal" /></div>
+          @for (alt of content().highlight.marqueeAlts; track $index; let index = $index) {
+            <div class="highlight__marquee-item">
+              <img [src]="marqueeImages[index]" [alt]="alt" />
+            </div>
+          }
+          @for (alt of content().highlight.marqueeAlts; track $index; let index = $index) {
+            <div class="highlight__marquee-item">
+              <img [src]="marqueeImages[index]" [alt]="alt" />
+            </div>
+          }
         </div>
       </div>
     </div>
@@ -175,7 +146,7 @@
   <div class="about__bg">
     <img
       src="images/aboutimg.jpg"
-      alt="Mirabolante Trading operaciones"
+      [alt]="content().about.imageAlt"
       class="about__bg-img"
     />
   </div>
@@ -187,19 +158,19 @@
       <div class="about__card">
         <div class="about__label">
           <span class="about__label-dot"></span>
-          <span class="about__label-text">Sobre Nosotros</span>
+          <span class="about__label-text">{{ content().about.label }}</span>
         </div>
 
         <h2 class="about__heading heading-h2">
-          El socio que su cadena de suministro necesita.
+          {{ content().about.heading }}
         </h2>
 
         <p class="about__text">
-          Somos una trading house internacional con base en Panamá y operación en Costa Rica. Conectamos a su empresa con proveedores de primer nivel en Sudamérica, gestionamos toda la logística y le entregamos el producto en el puerto que usted elija. Sin intermediarios innecesarios, sin sorpresas en el camino.
+          {{ content().about.text }}
         </p>
 
-        <a routerLink="/about" class="btn-cta" style="--btn-color: #0044BD">
-          <span class="btn-cta__text">Conózcanos</span>
+        <a [routerLink]="i18n.buildLink('about')" class="btn-cta" style="--btn-color: #0044BD">
+          <span class="btn-cta__text">{{ content().about.cta.text }}</span>
           <span class="btn-cta__arrow">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -212,21 +183,20 @@
 </section>
 
 <section class="home-cards">
-  <!-- Row 1: wide + narrow -->
   <div class="home-cards__row">
     <div class="home-cards__col home-cards__col--wide">
       <div class="home-cards__card home-cards__card--image">
         <figure class="home-cards__figure">
-          <img src="images/cm1.jpg" alt="Sourcing global" />
+          <img [src]="homeCardImages[0]" [alt]="content().cards.items[0].imageAlt" />
           <div class="home-cards__overlay"></div>
         </figure>
         <div class="home-cards__body">
           <div class="home-cards__top">
-            <span class="home-cards__label">Sourcing</span>
-            <h3 class="home-cards__heading">Acceso a proveedores de primer nivel</h3>
+            <span class="home-cards__label">{{ content().cards.items[0].label }}</span>
+            <h3 class="home-cards__heading">{{ content().cards.items[0].heading }}</h3>
           </div>
           <div class="home-cards__content">
-            <p>Trabajamos con productores y exportadores en Brasil, Uruguay, Paraguay, Colombia y Argentina. Muchos de ellos no venden a clientes individuales. A través de Mirabolante, su empresa accede a esa red sin tener que construirla desde cero.</p>
+            <p>{{ content().cards.items[0].text }}</p>
           </div>
         </div>
       </div>
@@ -235,37 +205,36 @@
     <div class="home-cards__col home-cards__col--narrow">
       <div class="home-cards__card home-cards__card--image">
         <figure class="home-cards__figure">
-          <img src="images/cm2.jpg" alt="Logística internacional" />
+          <img [src]="homeCardImages[1]" [alt]="content().cards.items[1].imageAlt" />
           <div class="home-cards__overlay"></div>
         </figure>
         <div class="home-cards__body">
           <div class="home-cards__top">
-            <span class="home-cards__label">Logística</span>
-            <h3 class="home-cards__heading">Del origen a su puerto elejido</h3>
+            <span class="home-cards__label">{{ content().cards.items[1].label }}</span>
+            <h3 class="home-cards__heading">{{ content().cards.items[1].heading }}</h3>
           </div>
           <div class="home-cards__content">
-            <p>Nos encargamos de todo el proceso: compra, documentación, transporte marítimo y coordinación hasta el puerto que usted elija. Usted recibe el producto listo para nacionalizar, sin gestionar intermediarios.</p>
+            <p>{{ content().cards.items[1].text }}</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Row 2: narrow + wide -->
   <div class="home-cards__row">
     <div class="home-cards__col home-cards__col--narrow">
       <div class="home-cards__card home-cards__card--image">
         <figure class="home-cards__figure">
-          <img src="images/cm3.jpg" alt="Transparencia operativa" />
+          <img [src]="homeCardImages[2]" [alt]="content().cards.items[2].imageAlt" />
           <div class="home-cards__overlay"></div>
         </figure>
         <div class="home-cards__body">
           <div class="home-cards__top">
-            <span class="home-cards__label">Transparencia</span>
-            <h3 class="home-cards__heading">Tiempos y especificaciones reales</h3>
+            <span class="home-cards__label">{{ content().cards.items[2].label }}</span>
+            <h3 class="home-cards__heading">{{ content().cards.items[2].heading }}</h3>
           </div>
           <div class="home-cards__content">
-            <p>Le damos información clara desde el inicio. Tiempos de tránsito reales, fichas técnicas verificadas y seguimiento de su carga en tiempo real. Sin promesas infladas, sin sorpresas.</p>
+            <p>{{ content().cards.items[2].text }}</p>
           </div>
         </div>
       </div>
@@ -274,30 +243,29 @@
     <div class="home-cards__col home-cards__col--wide">
       <div class="home-cards__card home-cards__card--image">
         <figure class="home-cards__figure">
-          <img src="images/cm4.jpg" alt="Flexibilidad comercial" />
+          <img [src]="homeCardImages[3]" [alt]="content().cards.items[3].imageAlt" />
           <div class="home-cards__overlay"></div>
         </figure>
         <div class="home-cards__body">
           <div class="home-cards__top">
-            <span class="home-cards__label">Flexibilidad</span>
-            <h3 class="home-cards__heading">Estructuras que se adaptan a su operación</h3>
+            <span class="home-cards__label">{{ content().cards.items[3].label }}</span>
+            <h3 class="home-cards__heading">{{ content().cards.items[3].heading }}</h3>
           </div>
           <div class="home-cards__content">
-            <p>No trabajamos con condiciones rígidas. Analizamos su caso, abrimos nuestra estructura de costos y buscamos un punto donde ambos salgamos beneficiados. El objetivo es una relación comercial de largo plazo, no una venta única.</p>
+            <p>{{ content().cards.items[3].text }}</p>
           </div>
         </div>
       </div>
     </div>
   </div>
-
 </section>
 
 <section class="faq">
   <div class="faq__content">
     <div class="faq__title-wrap">
-      <h2 class="faq__title heading-h1">Preguntas Frecuentes</h2>
-      <a routerLink="/contact" class="btn-cta" style="--btn-color: #0044BD">
-        <span class="btn-cta__text">Contáctenos</span>
+      <h2 class="faq__title heading-h1">{{ content().faq.title }}</h2>
+      <a [routerLink]="i18n.buildLink('contact')" class="btn-cta" style="--btn-color: #0044BD">
+        <span class="btn-cta__text">{{ content().faq.cta.text }}</span>
         <span class="btn-cta__arrow">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -307,101 +275,23 @@
     </div>
 
     <div class="faq__list">
-      <div class="faq__item" [class.faq__item--open]="faqOpen === 0" (click)="toggleFaq(0)">
-        <div class="faq__question">
-          <div class="faq__question-text">¿Cuál es el volumen mínimo de compra?</div>
-          <div class="faq__icon-wrap">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/>
-            </svg>
+      @for (item of content().faq.items; track item.question; let index = $index) {
+        <div class="faq__item" [class.faq__item--open]="faqOpen === index" (click)="toggleFaq(index)">
+          <div class="faq__question">
+            <div class="faq__question-text">{{ item.question }}</div>
+            <div class="faq__icon-wrap">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+            </div>
+          </div>
+          <div class="faq__answer">
+            <div class="faq__answer-inner">
+              <p>{{ item.answer }}</p>
+            </div>
           </div>
         </div>
-        <div class="faq__answer">
-          <div class="faq__answer-inner">
-            <p>El volumen mínimo de operación es de un contenedor completo, lo que representa entre 20 y 28 toneladas dependiendo del producto. Este modelo de trabajo está diseñado para atender a empresas con requerimientos de abastecimiento industrial continuo: procesadores de alimentos, distribuidores mayoristas e industrias del sector alimentario.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq__item" [class.faq__item--open]="faqOpen === 1" (click)="toggleFaq(1)">
-        <div class="faq__question">
-          <div class="faq__question-text">¿Cómo funciona el proceso de compra?</div>
-          <div class="faq__icon-wrap">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/>
-            </svg>
-          </div>
-        </div>
-        <div class="faq__answer">
-          <div class="faq__answer-inner">
-            <p>El proceso inicia con el análisis del requerimiento del cliente, que incluye especificaciones técnicas, volúmenes estimados y condiciones de entrega. Con base en esa información, Mirabolante identifica las opciones más adecuadas dentro de su red de proveedores en Sudamérica y presenta una cotización con precio CIF en el puerto designado por el cliente. Antes del embarque, se envían fichas técnicas y muestras físicas para aprobación. Una vez confirmada la orden, Mirabolante gestiona la compra, el transporte marítimo y la documentación correspondiente. El cliente recibe el producto en puerto, listo para el proceso de nacionalización.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq__item" [class.faq__item--open]="faqOpen === 2" (click)="toggleFaq(2)">
-        <div class="faq__question">
-          <div class="faq__question-text">¿Cuánto tiempo tarda en llegar un pedido?</div>
-          <div class="faq__icon-wrap">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/>
-            </svg>
-          </div>
-        </div>
-        <div class="faq__answer">
-          <div class="faq__answer-inner">
-            <p>Los tiempos de entrega dependen del origen del producto y de las condiciones logísticas vigentes. Una vez aprobada la cotización y la muestra, el proceso de preparación en origen toma entre una y dos semanas. El tránsito marítimo desde Sudamérica hacia Centroamérica oscila entre 25 y 60 días según la ruta. Mirabolante proporciona estimaciones de tiempo basadas en condiciones reales de operación, considerando escalas portuarias y disponibilidad de navieras.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq__item" [class.faq__item--open]="faqOpen === 3" (click)="toggleFaq(3)">
-        <div class="faq__question">
-          <div class="faq__question-text">¿Qué garantía tengo de que el producto cumple con las especificaciones?</div>
-          <div class="faq__icon-wrap">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/>
-            </svg>
-          </div>
-        </div>
-        <div class="faq__answer">
-          <div class="faq__answer-inner">
-            <p>Todo embarque está respaldado por fichas técnicas verificadas y muestras físicas aprobadas por el cliente antes de la compra. Los proveedores con los que trabaja Mirabolante operan con sistemas de trazabilidad que permiten identificar el origen, la cosecha y el lote de cada producto. Esta documentación queda disponible para el cliente como parte del proceso de compra y sirve como respaldo ante cualquier reclamo de calidad.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq__item" [class.faq__item--open]="faqOpen === 4" (click)="toggleFaq(4)">
-        <div class="faq__question">
-          <div class="faq__question-text">¿Mirabolante cuenta con certificaciones?</div>
-          <div class="faq__icon-wrap">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/>
-            </svg>
-          </div>
-        </div>
-        <div class="faq__answer">
-          <div class="faq__answer-inner">
-            <p>Mirabolante opera como comercializadora internacional, por lo que las certificaciones de calidad, inocuidad y buenas prácticas corresponden a las plantas de producción de cada proveedor. La empresa trabaja exclusivamente con proveedores que cuentan con las certificaciones requeridas por la industria alimentaria. Cuando un cliente requiere certificaciones específicas, Mirabolante selecciona proveedores que cumplan con esos requisitos.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq__item" [class.faq__item--open]="faqOpen === 5" (click)="toggleFaq(5)">
-        <div class="faq__question">
-          <div class="faq__question-text">¿Qué sucede si no tengo experiencia en comercio internacional?</div>
-          <div class="faq__icon-wrap">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="1.5"/>
-            </svg>
-          </div>
-        </div>
-        <div class="faq__answer">
-          <div class="faq__answer-inner">
-            <p>Mirabolante ofrece acompañamiento a clientes que inician operaciones de importación. Esto incluye orientación sobre el proceso de compra internacional, la documentación que recibirán en cada etapa y los pasos necesarios para la nacionalización del producto en su país. En caso de requerirlo, Mirabolante puede facilitar el contacto con agencias aduanales de confianza en el país de destino.</p>
-          </div>
-        </div>
-      </div>
+      }
     </div>
   </div>
 </section>

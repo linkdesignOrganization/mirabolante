@@ -6,8 +6,11 @@ import {
   OnInit,
   OnDestroy,
   NgZone,
+  computed,
+  inject,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { LocaleService } from '../../i18n/locale.service';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +19,21 @@ import { RouterLink } from '@angular/router';
   styleUrl: './home.scss',
 })
 export class Home implements OnInit, AfterViewInit, OnDestroy {
+  readonly i18n = inject(LocaleService);
+  readonly content = computed(() => this.i18n.pageContent('home'));
+  readonly solutionIcons = ['images/c1_1.svg', 'images/c2.svg', 'images/c3.svg', 'images/c4.svg'];
+  readonly solutionFragments = ['sourcing', 'logistica', 'flexibilidad', 'trazabilidad'];
+  readonly marqueeImages = [
+    'images/p1.webp',
+    'images/p2.webp',
+    'images/p3.webp',
+    'images/p4.webp',
+    'images/p5.webp',
+    'images/p6.webp',
+    'images/p7.webp',
+  ];
+  readonly homeCardImages = ['images/cm1.jpg', 'images/cm2.jpg', 'images/cm3.jpg', 'images/cm4.jpg'];
+
   @ViewChild('aboutSection') aboutSection!: ElementRef<HTMLElement>;
   @ViewChild('heroVideo') heroVideoRef!: ElementRef<HTMLVideoElement>;
 

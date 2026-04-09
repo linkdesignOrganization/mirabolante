@@ -1,6 +1,7 @@
 import { NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
+import { LocaleService } from '../../i18n/locale.service';
 
 @Component({
   selector: 'app-contact',
@@ -9,6 +10,9 @@ import { FormsModule, NgForm } from '@angular/forms';
   styleUrl: './contact.scss',
 })
 export class Contact {
+  readonly i18n = inject(LocaleService);
+  readonly content = computed(() => this.i18n.pageContent('contact'));
+
   formData = {
     fullName: '',
     company: '',
@@ -39,7 +43,7 @@ export class Contact {
       phone: this.formData.phone,
       email: this.formData.email,
       message: this.formData.message,
-      subject: 'Nuevo mensaje desde el sitio web de Mirabolante',
+      subject: this.content().form.subject,
     };
 
     try {
