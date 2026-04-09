@@ -11,7 +11,6 @@ import {
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LocaleService } from '../../i18n/locale.service';
-import { BufferedVideoSequenceController } from '../../shared/media/buffered-video-sequence';
 import { HOME_MEDIA } from '../../shared/media/site-media';
 
 @Component({
@@ -38,11 +37,9 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
   readonly homeCardImages = HOME_MEDIA.cards;
 
   @ViewChild('aboutSection') aboutSection!: ElementRef<HTMLElement>;
-  @ViewChild('heroVideoPrimary') heroVideoPrimaryRef!: ElementRef<HTMLVideoElement>;
-  @ViewChild('heroVideoSecondary') heroVideoSecondaryRef!: ElementRef<HTMLVideoElement>;
+  @ViewChild('heroVideo') heroVideoRef!: ElementRef<HTMLVideoElement>;
 
   loaded = false;
-  activeHeroSlot: 0 | 1 = 0;
   faqOpen: number | null = null;
   isMobileView =
     typeof window !== 'undefined'
@@ -51,28 +48,29 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
 
   private scrollHandler?: () => void;
   private resizeHandler?: () => void;
-  private readonly heroController = new BufferedVideoSequenceController({
-    ...HOME_MEDIA.hero,
-    onReadyChange: (ready) => {
-      this.ngZone.run(() => {
-        this.loaded = ready;
-      });
-    },
-    onActiveSlotChange: (slot) => {
-      this.ngZone.run(() => {
-        this.activeHeroSlot = slot;
-      });
-    },
-    onViewportChange: (isMobile) => {
-      this.ngZone.run(() => {
-        this.isMobileView = isMobile;
-      });
-    },
-  });
+  private currentHeroIndex = 0;
 
   constructor(private ngZone: NgZone) {}
 
   ngOnInit() {}
+
+  private get heroVideos() {
+    return this.isMobileView
+      ? this.media.hero.mobileSources
+      : this.media.hero.desktopSources;
+  }
+
+  onHeroCanPlay() {
+    if (!this.loaded) {
+      this.loaded = true;
+    }
+  }
+
+  onHeroPlaying() {
+    if (!this.loaded) {
+      this.loaded = true;
+    }
+  }
 
   toggleFaq(index: number) {
     this.faqOpen = this.faqOpen === index ? null : index;
@@ -81,15 +79,12 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     this.ngZone.runOutsideAngular(() => {
       this.scrollHandler = () => this.onScroll();
-      this.resizeHandler = () => this.heroController.syncViewport();
+      this.resizeHandler = () => this.syncHeroViewport();
       window.addEventListener('scroll', this.scrollHandler, { passive: true });
       window.addEventListener('resize', this.resizeHandler, { passive: true });
     });
 
-    this.heroController.mount([
-      this.heroVideoPrimaryRef.nativeElement,
-      this.heroVideoSecondaryRef.nativeElement,
-    ]);
+    this.initHeroVideo();
   }
 
   ngOnDestroy() {
@@ -100,8 +95,11 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
     if (this.resizeHandler) {
       window.removeEventListener('resize', this.resizeHandler);
     }
+  }
 
-    this.heroController.destroy();
+  onHeroEnded() {
+    this.currentHeroIndex = (this.currentHeroIndex + 1) % this.heroVideos.length;
+    this.playCurrentHeroVideo();
   }
 
   private onScroll() {
@@ -119,6 +117,40 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
     const parallaxOffset = clampedProgress * -200;
 
     bgImg.style.transform = `translateY(${parallaxOffset}px)`;
+  }
+
+  private initHeroVideo() {
+    this.loaded = false;
+    this.currentHeroIndex = 0;
+    this.playCurrentHeroVideo();
+  }
+
+  private syncHeroViewport() {
+    const nextIsMobile = window.matchMedia('(max-width: 767px)').matches;
+
+    if (nextIsMobile === this.isMobileView) {
+      return;
+    }
+
+    this.isMobileView = nextIsMobile;
+    this.initHeroVideo();
+  }
+
+  private playCurrentHeroVideo() {
+    const video = this.heroVideoRef?.nativeElement;
+    if (!video) {
+      return;
+    }
+
+    video.pause();
+    video.defaultMuted = true;
+    video.muted = true;
+    video.playsInline = true;
+    video.autoplay = true;
+    video.preload = 'auto';
+    video.src = this.heroVideos[this.currentHeroIndex];
+    video.load();
+    void video.play().catch(() => {});
   }
 
   get showHighlightVideo() {

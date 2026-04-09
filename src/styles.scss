@@ -145,3 +145,33 @@ body {
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .btn-cta {
+    &__text {
+      height: 42px;
+      padding: 0 22px;
+      font-size: 0.93rem;
+    }
+
+    &__arrow {
+      width: 42px;
+      height: 42px;
+
+      svg {
+        width: 12px;
+        height: 12px;
+      }
+    }
+
+    &:hover {
+      .btn-cta__text {
+        padding-right: 48px;
+      }
+
+      .btn-cta__arrow {
+        transform: translateX(-48px);
+      }
+    }
+  }
+}

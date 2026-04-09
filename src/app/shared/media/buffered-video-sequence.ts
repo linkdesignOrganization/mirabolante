@@ -128,6 +128,7 @@ export class BufferedVideoSequenceController {
     this.slotReady[slot] = true;
 
     if (slot === this.activeSlot && this.slotSourceIndices[slot] === this.currentIndex) {
+      this.options.onReadyChange?.(true);
       this.playSlot(slot);
       return;
     }
@@ -190,6 +191,7 @@ export class BufferedVideoSequenceController {
 
     this.activeSlot = slot;
     this.currentIndex = sourceIndex;
+    this.options.onReadyChange?.(true);
     this.options.onActiveSlotChange?.(slot);
     this.playSlot(slot);
 
