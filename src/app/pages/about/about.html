@@ -25,12 +25,17 @@
     </div>
 
     <div class="about-hero__image-wrap" #heroMedia>
-      <img
-        src="images/npc.jpg"
-        [alt]="content().hero.imageAlt"
-        class="about-hero__image"
-        #heroImage
-      />
+      <picture class="about-hero__picture">
+        <source media="(max-width: 767px)" [srcset]="media.heroImage.mobileSrc" />
+        <img
+          [src]="media.heroImage.desktopSrc"
+          [alt]="content().hero.imageAlt"
+          class="about-hero__image"
+          #heroImage
+          loading="eager"
+          decoding="async"
+        />
+      </picture>
     </div>
   </div>
 </section>
@@ -71,16 +76,39 @@
   </div>
 
   <div class="about-section__story">
-    <div class="about-section__media">
+    <div class="about-section__media" [class.about-section__media--poster-only]="!showStoryVideo">
+      <picture
+        class="about-section__poster"
+        [class.about-section__poster--hidden]="storyLoaded && showStoryVideo"
+      >
+        <source media="(max-width: 767px)" [srcset]="media.story.mobilePoster" />
+        <img
+          [src]="media.story.desktopPoster"
+          alt=""
+          class="about-section__poster-image"
+          loading="lazy"
+          decoding="async"
+          aria-hidden="true"
+        />
+      </picture>
+
       <video
-        #aboutVideo
+        #aboutVideoPrimary
         class="about-section__video"
+        [class.about-section__video--active]="storyActiveSlot === 0 && showStoryVideo"
         muted
         playsinline
-        autoplay
         preload="auto"
-        [attr.poster]="aboutVideoPoster"
-        (ended)="onAboutVideoEnded()"
+        aria-hidden="true"
+      ></video>
+      <video
+        #aboutVideoSecondary
+        class="about-section__video"
+        [class.about-section__video--active]="storyActiveSlot === 1 && showStoryVideo"
+        muted
+        playsinline
+        preload="auto"
+        aria-hidden="true"
       ></video>
     </div>
 
@@ -171,12 +199,17 @@
 
 <section class="about-cta">
   <div class="about-cta__media" #ctaMedia>
-    <img
-      src="images/cm1.jpg"
-      [alt]="content().cta.imageAlt"
-      class="about-cta__image"
-      #ctaImage
-    />
+    <picture class="about-cta__picture">
+      <source media="(max-width: 767px)" [srcset]="media.ctaImage.mobileSrc" />
+      <img
+        [src]="media.ctaImage.desktopSrc"
+        [alt]="content().cta.imageAlt"
+        class="about-cta__image"
+        #ctaImage
+        loading="lazy"
+        decoding="async"
+      />
+    </picture>
   </div>
 
   <div class="about-cta__panel">

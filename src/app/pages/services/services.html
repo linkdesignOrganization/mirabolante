@@ -72,9 +72,31 @@
       </div>
 
       <div class="s-coverage__right">
-        <video class="s-coverage__video" autoplay muted loop playsinline>
-          <source src="videos/seaport.mp4" type="video/mp4" />
-        </video>
+        @if (showCoverageVideo) {
+          <video
+            class="s-coverage__video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            [attr.poster]="media.coverage.desktopPoster"
+          >
+            <source [src]="media.coverage.desktopSrc" type="video/mp4" />
+          </video>
+        } @else {
+          <picture class="s-coverage__picture">
+            <source media="(max-width: 767px)" [srcset]="media.coverage.mobilePoster" />
+            <img
+              [src]="media.coverage.desktopPoster"
+              alt=""
+              class="s-coverage__poster"
+              loading="lazy"
+              decoding="async"
+              aria-hidden="true"
+            />
+          </picture>
+        }
 
         <div class="s-coverage__card">
           <span class="s-coverage__card-number">{{ content().coverage.card.number }}</span>
@@ -123,7 +145,16 @@
 
   <section class="s-cta">
     <div class="s-cta__bg">
-      <img src="images/CTA.jpg" [alt]="content().cta.imageAlt" class="s-cta__bg-img" />
+      <picture class="s-cta__bg-picture">
+        <source media="(max-width: 767px)" [srcset]="media.ctaImage.mobileSrc" />
+        <img
+          [src]="media.ctaImage.desktopSrc"
+          [alt]="content().cta.imageAlt"
+          class="s-cta__bg-img"
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
     </div>
 
     <div class="s-cta__container">

@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LocaleService } from '../../i18n/locale.service';
+import { PROCESS_MEDIA } from '../../shared/media/site-media';
 
 @Component({
   selector: 'app-process',
@@ -19,6 +20,7 @@ import { LocaleService } from '../../i18n/locale.service';
 export class Process implements AfterViewInit, OnDestroy {
   readonly i18n = inject(LocaleService);
   readonly content = computed(() => this.i18n.pageContent('process'));
+  readonly media = PROCESS_MEDIA;
 
   private scrollHandler?: () => void;
 

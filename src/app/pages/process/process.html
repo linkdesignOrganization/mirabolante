@@ -29,11 +29,16 @@
         </div>
 
         <div class="process-hero__right">
-          <img
-            src="images/CTA.jpg"
-            [alt]="content().hero.imageAlt"
-            class="process-hero__image"
-          />
+          <picture class="process-hero__picture">
+            <source media="(max-width: 767px)" [srcset]="media.heroImage.mobileSrc" />
+            <img
+              [src]="media.heroImage.desktopSrc"
+              [alt]="content().hero.imageAlt"
+              class="process-hero__image"
+              loading="eager"
+              decoding="async"
+            />
+          </picture>
 
           <div class="process-hero__card">
             <span class="process-hero__card-number">{{ content().hero.card.number }}</span>
@@ -52,11 +57,16 @@
 
 <section class="about" id="sourcing">
   <div class="about__bg">
-    <img
-      src="images/process1.jpg"
-      [alt]="content().sourcing.imageAlt"
-      class="about__bg-img"
-    />
+    <picture class="about__bg-picture">
+      <source media="(max-width: 767px)" [srcset]="media.sourcingImage.mobileSrc" />
+      <img
+        [src]="media.sourcingImage.desktopSrc"
+        [alt]="content().sourcing.imageAlt"
+        class="about__bg-img"
+        loading="lazy"
+        decoding="async"
+      />
+    </picture>
   </div>
 
   <div class="about__container">
@@ -120,11 +130,16 @@
 
 <section class="about about--left" id="flexibilidad">
   <div class="about__bg">
-    <img
-      src="images/cm3.jpg"
-      [alt]="content().flexibility.imageAlt"
-      class="about__bg-img"
-    />
+    <picture class="about__bg-picture">
+      <source media="(max-width: 767px)" [srcset]="media.flexibilityImage.mobileSrc" />
+      <img
+        [src]="media.flexibilityImage.desktopSrc"
+        [alt]="content().flexibility.imageAlt"
+        class="about__bg-img"
+        loading="lazy"
+        decoding="async"
+      />
+    </picture>
   </div>
 
   <div class="about__container">

@@ -1,12 +1,37 @@
 <section class="hero" [class.loaded]="loaded">
   <div class="hero__bg">
+    <picture
+      class="hero__poster"
+      [class.hero__poster--hidden]="loaded"
+    >
+      <source media="(max-width: 767px)" [srcset]="media.hero.mobilePoster" />
+      <img
+        [src]="media.hero.desktopPoster"
+        alt=""
+        class="hero__poster-image"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+        aria-hidden="true"
+      />
+    </picture>
     <video
-      #heroVideo
-      class="hero__video hero__video--active"
+      #heroVideoPrimary
+      class="hero__video"
+      [class.hero__video--active]="activeHeroSlot === 0"
       muted
       playsinline
-      (playing)="onFirstPlay()"
-      (ended)="onVideoEnded()"
+      preload="auto"
+      aria-hidden="true"
+    ></video>
+    <video
+      #heroVideoSecondary
+      class="hero__video"
+      [class.hero__video--active]="activeHeroSlot === 1"
+      muted
+      playsinline
+      preload="auto"
+      aria-hidden="true"
     ></video>
   </div>
 
@@ -85,15 +110,31 @@
   <div class="highlight__container">
     <div class="highlight__left">
       <div class="highlight__video-wrapper">
-        <video
-          class="highlight__video"
-          autoplay
-          muted
-          loop
-          playsinline
-        >
-          <source src="videos/vbox.mp4" type="video/mp4" />
-        </video>
+        @if (showHighlightVideo) {
+          <video
+            class="highlight__video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            [attr.poster]="media.highlight.desktopPoster"
+          >
+            <source [src]="media.highlight.desktopSrc" type="video/mp4" />
+          </video>
+        } @else {
+          <picture class="highlight__picture">
+            <source media="(max-width: 767px)" [srcset]="media.highlight.mobilePoster" />
+            <img
+              [src]="media.highlight.desktopPoster"
+              alt=""
+              class="highlight__poster"
+              loading="lazy"
+              decoding="async"
+              aria-hidden="true"
+            />
+          </picture>
+        }
       </div>
       <div class="highlight__card">
         <span class="highlight__stat">{{ content().highlight.stat }}</span>
@@ -144,11 +185,16 @@
 
 <section class="about" #aboutSection>
   <div class="about__bg">
-    <img
-      src="images/aboutimg.jpg"
-      [alt]="content().about.imageAlt"
-      class="about__bg-img"
-    />
+    <picture class="about__bg-picture">
+      <source media="(max-width: 767px)" [srcset]="media.aboutImage.mobileSrc" />
+      <img
+        [src]="media.aboutImage.desktopSrc"
+        [alt]="content().about.imageAlt"
+        class="about__bg-img"
+        loading="lazy"
+        decoding="async"
+      />
+    </picture>
   </div>
 
   <div class="about__container">
@@ -187,7 +233,15 @@
     <div class="home-cards__col home-cards__col--wide">
       <div class="home-cards__card home-cards__card--image">
         <figure class="home-cards__figure">
-          <img [src]="homeCardImages[0]" [alt]="content().cards.items[0].imageAlt" />
+          <picture>
+            <source media="(max-width: 767px)" [srcset]="homeCardImages[0].mobileSrc" />
+            <img
+              [src]="homeCardImages[0].desktopSrc"
+              [alt]="content().cards.items[0].imageAlt"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
           <div class="home-cards__overlay"></div>
         </figure>
         <div class="home-cards__body">
@@ -205,7 +259,15 @@
     <div class="home-cards__col home-cards__col--narrow">
       <div class="home-cards__card home-cards__card--image">
         <figure class="home-cards__figure">
-          <img [src]="homeCardImages[1]" [alt]="content().cards.items[1].imageAlt" />
+          <picture>
+            <source media="(max-width: 767px)" [srcset]="homeCardImages[1].mobileSrc" />
+            <img
+              [src]="homeCardImages[1].desktopSrc"
+              [alt]="content().cards.items[1].imageAlt"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
           <div class="home-cards__overlay"></div>
         </figure>
         <div class="home-cards__body">
@@ -225,7 +287,15 @@
     <div class="home-cards__col home-cards__col--narrow">
       <div class="home-cards__card home-cards__card--image">
         <figure class="home-cards__figure">
-          <img [src]="homeCardImages[2]" [alt]="content().cards.items[2].imageAlt" />
+          <picture>
+            <source media="(max-width: 767px)" [srcset]="homeCardImages[2].mobileSrc" />
+            <img
+              [src]="homeCardImages[2].desktopSrc"
+              [alt]="content().cards.items[2].imageAlt"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
           <div class="home-cards__overlay"></div>
         </figure>
         <div class="home-cards__body">
@@ -243,7 +313,15 @@
     <div class="home-cards__col home-cards__col--wide">
       <div class="home-cards__card home-cards__card--image">
         <figure class="home-cards__figure">
-          <img [src]="homeCardImages[3]" [alt]="content().cards.items[3].imageAlt" />
+          <picture>
+            <source media="(max-width: 767px)" [srcset]="homeCardImages[3].mobileSrc" />
+            <img
+              [src]="homeCardImages[3].desktopSrc"
+              [alt]="content().cards.items[3].imageAlt"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
           <div class="home-cards__overlay"></div>
         </figure>
         <div class="home-cards__body">

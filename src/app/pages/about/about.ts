@@ -10,6 +10,8 @@ import {
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LocaleService } from '../../i18n/locale.service';
+import { BufferedVideoSequenceController } from '../../shared/media/buffered-video-sequence';
+import { ABOUT_MEDIA } from '../../shared/media/site-media';
 
 @Component({
   selector: 'app-about',
@@ -20,23 +22,41 @@ import { LocaleService } from '../../i18n/locale.service';
 export class About implements AfterViewInit, OnDestroy {
   readonly i18n = inject(LocaleService);
   readonly content = computed(() => this.i18n.pageContent('about'));
+  readonly media = ABOUT_MEDIA;
   readonly featureIcons = ['images/c1_1.svg', 'images/c3.svg', 'images/c2.svg'];
 
   @ViewChild('heroMedia') heroMediaRef!: ElementRef<HTMLElement>;
   @ViewChild('heroImage') heroImageRef!: ElementRef<HTMLImageElement>;
-  @ViewChild('aboutVideo') aboutVideoRef!: ElementRef<HTMLVideoElement>;
+  @ViewChild('aboutVideoPrimary') aboutVideoPrimaryRef!: ElementRef<HTMLVideoElement>;
+  @ViewChild('aboutVideoSecondary') aboutVideoSecondaryRef!: ElementRef<HTMLVideoElement>;
   @ViewChild('ctaMedia') ctaMediaRef!: ElementRef<HTMLElement>;
   @ViewChild('ctaImage') ctaImageRef!: ElementRef<HTMLImageElement>;
 
-  aboutVideoPoster = 'images/hero-poster-d.jpg';
+  isMobileView = false;
+  storyLoaded = false;
+  storyActiveSlot: 0 | 1 = 0;
 
   private scrollHandler?: () => void;
   private resizeHandler?: () => void;
   private rafId = 0;
-  private isMobile = false;
-  private aboutCurrentIndex = 0;
-  private readonly desktopVideos = ['videos/d1.mp4', 'videos/d2.mp4', 'videos/d3.mp4', 'videos/d4.mp4'];
-  private readonly mobileVideos = ['videos/m1.mp4', 'videos/m2.mp4', 'videos/m3.mp4', 'videos/m4.mp4'];
+  private readonly storyController = new BufferedVideoSequenceController({
+    ...ABOUT_MEDIA.story,
+    onReadyChange: (ready) => {
+      this.ngZone.run(() => {
+        this.storyLoaded = ready;
+      });
+    },
+    onActiveSlotChange: (slot) => {
+      this.ngZone.run(() => {
+        this.storyActiveSlot = slot;
+      });
+    },
+    onViewportChange: (isMobile) => {
+      this.ngZone.run(() => {
+        this.isMobileView = isMobile;
+      });
+    },
+  });
 
   constructor(private ngZone: NgZone) {}
 
@@ -54,15 +74,19 @@ export class About implements AfterViewInit, OnDestroy {
       this.scrollHandler = queueParallax;
       this.resizeHandler = () => {
         queueParallax();
-        this.syncAboutVideo();
+        this.storyController.syncViewport();
       };
 
       window.addEventListener('scroll', queueParallax, { passive: true });
       window.addEventListener('resize', this.resizeHandler, { passive: true });
 
-      this.syncAboutVideo(true);
       queueParallax();
     });
+
+    this.storyController.mount([
+      this.aboutVideoPrimaryRef.nativeElement,
+      this.aboutVideoSecondaryRef.nativeElement,
+    ]);
   }
 
   ngOnDestroy() {
@@ -77,44 +101,8 @@ export class About implements AfterViewInit, OnDestroy {
     if (this.rafId) {
       cancelAnimationFrame(this.rafId);
     }
-  }
 
-  onAboutVideoEnded() {
-    this.aboutCurrentIndex = (this.aboutCurrentIndex + 1) % this.aboutVideos.length;
-    this.playAboutVideo();
-  }
-
-  private get aboutVideos(): string[] {
-    return this.isMobile ? this.mobileVideos : this.desktopVideos;
-  }
-
-  private syncAboutVideo(force = false) {
-    const nextIsMobile = window.matchMedia('(max-width: 768px)').matches;
-
-    if (!force && nextIsMobile === this.isMobile) return;
-
-    this.isMobile = nextIsMobile;
-    this.aboutVideoPoster = this.isMobile
-      ? 'images/hero-poster-m.jpg'
-      : 'images/hero-poster-d.jpg';
-    this.aboutCurrentIndex = 0;
-    this.playAboutVideo();
-  }
-
-  private playAboutVideo() {
-    const video = this.aboutVideoRef?.nativeElement;
-    if (!video) return;
-
-    const nextSource = this.aboutVideos[this.aboutCurrentIndex];
-
-    video.muted = true;
-    video.playsInline = true;
-    video.autoplay = true;
-    video.preload = 'auto';
-    video.src = nextSource;
-    video.load();
-
-    void video.play().catch(() => {});
+    this.storyController.destroy();
   }
 
   private updateParallax() {
@@ -139,5 +127,9 @@ export class About implements AfterViewInit, OnDestroy {
     const parallaxOffset = clampedProgress * distance;
 
     image.style.transform = `translateY(${parallaxOffset}px)`;
+  }
+
+  get showStoryVideo() {
+    return !this.isMobileView;
   }
 }
