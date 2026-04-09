@@ -23,7 +23,7 @@ export const routes: Routes = [
   },
   {
     path: 'contact',
-    data: { navTheme: 'light' },
+    data: { navTheme: 'dark' },
     loadComponent: () => import('./pages/contact/contact').then(m => m.Contact)
   },
   { path: '**', redirectTo: '' },
