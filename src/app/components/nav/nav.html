@@ -1,8 +1,8 @@
 <nav class="nav" [class.nav--dark]="navTheme === 'dark'">
   <div class="nav__links nav__links--left">
     <a routerLink="/about" class="nav__link">Nosotros</a>
-    <a href="#" class="nav__link">Productos</a>
     <a routerLink="/services" class="nav__link">Servicios</a>
+    <a routerLink="/services" fragment="productos-section" class="nav__link">Productos</a>
   </div>
 
   <a routerLink="/" class="nav__logo">
@@ -15,7 +15,7 @@
 
   <div class="nav__links nav__links--right">
     <a routerLink="/process" class="nav__link">Proceso</a>
-    <a href="#" class="nav__link">Mercados</a>
+    <a routerLink="/process" fragment="mercados" class="nav__link">Mercados</a>
     <a routerLink="/contact" class="nav__link">Contacto</a>
   </div>
 </nav>

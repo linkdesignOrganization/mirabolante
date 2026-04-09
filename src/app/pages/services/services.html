@@ -24,7 +24,7 @@
       <div class="s-overview__left">
         <span class="s-overview__label">Servicios</span>
         <h2 class="s-overview__heading">Mirabolante gestiona el abastecimiento de su operación de principio a fin.</h2>
-        <a href="#" class="btn-cta" style="--btn-color: #0044BD">
+        <a routerLink="/contact" class="btn-cta" style="--btn-color: #0044BD">
           <span class="btn-cta__text">Contáctenos</span>
           <span class="btn-cta__arrow">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -106,14 +106,14 @@
     </div>
   </section>
 
-  <section class="s-products">
+  <section class="s-products" id="productos-section">
     <div class="s-products__header">
       <span class="s-products__label">Productos</span>
       <h2 class="s-products__heading heading-h1">Estas son las líneas de producto que manejamos de forma recurrente.</h2>
       <p class="s-products__subtext">Si su operación requiere un insumo diferente, lo buscamos dentro de nuestra red de proveedores.</p>
     </div>
 
-    <div class="s-products__content">
+    <div class="s-products__content" id="consumo-humano">
       <div class="s-products__sticky">
         <span class="s-products__sticky-label">Línea de productos</span>
         <h3 class="s-products__sticky-title heading-h3">Consumo humano</h3>
@@ -200,7 +200,7 @@
       </div>
     </div>
 
-    <div class="s-products__content">
+    <div class="s-products__content" id="consumo-animal">
       <div class="s-products__sticky">
         <span class="s-products__sticky-label text-label">Línea de productos</span>
         <h3 class="s-products__sticky-title heading-h3">Consumo animal</h3>
@@ -270,7 +270,11 @@
           </div>
         </div>
 
-        <a href="#" class="btn-cta" style="--btn-color: #fff; --btn-text-color: #0044BD">
+        <a
+          routerLink="/contact"
+          class="btn-cta"
+          style="--btn-color: #fff; --btn-text-color: #0044BD"
+        >
           <span class="btn-cta__text">Contáctenos</span>
           <span class="btn-cta__arrow">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">

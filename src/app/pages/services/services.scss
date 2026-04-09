@@ -371,12 +371,13 @@
 
 .s-products {
   background-color: $color-white;
-  padding: 0 $container-padding-mobile;
+  padding: $section-padding-mobile $container-padding-mobile 0;
+  scroll-margin-top: 110px;
 }
 
 @media screen and (min-width: $bp-tablet) {
   .s-products {
-    padding: 0 $container-padding-desktop;
+    padding: $section-padding-desktop $container-padding-desktop 0;
   }
 }
 
@@ -413,6 +414,7 @@
   margin: 60px auto 0;
   padding-bottom: 80px;
   border-bottom: 1px solid $color-border;
+  scroll-margin-top: 110px;
 
   &:last-child {
     border-bottom: none;

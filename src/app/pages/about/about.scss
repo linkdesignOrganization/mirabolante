@@ -549,30 +549,6 @@
   color: $color-white;
 }
 
-.about-cta__marquee {
-  width: auto;
-  overflow: hidden;
-  margin-inline: calc(#{$container-padding-mobile} * -1);
-}
-
-.about-cta__marquee-track {
-  display: flex;
-  gap: 20px;
-  width: max-content;
-  animation: about-cta-marquee-scroll 22s linear infinite;
-}
-
-.about-cta__marquee-item {
-  width: clamp(360px, 78vw, 1120px);
-  flex-shrink: 0;
-}
-
-.about-cta__marquee-logo {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
 @media screen and (min-width: $bp-tablet) {
   .about-cta__media {
     height: 300px;
@@ -585,14 +561,6 @@
 
   .about-cta__title {
     max-width: 20ch;
-  }
-
-  .about-cta__marquee {
-    margin-inline: calc(#{$container-padding-desktop} * -1);
-  }
-
-  .about-cta__marquee-track {
-    gap: 24px;
   }
 }
 
@@ -620,15 +588,5 @@
   .about-cta__panel-inner {
     padding-top: 64px;
     padding-bottom: 72px;
-  }
-}
-
-@keyframes about-cta-marquee-scroll {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-50%);
   }
 }
