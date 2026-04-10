@@ -288,6 +288,7 @@
 @media screen and (min-width: $bp-desktop) {
   .about {
     height: 118vh;
+    padding-inline: 40px;
   }
 
   .about__bg-img {
@@ -307,15 +308,7 @@
   .about__rail {
     justify-self: end;
     width: 560px;
-    padding: 0 55px 0 0;
-
-    &::before {
-      left: 0;
-    }
-
-    &::after {
-      right: 55px;
-    }
+    padding: 0;
   }
 
   .about--left .about__container {
@@ -324,21 +317,10 @@
 
   .about--left .about__rail {
     justify-self: start;
-    padding: 0 0 0 55px;
-
-    &::before {
-      left: 55px;
-    }
-
-    &::after {
-      right: 0;
-    }
   }
 
   .about__card {
     top: 24px;
-    width: 480px;
-    margin-inline: 0;
     padding: 48px 40px;
     gap: 24px;
   }
