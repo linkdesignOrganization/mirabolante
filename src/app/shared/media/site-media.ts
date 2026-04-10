@@ -100,8 +100,8 @@ export const SERVICES_MEDIA = {
 
 export const PROCESS_MEDIA = {
   heroImage: {
-    desktopSrc: 'images/optimized/cta-desktop.webp',
-    mobileSrc: 'images/optimized/cta-mobile.webp',
+    desktopSrc: 'images/optimized/process-hero-desktop.webp',
+    mobileSrc: 'images/optimized/process-hero-mobile.webp',
   } satisfies ResponsiveImageAsset,
   sourcingImage: {
     desktopSrc: 'images/optimized/process1-desktop.webp',
