@@ -78,11 +78,22 @@
   <div class="about-section__story">
     <div class="about-section__media">
       <video
-        #storyVideo
-        class="about-section__video about-section__video--active"
+        #storyVideoA
+        class="about-section__video"
+        [class.about-section__video--active]="activeStoryBuffer === 'A'"
         muted
         playsinline
-        autoplay
+        preload="auto"
+        (canplay)="onStoryCanPlay()"
+        (ended)="onStoryEnded()"
+        aria-hidden="true"
+      ></video>
+      <video
+        #storyVideoB
+        class="about-section__video"
+        [class.about-section__video--active]="activeStoryBuffer === 'B'"
+        muted
+        playsinline
         preload="auto"
         (canplay)="onStoryCanPlay()"
         (ended)="onStoryEnded()"

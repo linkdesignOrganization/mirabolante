@@ -51,10 +51,12 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
   ] as const;
 
   @ViewChild('aboutSection') aboutSection!: ElementRef<HTMLElement>;
-  @ViewChild('heroVideo') heroVideoRef!: ElementRef<HTMLVideoElement>;
+  @ViewChild('heroVideoA') heroVideoARef!: ElementRef<HTMLVideoElement>;
+  @ViewChild('heroVideoB') heroVideoBRef!: ElementRef<HTMLVideoElement>;
   @ViewChildren('homeCard') homeCardRefs!: QueryList<ElementRef<HTMLElement>>;
 
   loaded = false;
+  activeBuffer: 'A' | 'B' = 'A';
   faqOpen: number | null = null;
   isMobileView =
     typeof window !== 'undefined'
@@ -80,6 +82,18 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
       : this.media.hero.desktopSources;
   }
 
+  private get activeVideoEl(): HTMLVideoElement | undefined {
+    return this.activeBuffer === 'A'
+      ? this.heroVideoARef?.nativeElement
+      : this.heroVideoBRef?.nativeElement;
+  }
+
+  private get standbyVideoEl(): HTMLVideoElement | undefined {
+    return this.activeBuffer === 'A'
+      ? this.heroVideoBRef?.nativeElement
+      : this.heroVideoARef?.nativeElement;
+  }
+
   onHeroCanPlay() {
     if (!this.loaded) {
       this.loaded = true;
@@ -90,6 +104,7 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
     if (!this.loaded) {
       this.loaded = true;
     }
+    this.preloadNextVideo();
   }
 
   toggleFaq(index: number) {
@@ -138,7 +153,11 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
 
   onHeroEnded() {
     this.currentHeroIndex = (this.currentHeroIndex + 1) % this.heroVideos.length;
-    this.playCurrentHeroVideo();
+    this.activeBuffer = this.activeBuffer === 'A' ? 'B' : 'A';
+    const nowActive = this.activeVideoEl;
+    if (nowActive) {
+      void nowActive.play().catch(() => {});
+    }
   }
 
   private onScroll() {
@@ -161,6 +180,15 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
   private initHeroVideo() {
     this.loaded = false;
     this.currentHeroIndex = 0;
+    this.activeBuffer = 'A';
+
+    const standby = this.standbyVideoEl;
+    if (standby) {
+      standby.pause();
+      standby.removeAttribute('src');
+      standby.load();
+    }
+
     this.playCurrentHeroVideo();
   }
 
@@ -176,20 +204,33 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private playCurrentHeroVideo() {
-    const video = this.heroVideoRef?.nativeElement;
-    if (!video) {
-      return;
-    }
+    const video = this.activeVideoEl;
+    if (!video) return;
 
     video.pause();
     video.defaultMuted = true;
     video.muted = true;
     video.playsInline = true;
-    video.autoplay = true;
     video.preload = 'auto';
     video.src = this.heroVideos[this.currentHeroIndex];
     video.load();
     void video.play().catch(() => {});
+  }
+
+  private preloadNextVideo() {
+    const standby = this.standbyVideoEl;
+    if (!standby) return;
+
+    const nextIndex = (this.currentHeroIndex + 1) % this.heroVideos.length;
+    if (standby.getAttribute('src') === this.heroVideos[nextIndex]) return;
+
+    standby.pause();
+    standby.defaultMuted = true;
+    standby.muted = true;
+    standby.playsInline = true;
+    standby.preload = 'auto';
+    standby.src = this.heroVideos[nextIndex];
+    standby.load();
   }
 
   private updateHomeCardsActiveState() {

@@ -26,11 +26,13 @@ export class About implements AfterViewInit, OnDestroy {
 
   @ViewChild('heroMedia') heroMediaRef!: ElementRef<HTMLElement>;
   @ViewChild('heroImage') heroImageRef!: ElementRef<HTMLImageElement>;
-  @ViewChild('storyVideo') storyVideoRef!: ElementRef<HTMLVideoElement>;
+  @ViewChild('storyVideoA') storyVideoARef!: ElementRef<HTMLVideoElement>;
+  @ViewChild('storyVideoB') storyVideoBRef!: ElementRef<HTMLVideoElement>;
   @ViewChild('ctaMedia') ctaMediaRef!: ElementRef<HTMLElement>;
   @ViewChild('ctaImage') ctaImageRef!: ElementRef<HTMLImageElement>;
 
   storyLoaded = false;
+  activeStoryBuffer: 'A' | 'B' = 'A';
   private currentStoryIndex = 0;
   private isMobileView =
     typeof window !== 'undefined'
@@ -114,20 +116,46 @@ export class About implements AfterViewInit, OnDestroy {
       : this.media.story.desktopSources;
   }
 
+  private get activeStoryEl(): HTMLVideoElement | undefined {
+    return this.activeStoryBuffer === 'A'
+      ? this.storyVideoARef?.nativeElement
+      : this.storyVideoBRef?.nativeElement;
+  }
+
+  private get standbyStoryEl(): HTMLVideoElement | undefined {
+    return this.activeStoryBuffer === 'A'
+      ? this.storyVideoBRef?.nativeElement
+      : this.storyVideoARef?.nativeElement;
+  }
+
   onStoryCanPlay() {
     if (!this.storyLoaded) {
       this.storyLoaded = true;
     }
+    this.preloadNextStoryVideo();
   }
 
   onStoryEnded() {
     this.currentStoryIndex = (this.currentStoryIndex + 1) % this.storyVideos.length;
-    this.playCurrentStoryVideo();
+    this.activeStoryBuffer = this.activeStoryBuffer === 'A' ? 'B' : 'A';
+    const nowActive = this.activeStoryEl;
+    if (nowActive) {
+      void nowActive.play().catch(() => {});
+    }
   }
 
   private initStoryVideo() {
     this.storyLoaded = false;
     this.currentStoryIndex = 0;
+    this.activeStoryBuffer = 'A';
+
+    const standby = this.standbyStoryEl;
+    if (standby) {
+      standby.pause();
+      standby.removeAttribute('src');
+      standby.load();
+    }
+
     this.playCurrentStoryVideo();
   }
 
@@ -139,17 +167,32 @@ export class About implements AfterViewInit, OnDestroy {
   }
 
   private playCurrentStoryVideo() {
-    const video = this.storyVideoRef?.nativeElement;
+    const video = this.activeStoryEl;
     if (!video) return;
 
     video.pause();
     video.defaultMuted = true;
     video.muted = true;
     video.playsInline = true;
-    video.autoplay = true;
     video.preload = 'auto';
     video.src = this.storyVideos[this.currentStoryIndex];
     video.load();
     void video.play().catch(() => {});
+  }
+
+  private preloadNextStoryVideo() {
+    const standby = this.standbyStoryEl;
+    if (!standby) return;
+
+    const nextIndex = (this.currentStoryIndex + 1) % this.storyVideos.length;
+    if (standby.getAttribute('src') === this.storyVideos[nextIndex]) return;
+
+    standby.pause();
+    standby.defaultMuted = true;
+    standby.muted = true;
+    standby.playsInline = true;
+    standby.preload = 'auto';
+    standby.src = this.storyVideos[nextIndex];
+    standby.load();
   }
 }

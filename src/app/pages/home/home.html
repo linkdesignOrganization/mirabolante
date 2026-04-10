@@ -1,11 +1,23 @@
 <section class="hero" [class.loaded]="loaded">
   <div class="hero__bg">
     <video
-      #heroVideo
-      class="hero__video hero__video--active"
+      #heroVideoA
+      class="hero__video"
+      [class.hero__video--active]="activeBuffer === 'A'"
       muted
       playsinline
-      autoplay
+      preload="auto"
+      (canplay)="onHeroCanPlay()"
+      (playing)="onHeroPlaying()"
+      (ended)="onHeroEnded()"
+      aria-hidden="true"
+    ></video>
+    <video
+      #heroVideoB
+      class="hero__video"
+      [class.hero__video--active]="activeBuffer === 'B'"
+      muted
+      playsinline
       preload="auto"
       (canplay)="onHeroCanPlay()"
       (playing)="onHeroPlaying()"
