@@ -10,7 +10,7 @@ export const ES_HOME: HomeDictionary = {
   metaTitle: 'Mirabolante | Trading & Global Food Sourcing',
   hero: {
     headingBig: 'Trading',
-    headingSideLines: ['& Global', 'Food Sourcing'],
+    headingSideLines: ['& Supply', 'Solutions'],
     cta: {
       text: 'Hablemos',
     },
@@ -146,7 +146,7 @@ export const EN_HOME: HomeDictionary = {
   metaTitle: 'Mirabolante | Trading & Global Food Sourcing',
   hero: {
     headingBig: 'Trading',
-    headingSideLines: ['& Global', 'Food Sourcing'],
+    headingSideLines: ['& Supply', 'Solutions'],
     cta: {
       text: "Let's talk",
     },
