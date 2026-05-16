@@ -113,19 +113,6 @@
           {{ content().story.text }}
         </p>
 
-        <div class="about-section__metrics">
-          @for (metric of content().story.metrics; track metric.value) {
-            <div class="about-section__metric">
-              <span class="about-section__metric-value heading-h1">{{ metric.value }}</span>
-              <span class="about-section__metric-label">
-                @for (line of metric.labelLines; track line) {
-                  <span>{{ line }}</span>
-                }
-              </span>
-            </div>
-          }
-        </div>
-
         <a
           [routerLink]="i18n.buildLink('services')"
           class="btn-cta"

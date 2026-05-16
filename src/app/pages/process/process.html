@@ -225,19 +225,6 @@
           {{ content().markets.text }}
         </p>
 
-        <div class="process-markets__metrics">
-          @for (metric of content().markets.metrics; track metric.value) {
-            <div class="process-markets__metric">
-              <span class="process-markets__metric-value heading-h1">{{ metric.value }}</span>
-              <span class="process-markets__metric-label">
-                @for (line of metric.labelLines; track line) {
-                  <span>{{ line }}</span>
-                }
-              </span>
-            </div>
-          }
-        </div>
-
         <a
           [routerLink]="i18n.buildLink('contact')"
           class="btn-cta"

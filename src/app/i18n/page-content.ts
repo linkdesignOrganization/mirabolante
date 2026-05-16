@@ -7,7 +7,7 @@ import {
 } from './types';
 
 export const ES_HOME: HomeDictionary = {
-  metaTitle: 'Mirabolante | Trading & Global Food Sourcing',
+  metaTitle: 'Mirabolante | Trading & Supply Solutions',
   hero: {
     headingBig: 'Trading',
     headingSideLines: ['& Supply', 'Solutions'],
@@ -27,7 +27,7 @@ export const ES_HOME: HomeDictionary = {
       {
         title: 'Sourcing Global',
         description:
-          'Acceso a proveedores en Brasil, Uruguay, Paraguay, Colombia y Argentina.',
+          'En toda América, Europa, África y donde se encuentre lo que esté buscando.',
         alt: 'Sourcing Global',
       },
       {
@@ -53,7 +53,7 @@ export const ES_HOME: HomeDictionary = {
     cardTitle: 'Adaptado a la medida de su negocio',
     cardText:
       'Cada operación tiene necesidades distintas. No ofrecemos soluciones genéricas: analizamos su requerimiento y buscamos la opción que mejor se adapte a su negocio.',
-    heading: 'Abastecimiento estratégico para la industria alimentaria.',
+    heading: 'Abastecimiento estratégico para la industria alimentaria y otros mercados.',
     cta: {
       text: 'Productos',
     },
@@ -63,7 +63,7 @@ export const ES_HOME: HomeDictionary = {
     label: 'Sobre Nosotros',
     heading: 'El socio que su cadena de suministro necesita.',
     text:
-      'Somos una trading house internacional con base en Panamá y operación en Costa Rica. Conectamos a su empresa con proveedores de primer nivel en Sudamérica, gestionamos toda la logística y le entregamos el producto en el puerto que usted elija. Sin intermediarios innecesarios, sin sorpresas en el camino.',
+      'Somos una trading house internacional con base en Panamá y operación en Costa Rica. Conectamos a su empresa con proveedores de primer nivel a nivel global, gestionamos toda la logística y le entregamos el producto en el puerto que usted elija. Sin intermediarios innecesarios, sin sorpresas en el camino.',
     cta: {
       text: 'Conózcanos',
     },
@@ -75,7 +75,7 @@ export const ES_HOME: HomeDictionary = {
         label: 'Sourcing',
         heading: 'Acceso a proveedores de primer nivel',
         text:
-          'Trabajamos con productores y exportadores en Brasil, Uruguay, Paraguay, Colombia y Argentina. Muchos de ellos no venden a clientes individuales. A través de Mirabolante, su empresa accede a esa red sin tener que construirla desde cero.',
+          'Trabajamos con productores y exportadores en las principales regiones productoras del mundo. Muchos de ellos no venden a clientes individuales. A través de Mirabolante, su empresa accede a esa red sin tener que construirla desde cero.',
         imageAlt: 'Sourcing global',
       },
       {
@@ -110,28 +110,28 @@ export const ES_HOME: HomeDictionary = {
       {
         question: '¿Cuál es el volumen mínimo de compra?',
         answer:
-          'El volumen mínimo de operación es de un contenedor completo, lo que representa entre 20 y 28 toneladas dependiendo del producto. Este modelo de trabajo está diseñado para atender a empresas con requerimientos de abastecimiento industrial continuo: procesadores de alimentos, distribuidores mayoristas e industrias del sector alimentario.',
+          'El volumen mínimo de operación es de un contenedor completo, lo que representa entre 20 y 28 toneladas dependiendo del producto. Este modelo de trabajo está diseñado para atender a empresas con requerimientos de abastecimiento industrial continuo: procesadores de alimentos, distribuidores mayoristas e industrias del sector alimentario y otros sectores de la economía.',
       },
       {
         question: '¿Cómo funciona el proceso de compra?',
         answer:
-          'El proceso inicia con el análisis del requerimiento del cliente, que incluye especificaciones técnicas, volúmenes estimados y condiciones de entrega. Con base en esa información, Mirabolante identifica las opciones más adecuadas dentro de su red de proveedores en Sudamérica y presenta una cotización con precio CIF en el puerto designado por el cliente. Antes del embarque, se envían fichas técnicas y muestras físicas para aprobación. Una vez confirmada la orden, Mirabolante gestiona la compra, el transporte marítimo y la documentación correspondiente. El cliente recibe el producto en puerto, listo para el proceso de nacionalización.',
+          'El proceso inicia con el análisis del requerimiento del cliente, que incluye especificaciones técnicas, volúmenes estimados y condiciones de entrega. Con base en esa información, Mirabolante identifica las opciones más adecuadas dentro de su red de proveedores en donde se encuentre el producto y presenta una cotización con precio CIF en el puerto designado por el cliente. Antes del embarque, se envían fichas técnicas y muestras físicas para aprobación. Una vez confirmada la orden, Mirabolante gestiona la compra, el transporte marítimo y la documentación correspondiente. El cliente recibe el producto en puerto, listo para el proceso de nacionalización.',
       },
       {
         question: '¿Cuánto tiempo tarda en llegar un pedido?',
         answer:
-          'Los tiempos de entrega dependen del origen del producto y de las condiciones logísticas vigentes. Una vez aprobada la cotización y la muestra, el proceso de preparación en origen toma entre una y dos semanas. El tránsito marítimo desde Sudamérica hacia Centroamérica oscila entre 25 y 60 días según la ruta. Mirabolante proporciona estimaciones de tiempo basadas en condiciones reales de operación, considerando escalas portuarias y disponibilidad de navieras.',
+          'Los tiempos de entrega dependen del origen del producto y de las condiciones logísticas vigentes. Una vez aprobada la cotización y la muestra, el proceso de preparación en origen toma entre una y dos semanas. El tránsito marítimo desde su origen hasta su destino final oscila entre 25 y 60 días según la ruta. Mirabolante proporciona estimaciones de tiempo basadas en condiciones reales de operación, considerando escalas portuarias y disponibilidad de navieras.',
       },
       {
         question:
           '¿Qué garantía tengo de que el producto cumple con las especificaciones?',
         answer:
-          'Todo embarque está respaldado por fichas técnicas verificadas y muestras físicas aprobadas por el cliente antes de la compra. Los proveedores con los que trabaja Mirabolante operan con sistemas de trazabilidad que permiten identificar el origen, la cosecha y el lote de cada producto. Esta documentación queda disponible para el cliente como parte del proceso de compra y sirve como respaldo ante cualquier reclamo de calidad.',
+          'Todo embarque está respaldado por fichas técnicas verificadas y muestras físicas siempre que el cliente las solicite. Los proveedores con los que trabaja Mirabolante operan con sistemas de trazabilidad que permiten identificar el origen, la cosecha y el lote de cada producto. Esta documentación queda disponible para el cliente como parte del proceso de compra y sirve como respaldo ante cualquier reclamo de calidad.',
       },
       {
         question: '¿Mirabolante cuenta con certificaciones?',
         answer:
-          'Mirabolante opera como comercializadora internacional, por lo que las certificaciones de calidad, inocuidad y buenas prácticas corresponden a las plantas de producción de cada proveedor. La empresa trabaja exclusivamente con proveedores que cuentan con las certificaciones requeridas por la industria alimentaria. Cuando un cliente requiere certificaciones específicas, Mirabolante selecciona proveedores que cumplan con esos requisitos.',
+          'Mirabolante opera como comercializadora internacional, por lo que las certificaciones de calidad, inocuidad y buenas prácticas corresponden a las plantas de producción de cada proveedor. La empresa trabaja exclusivamente con proveedores que cuentan con las certificaciones requeridas para cualquier segmento de la industria. Cuando un cliente requiere certificaciones específicas, Mirabolante selecciona proveedores que cumplan con esos requisitos.',
       },
       {
         question: '¿Qué sucede si no tengo experiencia en comercio internacional?',
@@ -143,7 +143,7 @@ export const ES_HOME: HomeDictionary = {
 };
 
 export const EN_HOME: HomeDictionary = {
-  metaTitle: 'Mirabolante | Trading & Global Food Sourcing',
+  metaTitle: 'Mirabolante | Trading & Supply Solutions',
   hero: {
     headingBig: 'Trading',
     headingSideLines: ['& Supply', 'Solutions'],
@@ -163,7 +163,7 @@ export const EN_HOME: HomeDictionary = {
       {
         title: 'Global Sourcing',
         description:
-          'Access to suppliers in Brazil, Uruguay, Paraguay, Colombia, and Argentina.',
+          'Across the Americas, Europe, Africa, and wherever what you are looking for can be found.',
         alt: 'Global Sourcing',
       },
       {
@@ -189,7 +189,7 @@ export const EN_HOME: HomeDictionary = {
     cardTitle: 'Tailored to your business',
     cardText:
       'Every operation has different requirements. We do not offer generic solutions: we analyze your needs and find the option that best fits your business.',
-    heading: 'Strategic sourcing for the food industry.',
+    heading: 'Strategic sourcing for the food industry and other markets.',
     cta: {
       text: 'Products',
     },
@@ -199,7 +199,7 @@ export const EN_HOME: HomeDictionary = {
     label: 'About Us',
     heading: 'The partner your supply chain needs.',
     text:
-      'We are an international trading house based in Panama with operations in Costa Rica. We connect your company with top-tier suppliers across South America, manage the full logistics chain, and deliver the product to the port you choose. No unnecessary intermediaries, no surprises along the way.',
+      'We are an international trading house based in Panama with operations in Costa Rica. We connect your company with top-tier suppliers worldwide, manage the full logistics chain, and deliver the product to the port you choose. No unnecessary intermediaries, no surprises along the way.',
     cta: {
       text: 'Meet us',
     },
@@ -211,7 +211,7 @@ export const EN_HOME: HomeDictionary = {
         label: 'Sourcing',
         heading: 'Access to top-tier suppliers',
         text:
-          'We work with producers and exporters in Brazil, Uruguay, Paraguay, Colombia, and Argentina. Many of them do not sell to individual buyers. Through Mirabolante, your company gains access to that network without having to build it from scratch.',
+          'We work with producers and exporters in the world’s main producing regions. Many of them do not sell to individual buyers. Through Mirabolante, your company gains access to that network without having to build it from scratch.',
         imageAlt: 'Global sourcing',
       },
       {
@@ -246,27 +246,27 @@ export const EN_HOME: HomeDictionary = {
       {
         question: 'What is the minimum order volume?',
         answer:
-          'The minimum operating volume is one full container, which typically represents between 20 and 28 tons depending on the product. This working model is designed for companies with ongoing industrial sourcing needs: food processors, wholesale distributors, and businesses in the food sector.',
+          'The minimum operating volume is one full container, which typically represents between 20 and 28 tons depending on the product. This working model is designed for companies with ongoing industrial sourcing needs: food processors, wholesale distributors, and businesses in the food sector and other sectors of the economy.',
       },
       {
         question: 'How does the purchasing process work?',
         answer:
-          'The process starts with an analysis of the client requirement, including technical specifications, estimated volumes, and delivery conditions. Based on that information, Mirabolante identifies the most suitable options within its supplier network in South America and provides a CIF quotation for the client’s designated port. Before shipment, technical sheets and physical samples are submitted for approval. Once the order is confirmed, Mirabolante manages the purchase, ocean transport, and the required documentation. The client receives the product at port, ready for customs clearance.',
+          'The process starts with an analysis of the client requirement, including technical specifications, estimated volumes, and delivery conditions. Based on that information, Mirabolante identifies the most suitable options within its supplier network wherever the product is located and provides a CIF quotation for the client’s designated port. Before shipment, technical sheets and physical samples are submitted for approval. Once the order is confirmed, Mirabolante manages the purchase, ocean transport, and the required documentation. The client receives the product at port, ready for customs clearance.',
       },
       {
         question: 'How long does an order take to arrive?',
         answer:
-          'Delivery times depend on product origin and prevailing logistics conditions. Once the quotation and sample are approved, origin preparation typically takes between one and two weeks. Ocean transit from South America to Central America ranges from 25 to 60 days depending on the route. Mirabolante provides delivery estimates based on real operating conditions, including port calls and carrier availability.',
+          'Delivery times depend on product origin and prevailing logistics conditions. Once the quotation and sample are approved, origin preparation typically takes between one and two weeks. Ocean transit from origin to final destination ranges from 25 to 60 days depending on the route. Mirabolante provides delivery estimates based on real operating conditions, including port calls and carrier availability.',
       },
       {
         question: 'How do I know the product meets the required specifications?',
         answer:
-          'Every shipment is backed by verified technical sheets and physical samples approved by the client before purchase. The suppliers Mirabolante works with operate traceability systems that identify each product’s origin, harvest, and lot. This documentation is made available to the client as part of the purchasing process and serves as support in the event of any quality claim.',
+          'Every shipment is backed by verified technical sheets and by physical samples whenever the client requests them. The suppliers Mirabolante works with operate traceability systems that identify each product’s origin, harvest, and lot. This documentation is made available to the client as part of the purchasing process and serves as support in the event of any quality claim.',
       },
       {
         question: 'Does Mirabolante hold certifications?',
         answer:
-          'Mirabolante operates as an international trading company, so quality, food safety, and good practice certifications belong to each supplier’s production facilities. The company works only with suppliers that hold the certifications required by the food industry. When a client needs specific certifications, Mirabolante selects suppliers that meet those requirements.',
+          'Mirabolante operates as an international trading company, so quality, food safety, and good practice certifications belong to each supplier’s production facilities. The company works only with suppliers that hold the certifications required for any segment of the industry. When a client needs specific certifications, Mirabolante selects suppliers that meet those requirements.',
       },
       {
         question: 'What if I do not have experience in international trade?',
@@ -285,7 +285,7 @@ export const ES_SERVICES: ServicesDictionary = {
     badges: [
       'Precio CIF',
       'Trazabilidad completa',
-      'Muestras antes de embarque',
+      'Múltiples orígenes',
       'Seguimiento en tiempo real',
     ],
     isoAlt: 'Mirabolante',
@@ -303,7 +303,7 @@ export const ES_SERVICES: ServicesDictionary = {
         number: '1',
         title: 'Originación',
         description:
-          'Identificamos proveedores que cumplan con sus especificaciones, cotizamos y coordinamos el envío de muestras para su aprobación.',
+          'Identificamos proveedores que cumplan con sus especificaciones, cotizamos y coordinamos la validación del producto para su aprobación.',
       },
       {
         number: '2',
@@ -321,27 +321,21 @@ export const ES_SERVICES: ServicesDictionary = {
   },
   coverage: {
     label: 'Cobertura',
-    heading: 'Conectamos proveedores de Sudamérica con operaciones en toda Latinoamérica.',
+    heading: 'Conectamos proveedores a nivel global con operaciones en el puerto que usted designe.',
     text:
       'Nuestra red de proveedores está concentrada en las principales regiones productoras del continente. Desde ahí, gestionamos embarques hacia los puertos que nuestros clientes designen.',
     items: [
       {
         title: 'Origen',
-        description: 'Brasil, Uruguay, Paraguay, Colombia y Argentina.',
+        description: 'Principales regiones productoras del continente americano y otros mercados.',
         alt: 'Origen',
       },
       {
         title: 'Destino',
-        description: 'Centroamérica, México, El Caribe y Sudamérica.',
+        description: 'El puerto que su operación designe, sin restricción geográfica.',
         alt: 'Destino',
       },
     ],
-    card: {
-      number: '5',
-      title: 'Países de origen activos',
-      description:
-        'Proveedores establecidos con los que mantenemos relaciones comerciales de largo plazo y condiciones preferenciales de compra.',
-    },
   },
   products: {
     label: 'Productos',
@@ -460,7 +454,7 @@ export const EN_SERVICES: ServicesDictionary = {
     badges: [
       'CIF pricing',
       'Full traceability',
-      'Pre-shipment samples',
+      'Multiple origins',
       'Real-time tracking',
     ],
     isoAlt: 'Mirabolante',
@@ -478,7 +472,7 @@ export const EN_SERVICES: ServicesDictionary = {
         number: '1',
         title: 'Origination',
         description:
-          'We identify suppliers that match your specifications, prepare quotations, and coordinate sample shipments for approval.',
+          'We identify suppliers that match your specifications, prepare quotations, and coordinate product validation for approval.',
       },
       {
         number: '2',
@@ -496,27 +490,21 @@ export const EN_SERVICES: ServicesDictionary = {
   },
   coverage: {
     label: 'Coverage',
-    heading: 'We connect suppliers across South America with operations throughout Latin America.',
+    heading: 'We connect global suppliers with delivery to the port you designate.',
     text:
       'Our supplier network is concentrated in the continent’s main producing regions. From there, we coordinate shipments to the ports our clients designate.',
     items: [
       {
         title: 'Origin',
-        description: 'Brazil, Uruguay, Paraguay, Colombia, and Argentina.',
+        description: 'The main producing regions of the Americas and other markets.',
         alt: 'Origin',
       },
       {
         title: 'Destination',
-        description: 'Central America, Mexico, the Caribbean, and South America.',
+        description: 'The port your operation designates, with no geographic restriction.',
         alt: 'Destination',
       },
     ],
-    card: {
-      number: '5',
-      title: 'Active origin countries',
-      description:
-        'Established suppliers with whom we maintain long-term commercial relationships and preferred purchasing terms.',
-    },
   },
   products: {
     label: 'Products',
@@ -670,7 +658,7 @@ export const ES_PROCESS: ProcessDictionary = {
   sourcing: {
     title: 'Sourcing Global',
     text:
-      'Mirabolante trabaja con productores y exportadores en Brasil, Uruguay, Paraguay, Colombia y Argentina. Varios de estos proveedores operan con volúmenes mínimos de compra que superan la capacidad de muchas empresas. A través de Mirabolante, su operación accede a esa red sin necesidad de negociar directo ni desplazar equipos a cada país de origen.',
+      'Mirabolante trabaja con productores y exportadores en las principales regiones productoras del mundo. Varios de estos proveedores operan con volúmenes mínimos de compra que superan la capacidad de muchas empresas. A través de Mirabolante, su operación accede a esa red sin necesidad de negociar directo ni desplazar equipos a cada país de origen.',
     iconAlt: 'Sourcing Global',
     imageAlt: 'Mirabolante Trading operaciones',
   },
@@ -721,9 +709,9 @@ export const ES_PROCESS: ProcessDictionary = {
       },
       {
         number: '2',
-        title: 'Muestras aprobadas',
+        title: 'Validación del producto',
         description:
-          'Usted aprueba contra muestra física antes de cualquier embarque.',
+          'Usted puede solicitar muestra física antes de cualquier embarque.',
       },
       {
         number: '3',
@@ -735,24 +723,10 @@ export const ES_PROCESS: ProcessDictionary = {
   },
   markets: {
     label: 'Mercados',
-    title: 'Presencia activa en Latinoamérica con capacidad de expansión.',
+    title: 'Presencia activa con capacidad de expansión global.',
     text:
-      'Actualmente operamos con proveedores en Brasil, Uruguay, Paraguay, Colombia y Argentina, y entregamos a clientes en Centroamérica y Sudamérica. Si su operación está en un mercado fuera de esta cobertura, podemos evaluar la viabilidad de atenderlo.',
+      'Nuestra red de proveedores abarca las principales regiones productoras del continente americano, con capacidad de gestionar operaciones en Europa, África y cualquier mercado donde se encuentre el producto que su operación necesita. No nos limitamos a una geografía ni a un solo sector: si existe un proveedor confiable y un producto que cumpla con sus especificaciones, lo encontramos y se lo entregamos.',
     imageAlt: 'Mapa de cobertura comercial en Latinoamérica',
-    metrics: [
-      {
-        value: '5',
-        labelLines: ['Países de', 'origen'],
-      },
-      {
-        value: '3+',
-        labelLines: ['Destinos', 'activos'],
-      },
-      {
-        value: 'CIF',
-        labelLines: ['Entrega en', 'su puerto'],
-      },
-    ],
     cta: {
       text: 'Contáctenos',
     },
@@ -803,7 +777,7 @@ export const EN_PROCESS: ProcessDictionary = {
   sourcing: {
     title: 'Global Sourcing',
     text:
-      'Mirabolante works with producers and exporters in Brazil, Uruguay, Paraguay, Colombia, and Argentina. Several of these suppliers operate with minimum purchase volumes that exceed the capacity of many companies. Through Mirabolante, your operation gains access to that network without having to negotiate directly or deploy teams in each country of origin.',
+      'Mirabolante works with producers and exporters in the world’s main producing regions. Several of these suppliers operate with minimum purchase volumes that exceed the capacity of many companies. Through Mirabolante, your operation gains access to that network without having to negotiate directly or deploy teams in each country of origin.',
     iconAlt: 'Global Sourcing',
     imageAlt: 'Mirabolante Trading operations',
   },
@@ -854,9 +828,9 @@ export const EN_PROCESS: ProcessDictionary = {
       },
       {
         number: '2',
-        title: 'Approved samples',
+        title: 'Product validation',
         description:
-          'You approve against a physical sample before any shipment.',
+          'You may request a physical sample before any shipment.',
       },
       {
         number: '3',
@@ -868,24 +842,10 @@ export const EN_PROCESS: ProcessDictionary = {
   },
   markets: {
     label: 'Markets',
-    title: 'Active presence across Latin America with room to expand.',
+    title: 'Active presence with room for global expansion.',
     text:
-      'We currently operate with suppliers in Brazil, Uruguay, Paraguay, Colombia, and Argentina, and deliver to clients across Central and South America. If your operation is in a market outside this coverage, we can assess the feasibility of serving it.',
+      'Our supplier network spans the main producing regions of the Americas, with the capacity to manage operations in Europe, Africa, and any market where the product your operation needs can be found. We are not limited to a single geography or sector: if there is a reliable supplier and a product that meets your specifications, we find it and deliver it to you.',
     imageAlt: 'Map of commercial coverage across Latin America',
-    metrics: [
-      {
-        value: '5',
-        labelLines: ['Origin', 'countries'],
-      },
-      {
-        value: '3+',
-        labelLines: ['Active', 'destinations'],
-      },
-      {
-        value: 'CIF',
-        labelLines: ['Delivery at', 'your port'],
-      },
-    ],
     cta: {
       text: 'Contact us',
     },
@@ -916,10 +876,10 @@ export const ES_ABOUT: AboutDictionary = {
         alt: 'Monitoreo de mercados',
       },
       {
-        title: 'Muestras antes de embarque',
+        title: 'Estructura de costos abierta',
         text:
-          'Aprobación contra ficha técnica y muestra física antes de cualquier compra.',
-        alt: 'Muestras antes de embarque',
+          'Abrimos nuestra estructura de costos para que usted decida con información real.',
+        alt: 'Estructura de costos abierta',
       },
       {
         title: 'Gestión integral',
@@ -933,21 +893,7 @@ export const ES_ABOUT: AboutDictionary = {
     label: 'Quiénes somos',
     title: 'Conectamos su operación con los proveedores que necesita.',
     text:
-      'Mirabolante es una trading house internacional con base en Panamá y equipo operativo en Costa Rica. Compramos materias primas e ingredientes alimentarios en Sudamérica y los entregamos a clientes industriales en toda Latinoamérica. Gestionamos todo el proceso: cotización, negociación, logística y documentación.',
-    metrics: [
-      {
-        value: '50k',
-        labelLines: ['Toneladas', 'anuales'],
-      },
-      {
-        value: '5',
-        labelLines: ['Países de', 'origen'],
-      },
-      {
-        value: '20+',
-        labelLines: ['Proveedores', 'activos'],
-      },
-    ],
+      'Mirabolante es una trading house internacional con base en Panamá y equipo operativo en Costa Rica. Compramos materias primas e insumos en donde se encuentren y los entregamos a clientes en el puerto que elijan. Gestionamos todo el proceso: cotización, negociación, logística y documentación.',
     cta: {
       text: 'Conozca nuestros servicios',
     },
@@ -1019,10 +965,10 @@ export const EN_ABOUT: AboutDictionary = {
         alt: 'Market monitoring',
       },
       {
-        title: 'Pre-shipment samples',
+        title: 'Open cost structure',
         text:
-          'Approval against technical sheet and physical sample before any purchase.',
-        alt: 'Pre-shipment samples',
+          'We open our cost structure so you can decide with real information.',
+        alt: 'Open cost structure',
       },
       {
         title: 'End-to-end management',
@@ -1036,21 +982,7 @@ export const EN_ABOUT: AboutDictionary = {
     label: 'Who we are',
     title: 'We connect your operation with the suppliers it needs.',
     text:
-      'Mirabolante is an international trading house based in Panama with an operating team in Costa Rica. We purchase raw materials and food ingredients across South America and deliver them to industrial clients throughout Latin America. We manage the full process: quotation, negotiation, logistics, and documentation.',
-    metrics: [
-      {
-        value: '50k',
-        labelLines: ['Annual', 'tons'],
-      },
-      {
-        value: '5',
-        labelLines: ['Origin', 'countries'],
-      },
-      {
-        value: '20+',
-        labelLines: ['Active', 'suppliers'],
-      },
-    ],
+      'Mirabolante is an international trading house based in Panama with an operating team in Costa Rica. We purchase raw materials and supplies wherever they are found and deliver them to clients at the port they choose. We manage the full process: quotation, negotiation, logistics, and documentation.',
     cta: {
       text: 'Explore our services',
     },
@@ -1108,7 +1040,7 @@ export const ES_CONTACT: ContactDictionary = {
     phoneLabel: 'Teléfono',
     phoneValue: '+507 0000-0000',
     emailLabel: 'Email',
-    emailValue: 'info@mirabolante.com',
+    emailValue: 'correo@correo.com',
     addressLabel: 'Dirección',
     addressValue: 'Ciudad de Panamá, Panamá',
   },
@@ -1153,7 +1085,7 @@ export const EN_CONTACT: ContactDictionary = {
     phoneLabel: 'Phone',
     phoneValue: '+507 0000-0000',
     emailLabel: 'Email',
-    emailValue: 'info@mirabolante.com',
+    emailValue: 'correo@correo.com',
     addressLabel: 'Address',
     addressValue: 'Panama City, Panama',
   },

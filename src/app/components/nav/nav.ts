@@ -33,7 +33,7 @@ export class Nav {
   ];
   readonly contactHref = 'tel:+50700000000';
   readonly whatsappHref = 'https://wa.me/50700000000';
-  readonly emailHref = 'mailto:info@mirabolante.com';
+  readonly emailHref = 'mailto:correo@correo.com';
 
   private readonly destroyRef = inject(DestroyRef);
   private readonly router = inject(Router);

@@ -70,7 +70,7 @@ export const DICTIONARIES: Record<SupportedLocale, LocaleDictionary> = {
       footer: {
         brandTitle: 'Su socio en comercio internacional',
         brandDescription:
-          'Trading house internacional especializada en materias primas e ingredientes para la industria alimentaria en Latinoamérica.',
+          'Trading house internacional especializada en el abastecimiento de materias primas e insumos, con gestión logística integral hasta el puerto que usted designe.',
         navigation: 'Navegación',
         navigationAria: 'Navegación del footer',
         home: 'Inicio',
@@ -82,7 +82,7 @@ export const DICTIONARIES: Record<SupportedLocale, LocaleDictionary> = {
         humanConsumption: 'Consumo humano',
         animalConsumption: 'Consumo animal',
         city: 'Ciudad de Panamá, Panamá',
-        copyright: 'Copyright © 2026 Mirabolante Trading & Global Food Sourcing.',
+        copyright: 'Copyright © 2026 Mirabolante Trading & Supply Solutions.',
       },
       language: {
         switchLabel: 'Idioma',
@@ -115,7 +115,7 @@ export const DICTIONARIES: Record<SupportedLocale, LocaleDictionary> = {
       footer: {
         brandTitle: 'Your partner in international trade',
         brandDescription:
-          'International trading house specializing in raw materials and ingredients for the food industry across Latin America.',
+          'International trading house specializing in the sourcing of raw materials and supplies, with end-to-end logistics to the port you designate.',
         navigation: 'Navigation',
         navigationAria: 'Footer navigation',
         home: 'Home',
@@ -127,7 +127,7 @@ export const DICTIONARIES: Record<SupportedLocale, LocaleDictionary> = {
         humanConsumption: 'Human consumption',
         animalConsumption: 'Animal nutrition',
         city: 'Panama City, Panama',
-        copyright: 'Copyright © 2026 Mirabolante Trading & Global Food Sourcing.',
+        copyright: 'Copyright © 2026 Mirabolante Trading & Supply Solutions.',
       },
       language: {
         switchLabel: 'Language',

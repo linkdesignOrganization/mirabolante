@@ -127,11 +127,6 @@ export interface ServicesDictionary {
       description: string;
       alt: string;
     }>;
-    card: {
-      number: string;
-      title: string;
-      description: string;
-    };
   };
   products: {
     label: string;
@@ -193,7 +188,6 @@ export interface ProcessDictionary {
     title: string;
     text: string;
     imageAlt: string;
-    metrics: MetricItem[];
     cta: CtaCopy;
   };
 }
@@ -219,7 +213,6 @@ export interface AboutDictionary {
     label: string;
     title: string;
     text: string;
-    metrics: MetricItem[];
     cta: CtaCopy;
   };
   team: {
