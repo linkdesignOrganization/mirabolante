@@ -10,6 +10,9 @@
 /deploy
 /app.zip
 
+# Notas de migración solo locales (no versionar)
+/PLAN-migracion-app-service.md
+
 # Node
 /node_modules
 npm-debug.log
