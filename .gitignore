@@ -6,6 +6,10 @@
 /out-tsc
 /bazel-out
 
+# App Service deploy staging (server.js zero-dep package)
+/deploy
+/app.zip
+
 # Node
 /node_modules
 npm-debug.log
