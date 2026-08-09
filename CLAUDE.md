@@ -59,3 +59,14 @@ Hacer commit al cerrar cada milestone importante (ej: sección lista, refactor c
 - Footer con CTA — decidido pero no implementado aún
 - Responsive/mobile — no se ha trabajado todavía
 - Contenido real del cliente — textos actuales son placeholder de referencias
+
+
+## Memoria del proyecto
+
+@.claude/memory/MEMORY.md
+
+Ese índice viaja con el repo: está en cualquier máquina donde lo clones, sin configurar nada. Los
+archivos que lista no se cargan solos — leerlos cuando el tema aparezca.
+
+Cuando aprendas algo duradero de este proyecto, escribilo ahí: un archivo por tema y una línea en
+`MEMORY.md`. El índice se carga entero en cada sesión, así que va corto.
